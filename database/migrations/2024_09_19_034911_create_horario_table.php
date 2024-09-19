@@ -12,12 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('horario', function (Blueprint $table) {
-            $table->increments("idh");
+            $table->engine = 'InnoDB';
+            $table->bigIncrements("idh");
             $table->time("horaentrada");
             $table->time("horasalida");
             $table->String("dia");
-            $table->int("ide");
-            $table->foreign("ide")->references("ide")->on("empleado");
+            $table->bigInteger("ide");
+            $table->foreign("ide")->references("ide")->on("empleado")->onDelete('cascade');
         });
     }
 

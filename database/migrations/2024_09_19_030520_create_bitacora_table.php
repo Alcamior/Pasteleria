@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('bitacora', function (Blueprint $table) {
-            $table->increments("idb");
+            $table->bigIncrements("idb");
             $table->String("detalle");
         });
     }

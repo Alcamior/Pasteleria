@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('almacenaje', function (Blueprint $table) {
-            $table->increments("idalm");
+            $table->bigIncrements("idalm");
             $table->String("nombre");
             $table->String("descripcion");
-            $table->int("cantidad");
+            $table->integer("cantidad");
             $table->date("feCad")->nullable();
-            $table->int("disponibilidad");
+            $table->integer("disponibilidad");
             $table->String("categoria"); //Verificar
         });
     }
