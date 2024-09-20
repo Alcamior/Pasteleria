@@ -15,8 +15,8 @@ return new class extends Migration
             $table->engine = 'InnoDB';
             $table->bigIncrements("idnot");
             $table->integer("cantidad");
-            $table->bigInteger("idpro");
-            $table->bigInteger("idv");
+            $table->unsignedBigInteger("idpro");
+            $table->unsignedBigInteger("idv");
             $table->foreign("idpro")->references("idpro")->on("producto")->onDelete('cascade');
             $table->foreign("idv")->references("idv")->on("venta")->onDelete('cascade');
         });

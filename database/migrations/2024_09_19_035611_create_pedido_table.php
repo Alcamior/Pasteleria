@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pedido', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->bigIncrements("idpe");
             $table->date("fecPed");
             $table->date("fecEntrega");
@@ -19,6 +20,10 @@ return new class extends Migration
             $table->float("total");
             $table->String("direccion");
             $table->String("descripcion");
+            $table->unsignedBigInteger("idcli");
+            $table->unsignedBigInteger("ide");
+            $table->foreign('idcli')->references('idcli')->on('cliente')->onDelete('cascade');
+            $table->foreign('ide')->references('ide')->on('empleado')->onDelete('cascade');
         });
     }
 

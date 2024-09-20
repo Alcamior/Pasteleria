@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('cliente', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->bigIncrements("idcli");
             $table->String("nombre");
             $table->String("ap");
