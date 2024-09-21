@@ -10,3 +10,5 @@ Route::get('/', function () {
 Route::get('principal',function(){
     return "Hola";
 })->name('principal');
+
+Route::get('login',[PasteleriaController::class,'login'])->name('login');

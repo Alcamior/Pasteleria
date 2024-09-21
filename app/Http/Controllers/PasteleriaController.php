@@ -6,7 +6,11 @@ use Illuminate\Http\Request;
 
 class PasteleriaController extends Controller
 {
-    function principal(){
+    public function principal(){
         return "hola";
+    }
+
+    public function login(){
+        return view("login");
     }
 }
