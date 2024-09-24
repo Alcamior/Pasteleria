@@ -10,7 +10,7 @@ class PasteleriaController extends Controller
         return "hola";
     }
 
-    public function login(){
+    public function signin(){
         return view("login");
     }
 }

@@ -4,11 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PasteleriaController;
 
 Route::get('/', function () {
-    return view('welcome');
+    //return view('welcome');
+    return "hola";
 });
 
 Route::get('principal',function(){
     return "Hola";
 })->name('principal');
 
-Route::get('login',[PasteleriaController::class,'login'])->name('login');
+Route::get('signin',[PasteleriaController::class,'signin'])->name('login');
