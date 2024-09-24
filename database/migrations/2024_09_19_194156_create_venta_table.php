@@ -18,6 +18,7 @@ return new class extends Migration
             $table->float("subtotal");
             $table->float("total");
             $table->float("promo");
+            $table->String("estatus");
             $table->unsignedBigInteger("ide");
             $table->foreign("ide")->references("ide")->on("empleado")->onDelete('cascade');
         });

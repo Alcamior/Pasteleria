@@ -17,12 +17,11 @@ return new class extends Migration
             $table->String("nombre");
             $table->String("ap");
             $table->String("am");
-            $table->date("fenac");
-            $table->String("direccion");
+            $table->date("fenac")->nullable();
+            $table->String("direccion")->nullable();
             $table->String("telefono");
             $table->String("email");
-            $table->String("contrasena")->nullable();
-            $table->String("google_id")->nullable();
+            $table->String("contrasena");
         });
     }
 
