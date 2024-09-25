@@ -3,11 +3,11 @@
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PasteleriaController;
+use App\Http\Controllers\ProductoController;
 use Laravel\Socialite\Facades\Socialite;
 
 Route::get('/', function () {
-    //return view('welcome');
-    return "hola";
+    return view('welcome');
 });
 
 
@@ -25,6 +25,13 @@ Route::get('signup',[LoginController::class,'signup'])->name('signup');
 
 //Páginas para la validación de los datos insertados
 Route::post('validar-registro',[LoginController::class,'validarRegistro'])->name('validar-registro');
+
+//Rutas para producto
+Route::post('validar-producto',[ProductoController::class,'validarProducto'])->name('validar-producto');
+Route::get('registro-producto',[ProductoController::class,'producto'])->name('registro-producto');
+Route::get('consultar-producto',[ProductoController::class,'consultarProducto'])->name('consultar-producto');
+
+
 
  
 Route::get('login-google', function () {

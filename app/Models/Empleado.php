@@ -10,7 +10,6 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 class Empleado extends Authenticatable
 {
-
     use HasFactory, Notifiable;
     
     public $timestamps = false;
