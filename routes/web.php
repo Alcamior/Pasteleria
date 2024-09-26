@@ -30,7 +30,7 @@ Route::post('validar-registro',[LoginController::class,'validarRegistro'])->name
 Route::post('validar-producto',[ProductoController::class,'validarProducto'])->name('validar-producto');
 Route::get('registro-producto',[ProductoController::class,'producto'])->name('registro-producto');
 Route::get('consultar-producto',[ProductoController::class,'consultarProducto'])->name('consultar-producto');
-
+Route::delete('/productos/{id}', [ProductoController::class, 'destroy']);
 
  
 Route::get('login-google', function () {

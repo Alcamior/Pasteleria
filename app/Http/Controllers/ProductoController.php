@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\Producto;
 
@@ -34,4 +35,15 @@ class ProductoController extends Controller
         return view('producto/consultar-producto',compact('producto'));
     }
 
+    public function destroy($idpro)
+    {
+        $deleted = DB::delete('delete from producto where idpro = ?', [$idpro]);
+    
+        if ($deleted) {
+            return response()->json(['message' => 'Producto eliminado con éxito']);
+        } else {
+            return response()->json(['message' => 'Producto no encontrado'], 404);
+        }
+    }
+    
 }
