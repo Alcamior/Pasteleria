@@ -32,7 +32,6 @@ Route::get('registro-producto',[ProductoController::class,'producto'])->name('re
 Route::get('consultar-producto',[ProductoController::class,'consultarProducto'])->name('consultar-producto');
 
 
-
  
 Route::get('login-google', function () {
     return Socialite::driver('google')->redirect();
