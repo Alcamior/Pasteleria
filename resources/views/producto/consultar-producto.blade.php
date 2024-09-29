@@ -11,7 +11,8 @@
 </head>
 <body>
     <div>
-        <p><button id="button">Delete selected row</button></p>
+        <p><button id="eliminarDato">Eliminar fila seleccionada</button></p>
+        <p><button id="actualizarDato">Actualizar fila seleccionada</button></p>
         <table id="myTable">
             <thead>
                 <tr>

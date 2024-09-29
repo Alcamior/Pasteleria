@@ -10,4 +10,5 @@ class Producto extends Model
     use HasFactory;
     public $timestamps = false;
     protected $table="producto";
+    protected $primaryKey = 'idpro';
 }

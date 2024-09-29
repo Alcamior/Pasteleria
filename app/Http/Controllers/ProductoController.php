@@ -45,5 +45,24 @@ class ProductoController extends Controller
             return response()->json(['message' => 'Producto no encontrado'], 404);
         }
     }
+
+    public function editarProducto($idpro){
+        $producto=Producto::find($idpro); 
+        return view('producto/editar-producto',compact('producto'));
+    }
+
+    public function actualizarProducto(Request $request,$idpro){
+        $producto = Producto::find($idpro);
+        $producto -> tipo = $request -> tipo;
+        $producto -> descripcion = $request -> descripcion;
+        $producto -> precio = $request -> precio;
+        $producto -> tamano = $request -> tamano;
+        $producto -> feIngreso = $request -> feIngreso;
+        $producto -> caducidad = $request -> caducidad;
+        $producto -> categoria = $request -> categoria;
+        $producto -> save();
+
+        return redirect()->route('principal');
+    }
     
 }

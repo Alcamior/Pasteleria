@@ -31,6 +31,8 @@ Route::post('validar-producto',[ProductoController::class,'validarProducto'])->n
 Route::get('registro-producto',[ProductoController::class,'producto'])->name('registro-producto');
 Route::get('consultar-producto',[ProductoController::class,'consultarProducto'])->name('consultar-producto');
 Route::delete('/productos/{id}', [ProductoController::class, 'destroy']);
+Route::get('editar-producto/{id}',[ProductoController::class,'editarProducto'])->name('editar-producto');
+Route::post('actualizar-producto/{id}',[ProductoController::class,'actualizarProducto'])->name('actualizar-producto');
 
  
 Route::get('login-google', function () {
