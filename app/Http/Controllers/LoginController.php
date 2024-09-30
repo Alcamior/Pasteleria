@@ -28,8 +28,24 @@ class LoginController extends Controller
         return redirect(route('login'));
     }
 
-    public function validarInicioSesion(Request $request){
+    public function login(){
+        return view('login');
+    }
 
+    public function validarSesion(Request $request){
+        $credentials = [
+            'email' => $request->email,
+            'contrasena' => $request->contrasena,
+        ];
+
+        $remember=($request->has('remember')?true:false);
+
+        if(Auth::attempt($credentials,$remember)){
+            $request->session()->regenerate();
+            return redirect()->intended();
+        }else{
+            return redirect('consultar-producto');  
+        }
     }
 
     public function logout(Request $request){
