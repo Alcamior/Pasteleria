@@ -13,3 +13,6 @@
     <li>GOOGLE_OAUTH_KEY</li>
     <li>GOOGLE_REDIRECT_URL="http://localhost:8000/google-callback"</li>
 </lu>
+
+<h2>Agregar los permisos</h2>
+<p> composer require spatie/laravel-permission</p>
