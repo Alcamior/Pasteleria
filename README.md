@@ -6,3 +6,10 @@
 
 <h2>Instalar el paquete para socialite</h2>
 <p>composer require laravel/socialite</p>
+
+<h2>Variables utilizadas</h2>
+<lu>
+    <li>GOOGLE_OAUTH_ID</li>
+    <li>GOOGLE_OAUTH_KEY</li>
+    <li>GOOGLE_REDIRECT_URL="http://localhost:8000/google-callback"</li>
+</lu>
