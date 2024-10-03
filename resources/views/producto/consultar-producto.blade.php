@@ -43,7 +43,6 @@
     </div>
 
 
-    <!-- Incluir SweetAlert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Cargar jQuery antes de DataTables -->
