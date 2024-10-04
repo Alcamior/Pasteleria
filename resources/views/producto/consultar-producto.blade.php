@@ -10,6 +10,25 @@
     <title>Document</title>
 </head>
 <body>
+    @hasrole('super-admin')
+        <p>El usuario es un administrador.</p>
+    @else
+        <p>El usuario NO es un administrador.</p>
+    @endhasrole
+
+    @can('solicitar pedido')
+        <p>El usuario tiene el permiso para solicitar pedido.</p>
+    @else
+        <p>El usuario NO tiene el permiso para solicitar pedido.</p>
+    @endcan
+
+    @auth
+    <p>El usuario está autenticado.</p>
+@else
+    <p>El usuario NO está autenticado.</p>
+@endauth
+
+
     <div>
         <p><button id="eliminarDato">Eliminar fila seleccionada</button></p>
         <p><button id="actualizarDato">Actualizar fila seleccionada</button></p>

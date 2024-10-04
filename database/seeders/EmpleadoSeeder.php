@@ -20,7 +20,8 @@ class EmpleadoSeeder extends Seeder
         $empleado -> am = "Medina";
         $empleado -> telefono = "7774571517";
         $empleado -> email = "kevinyahirt@gmail.com";
-        $empleado -> contrasena = Hash::make(value:'123456');
+        $empleado -> contrasena = Hash::make('123456');
+        $empleado -> role_id = 1;
 
         $empleado -> assignRole(roles:'super-admin');
         $empleado -> save();
@@ -31,7 +32,8 @@ class EmpleadoSeeder extends Seeder
         $empleado -> am = "Contreras";
         $empleado -> telefono = "7774081082";
         $empleado -> email = "acco220170@upemor.edu.mx";
-        $empleado -> contrasena = Hash::make(value:'123456');
+        $empleado -> contrasena = Hash::make('123456');
+        $empleado -> role_id = 2;
 
         $empleado -> assignRole(roles:'admin');
         $empleado -> save();

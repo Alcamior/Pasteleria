@@ -30,7 +30,7 @@ Route::delete('/productos/{id}', [ProductoController::class, 'destroy']);
 Route::get('editar-producto/{id}',[ProductoController::class,'editarProducto'])->name('editar-producto');
 Route::post('actualizar-producto/{id}',[ProductoController::class,'actualizarProducto'])->name('actualizar-producto');
 
- 
+/* ->middleware('can:solicitar pedido') */
 
 //paginas para el logeo
 Route::get('login-google', function () {

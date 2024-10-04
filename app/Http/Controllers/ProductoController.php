@@ -2,27 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-use App\Http\Controllers\Controller; 
+
+
 
 use App\Models\Producto;
 
 class ProductoController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('can:insertar pedido', [
-            'only' => [
-                'editarProducto', 'actualizarProducto',
-            ]
-        ]);
-        
-    }
 
     public function producto(){
         return view('producto/registro-producto');

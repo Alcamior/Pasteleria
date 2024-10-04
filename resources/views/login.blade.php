@@ -4,8 +4,7 @@
 
 <form action="{{route('validar-sesion')}}" method="post">
     @csrf
-    <label></label>
-    <input type="email" name="" id="">
-    <input type="contrasena" name="" id="">
+    <input type="text" name="email" id="email">
+    <input type="password" name="contrasena" id="contrasena">
     <button>Enviar</button>
 </form>
