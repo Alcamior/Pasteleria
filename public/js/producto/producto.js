@@ -30,31 +30,82 @@ $(document).ready(function () {
     });
 
     // Maneja el evento de clic en el botón para eliminar filas seleccionadas
-    document.querySelector('#button').addEventListener('click', function () {
+    document.querySelector('#eliminarDato').addEventListener('click', function () {
         const selectedRow = myTable.row('.selected');
 
         if (selectedRow.length) {
             const rowData = selectedRow.data(); // Obtener datos de la fila seleccionada
             const productId = rowData[0]; // Suponiendo que el ID está en la primera columna
-
-            // Realizar la solicitud AJAX para eliminar el producto
-            // Realizar la solicitud AJAX para eliminar el producto
-            $.ajax({
-                url: '/productos/' + productId,
-                type: 'DELETE',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Incluye el token CSRF
-                },
-                success: function (result) {
-                    selectedRow.remove().draw(false);
-                    alert(result.message);
-                },
-                error: function (xhr, status, error) {
-                    alert('Error al eliminar el producto: ' + xhr.responseText);
+            Swal.fire({
+                title: "¿Estás seguro de eliminarlo?",
+                text: "No podrás revertir este cambio",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Sí, eliminalo"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: "¡Eliminado!",
+                        text: "Tu registro ha sido eliminado",
+                        icon: "success"
+                    });
+                    // Realizar la solicitud AJAX para eliminar el producto
+                    $.ajax({
+                        url: '/productos/' + productId,
+                        type: 'DELETE',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Incluye el token CSRF
+                        },
+                        success: function (result) {
+                            selectedRow.remove().draw(false);
+                        },
+                        error: function (xhr, status, error) {
+                            Swal.fire({
+                                title: "Error",
+                                text: "Ha ocurrido un problema al intentar eliminar tu producto",
+                                icon: "error"
+                            });
+                        }
+                    });
                 }
-            });
+              });
         } else {
-            alert('Por favor, selecciona una fila para eliminar.');
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 1500,
+                timerProgressBar: true
+              });
+              Toast.fire({
+                icon: "error",
+                title: "Selecciona una fila"
+              });
+        }
+    });
+
+    // Maneja el evento de clic en el botón para actualizar filas seleccionadas
+    document.querySelector('#actualizarDato').addEventListener('click', function () {
+        const selectedRow = myTable.row('.selected');
+
+        if (selectedRow.length) {
+            const rowData = selectedRow.data(); // Obtener datos de la fila seleccionada
+            const productId = rowData[0]; // Suponiendo que el ID está en la primera columna
+            window.location.href='editar-producto/'+productId;
+        } else {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 1500,
+                timerProgressBar: true
+              });
+              Toast.fire({
+                icon: "error",
+                title: "Selecciona una fila"
+            });
         }
     });
 });
