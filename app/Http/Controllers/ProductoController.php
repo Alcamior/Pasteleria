@@ -16,12 +16,7 @@ class ProductoController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:insertar pedido', [
-            'only' => [
-                'editarProducto', 'actualizarProducto',
-            ]
-        ]);
-        
+
     }
 
     public function producto(){

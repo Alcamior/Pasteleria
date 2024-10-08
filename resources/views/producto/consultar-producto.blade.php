@@ -10,6 +10,19 @@
     <title>Document</title>
 </head>
 <body>
+
+    @auth
+    {{ 'Autenticado' }}
+@else
+    {{ 'No autenticado' }}
+@endauth
+{{--     @if(session('user'))
+    {{ dd(session('user')) }} <!-- Muestra el objeto del usuario autenticado -->
+@endif --}}
+
+
+
+
     <div>
         <p><button id="eliminarDato">Eliminar fila seleccionada</button></p>
         <p><button id="actualizarDato">Actualizar fila seleccionada</button></p>

@@ -15,17 +15,26 @@ class Empleado extends Authenticatable
     
     public $timestamps = false;
     protected $table="empleado";
+    protected $primaryKey = 'ide';
+
     protected $guard_name = 'web';
     
     // Define las columnas que quieres usar para la autenticación
-    protected $fillable = ['nombre', 'ap', 'am', 'telefono', 'email', 'contrasena'];
+    protected $fillable = ['email', 'contrasena'];
 
     // Define el campo que usarás como contraseña
     protected $hidden = ['contrasena'];
+    protected $authPasswordName = 'contrasena';
 
     // Si el campo de la contraseña no se llama 'password', ajusta la columna que se usa para la autenticación:
     public function getAuthPassword()
     {
         return $this->contrasena;
     }
+
+    public function permisos()
+        {
+            return $this->belongsToMany(Permiso::class, 'empleado_permiso', 'empleado_id', 'permiso_id');
+        }
+    
 }
