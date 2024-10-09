@@ -1,6 +1,7 @@
 <h2>Generar la llave para el funcionamiento de laravel</h2>
+```python
 php artisan key:generate
-
+```
 <h2>Instalar la carpeta de vendor</h2>
 <p>composer install</p>
 
