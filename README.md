@@ -1,5 +1,5 @@
 <h2>Generar la llave para el funcionamiento de laravel</h2>
-<p>php artisan key:generate</p>
+<p>'php artisan key:generate'</p>
 
 <h2>Instalar la carpeta de vendor</h2>
 <p>composer install</p>
