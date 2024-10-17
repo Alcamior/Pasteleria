@@ -45,4 +45,5 @@ class Empleado extends Authenticatable
     {
         return $this->hasManyThrough(Permission::class, Role::class);
     }
+    
 }
