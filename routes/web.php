@@ -25,7 +25,12 @@ Route::post('validar-registro',[LoginController::class,'validarRegistro'])->name
 //Rutas para producto
 Route::post('validar-producto',[ProductoController::class,'validarProducto'])->name('validar-producto');
 Route::get('registro-producto',[ProductoController::class,'producto'])->name('registro-producto');
-Route::get('consultar-producto',[ProductoController::class,'consultarProducto'])->name('consultar-producto');
+
+Route::middleware(['auth:empleado', 'can:crud tablas'])->group(function () {
+    Route::get('consultar-producto', [ProductoController::class, 'consultarProducto'])->name('consultar-producto');
+});
+
+
 Route::delete('/productos/{id}', [ProductoController::class, 'destroy']);
 Route::get('editar-producto/{id}',[ProductoController::class,'editarProducto'])->name('editar-producto');
 Route::post('actualizar-producto/{id}',[ProductoController::class,'actualizarProducto'])->name('actualizar-producto');
@@ -51,3 +56,5 @@ Route::post('validar-sesion',[LoginController::class,'validarSesion'])->name('va
 
 //Página para registrarse
 Route::get('signup',[LoginController::class,'signup'])->name('signup');
+Route::get('cerrar-sesion',[LoginController::class,'cerrarSesion'])->name('cerrar-sesion');
+Route::post('logout',[LoginController::class,'logout'])->name('logout');

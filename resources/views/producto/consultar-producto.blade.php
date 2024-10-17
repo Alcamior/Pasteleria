@@ -10,23 +10,17 @@
     <title>Document</title>
 </head>
 <body>
-    @hasrole('super-admin')
-        <p>El usuario es un administrador.</p>
-    @else
-        <p>El usuario NO es un administrador.</p>
-    @endhasrole
-
-    @can('solicitar pedido')
-        <p>El usuario tiene el permiso para solicitar pedido.</p>
-    @else
-        <p>El usuario NO tiene el permiso para solicitar pedido.</p>
-    @endcan
 
     @auth
-    <p>El usuario está autenticado.</p>
+    {{ 'Autenticado' }}
 @else
-    <p>El usuario NO está autenticado.</p>
+    {{ 'No autenticado' }}
 @endauth
+{{--     @if(session('user'))
+    {{ dd(session('user')) }} <!-- Muestra el objeto del usuario autenticado -->
+@endif --}}
+
+
 
 
     <div>
@@ -63,7 +57,6 @@
     </div>
 
 
-    <!-- Incluir SweetAlert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Cargar jQuery antes de DataTables -->

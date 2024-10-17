@@ -1,10 +1,19 @@
 
-
+@if ($errors->any())
+<div>
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 
 
 <form action="{{route('validar-sesion')}}" method="post">
     @csrf
-    <input type="text" name="email" id="email">
-    <input type="password" name="contrasena" id="contrasena">
+    <label></label>
+    <input type="text" name="email" id="">
+    <input type="password" name="contrasena" id="">
     <button>Enviar</button>
 </form>

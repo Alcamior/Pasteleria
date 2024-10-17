@@ -16,6 +16,10 @@ use App\Models\Producto;
 
 class ProductoController extends Controller
 {
+    public function __construct()
+    {
+
+    }
 
     public function producto(){
         return view('producto/registro-producto');
