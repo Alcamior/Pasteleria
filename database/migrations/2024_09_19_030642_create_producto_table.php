@@ -13,13 +13,10 @@ return new class extends Migration
     {
         Schema::create('producto', function (Blueprint $table) {
             $table->bigIncrements("idpro");
-            $table->String("tipo");
+            $table->String("nombre");
+            $table->enum('tipo', ['Pastelería', 'Cafetería']);
             $table->String("descripcion");
             $table->float("precio");
-            $table->String("tamano");
-            $table->date("feIngreso");
-            $table->date("caducidad");
-            $table->String("categoria"); //Verificar
         });
     }
 

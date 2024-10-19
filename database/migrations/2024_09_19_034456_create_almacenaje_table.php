@@ -15,10 +15,10 @@ return new class extends Migration
             $table->bigIncrements("idalm");
             $table->String("nombre");
             $table->String("descripcion");
+            $table->date("fechaIng");
+            $table->date("fechaCad")->nullable();
             $table->integer("cantidad");
-            $table->date("feCad")->nullable();
-            $table->integer("disponibilidad");
-            $table->String("categoria"); //Verificar
+            $table->String("categoria");
         });
     }
 

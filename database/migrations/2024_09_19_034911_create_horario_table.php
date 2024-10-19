@@ -17,8 +17,8 @@ return new class extends Migration
             $table->time('horaentrada');
             $table->time('horasalida');
             $table->string('dia');
-            $table->unsignedBigInteger('ide'); // unsigned BIGINT para coincidir con empleado
-            $table->foreign('ide')->references('ide')->on('empleado')->onDelete('cascade');
+            // $table->unsignedBigInteger('ide'); // unsigned BIGINT para coincidir con empleado
+            // $table->foreign('ide')->references('ide')->on('empleado')->onDelete('cascade');
         });
     }
 
