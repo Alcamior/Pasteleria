@@ -30,26 +30,20 @@
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th>Nombre</th>
                     <th>Tipo</th>
                     <th>Descripción</th>
                     <th>Precio</th>
-                    <th>Tamaño</th>
-                    <th>Fecha ingreso</th>
-                    <th>Caducidad</th>
-                    <th>Categoria</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($producto as $productos)
                 <tr>
                     <td>{{$productos->idpro}}</td>
+                    <td>{{$productos->nombre}}</td>
                     <td>{{$productos->tipo}}</td>
                     <td>{{$productos->descripcion}}</td>
                     <td>{{$productos->precio}}</td>
-                    <td>{{$productos->tamano}}</td>
-                    <td>{{$productos->feIngreso}}</td>
-                    <td>{{$productos->caducidad}}</td>
-                    <td>{{$productos->categoria}}</td>
                 </tr>
                 @endforeach
             </tbody>
@@ -57,7 +51,7 @@
     </div>
 
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Cargar jQuery antes de DataTables -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

@@ -18,6 +18,10 @@ class EmpleadoSeeder extends Seeder
         $empleado -> nombre = "Kevin";
         $empleado -> ap = "Trinidad";
         $empleado -> am = "Medina";
+        $empleado -> genero = 2;
+        $empleado -> fenac = "2004-02-11";
+        $empleado -> feIng = "2022-01-04";
+        $empleado -> direccion = "Tejalpa";
         $empleado -> telefono = "7774571517";
         $empleado -> email = "kevinyahirt@gmail.com";
         $empleado -> contrasena = Hash::make(value:'123456');
@@ -29,6 +33,10 @@ class EmpleadoSeeder extends Seeder
         $empleado -> nombre = "Camila";
         $empleado -> ap = "Alor";
         $empleado -> am = "Contreras";
+        $empleado -> genero = 1;
+        $empleado -> fenac = "2004-01-30";
+        $empleado -> feIng = "2024-10-22";
+        $empleado -> direccion = "Emiliano Zapata";
         $empleado -> telefono = "7774081082";
         $empleado -> email = "acco220170@upemor.edu.mx";
         $empleado -> contrasena = Hash::make(value:'123456');

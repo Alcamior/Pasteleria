@@ -23,17 +23,16 @@ Route::get('principal',function(){
 Route::post('validar-registro',[LoginController::class,'validarRegistro'])->name('validar-registro');
 
 //Rutas para producto
-Route::post('validar-producto',[ProductoController::class,'validarProducto'])->name('validar-producto');
-Route::get('registro-producto',[ProductoController::class,'producto'])->name('registro-producto');
+Route::get('producto/create',[ProductoController::class,'create'])->name('producto.create');
+Route::post('producto',[ProductoController::class,'store'])->name('producto.store');
+
+Route::get('producto/{id}/edit',[ProductoController::class,'edit'])->name('producto.edit');
+Route::put('producto/{id}',[ProductoController::class,'update'])->name('producto.update');
+Route::delete('producto/{id}', [ProductoController::class, 'destroy'])->name('producto.destroy');
 
 Route::middleware(['auth:empleado', 'can:crud tablas'])->group(function () {
     Route::get('consultar-producto', [ProductoController::class, 'consultarProducto'])->name('consultar-producto');
 });
-
-
-Route::delete('/productos/{id}', [ProductoController::class, 'destroy']);
-Route::get('editar-producto/{id}',[ProductoController::class,'editarProducto'])->name('editar-producto');
-Route::post('actualizar-producto/{id}',[ProductoController::class,'actualizarProducto'])->name('actualizar-producto');
 
  
 

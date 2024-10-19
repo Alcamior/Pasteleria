@@ -53,7 +53,7 @@ $(document).ready(function () {
                     });
                     // Realizar la solicitud AJAX para eliminar el producto
                     $.ajax({
-                        url: '/productos/' + productId,
+                        url: 'producto/' + productId,
                         type: 'DELETE',
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Incluye el token CSRF
@@ -93,7 +93,7 @@ $(document).ready(function () {
         if (selectedRow.length) {
             const rowData = selectedRow.data(); // Obtener datos de la fila seleccionada
             const productId = rowData[0]; // Suponiendo que el ID está en la primera columna
-            window.location.href='editar-producto/'+productId;
+            window.location.href='producto/'+productId+'/edit';
         } else {
             const Toast = Swal.mixin({
                 toast: true,
