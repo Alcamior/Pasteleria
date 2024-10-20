@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCliente;
 use App\Models\Cliente;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
@@ -29,7 +30,7 @@ class ClienteController extends Controller
         $cliente -> fenac = $request -> fenac;
         $cliente -> telefono = $request -> telefono;
         $cliente -> email = $request -> email;
-        $cliente -> contrasena = $request -> contrasena;
+        $cliente -> contrasena = Hash::make($request->contrasena);
 
         $cliente -> save();
         return redirect(route('principal'));
@@ -57,7 +58,7 @@ class ClienteController extends Controller
         $cliente -> fenac = $request -> fenac;
         $cliente -> telefono = $request -> telefono;
         $cliente -> email = $request -> email;
-        $cliente -> contrasena = $request -> contrasena;
+        $cliente -> contrasena = Hash::make($request->contrasena);
         $cliente -> save();
 
         return redirect()->route('principal');

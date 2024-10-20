@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AlmacenajeController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\HorarioController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -88,6 +89,18 @@ Route::delete('cliente/{id}', [ClienteController::class, 'destroy'])->name('clie
 
 Route::middleware(['auth:empleado', 'can:crud tablas'])->group(function () {
     Route::get('consultar-cliente', [ClienteController::class, 'consultarCliente'])->name('consultar-cliente');
+});
+
+//Rutas para empleado
+Route::get('empleado/create',[EmpleadoController::class,'create'])->name('empleado.create');
+Route::post('empleado',[EmpleadoController::class,'store'])->name('empleado.store');
+
+Route::get('empleado/{id}/edit',[EmpleadoController::class,'edit'])->name('empleado.edit');
+Route::put('empleado/{id}',[EmpleadoController::class,'update'])->name('empleado.update');
+Route::delete('empleado/{id}', [EmpleadoController::class, 'destroy'])->name('empleado.destroy');
+
+Route::middleware(['auth:empleado', 'can:crud tablas'])->group(function () {
+    Route::get('consultar-empleado', [EmpleadoController::class, 'consultarEmpleado'])->name('consultar-empleado');
 });
 
 
