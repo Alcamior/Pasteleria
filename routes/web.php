@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AlmacenajeController;
+use App\Http\Controllers\HorarioController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PasteleriaController;
@@ -46,6 +47,19 @@ Route::delete('almacenaje/{id}', [AlmacenajeController::class, 'destroy'])->name
 
 Route::middleware(['auth:empleado', 'can:crud tablas'])->group(function () {
     Route::get('consultar-almacenaje', [AlmacenajeController::class, 'consultarAlmacenaje'])->name('consultar-almacenaje');
+});
+
+
+//Rutas para horario
+Route::get('horario/create',[HorarioController::class,'create'])->name('horario.create');
+Route::post('horario',[HorarioController::class,'store'])->name('horario.store');
+
+Route::get('horario/{id}/edit',[HorarioController::class,'edit'])->name('horario.edit');
+Route::put('horario/{id}',[HorarioController::class,'update'])->name('horario.update');
+Route::delete('horario/{id}', [HorarioController::class, 'destroy'])->name('horario.destroy');
+
+Route::middleware(['auth:empleado', 'can:crud tablas'])->group(function () {
+    Route::get('consultar-horario', [HorarioController::class, 'consultarHorario'])->name('consultar-horario');
 });
 
 
