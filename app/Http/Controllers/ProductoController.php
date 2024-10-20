@@ -60,9 +60,14 @@ class ProductoController extends Controller
 
 
     public function destroy($idpro){
-        $producto = Producto::findOrFail($idpro);
-        $producto->delete();
-        return response()->json(['message' => 'Producto eliminado con éxito']);
+        $producto = Producto::find($idpro);
+
+        if($producto) {
+            $producto->delete();
+            return response()->json(['message' => 'Promoción eliminado con éxito']);
+        }else{
+            return response()->json(['message' => 'Registro no encontrado'], 404);
+        }
     }
     
 }

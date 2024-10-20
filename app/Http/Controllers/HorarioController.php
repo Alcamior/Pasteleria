@@ -53,8 +53,12 @@ class HorarioController extends Controller
 
 
     public function destroy($idh){
-        $horario = Horario::findOrFail($idh);
-        $horario->delete();
-        return response()->json(['message' => 'Horario eliminado con éxito']);
+        $horario = Horario::find($idh);
+        if($horario){
+            $horario->delete();
+            return response()->json(['message' => 'Elemento del almacen eliminado con éxito']);
+        }else{
+            return response()->json(['message' => 'Registro no encontrado'], 404);
+        }
     }
 }

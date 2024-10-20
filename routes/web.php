@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PasteleriaController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\PromocionController;
 use Laravel\Socialite\Facades\Socialite;
 
 Route::get('/', function () {
@@ -60,6 +61,19 @@ Route::delete('horario/{id}', [HorarioController::class, 'destroy'])->name('hora
 
 Route::middleware(['auth:empleado', 'can:crud tablas'])->group(function () {
     Route::get('consultar-horario', [HorarioController::class, 'consultarHorario'])->name('consultar-horario');
+});
+
+
+//Rutas para promocion
+Route::get('promocion/create',[PromocionController::class,'create'])->name('promocion.create');
+Route::post('promocion',[PromocionController::class,'store'])->name('promocion.store');
+
+Route::get('promocion/{id}/edit',[PromocionController::class,'edit'])->name('promocion.edit');
+Route::put('promocion/{id}',[PromocionController::class,'update'])->name('promocion.update');
+Route::delete('promocion/{id}', [PromocionController::class, 'destroy'])->name('promocion.destroy');
+
+Route::middleware(['auth:empleado', 'can:crud tablas'])->group(function () {
+    Route::get('consultar-promocion', [PromocionController::class, 'consultarPromocion'])->name('consultar-promocion');
 });
 
 

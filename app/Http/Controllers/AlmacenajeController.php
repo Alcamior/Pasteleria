@@ -59,8 +59,12 @@ class AlmacenajeController extends Controller
 
 
     public function destroy($idalm){
-        $almacenaje = Almacenaje::findOrFail($idalm);
-        $almacenaje->delete();
-        return response()->json(['message' => 'Elemento del almacen eliminado con éxito']);
+        $almacenaje = Almacenaje::find($idalm);
+        if($almacenaje){
+            $almacenaje->delete();
+            return response()->json(['message' => 'Elemento del almacen eliminado con éxito']);
+        }else{
+            return response()->json(['message' => 'Registro no encontrado'], 404);
+        }
     }
 }
