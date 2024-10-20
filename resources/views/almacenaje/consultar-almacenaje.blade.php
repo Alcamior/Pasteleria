@@ -31,19 +31,23 @@
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
-                    <th>Tipo</th>
                     <th>Descripción</th>
-                    <th>Precio</th>
+                    <th>Fecha de ingreso</th>
+                    <th>Fecha de caducidad</th>
+                    <th>Cantidad</th>
+                    <th>Categoría</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($producto as $productos)
+                @foreach($almacenaje as $almacenajes)
                 <tr>
-                    <td>{{$productos->idpro}}</td>
-                    <td>{{$productos->nombre}}</td>
-                    <td>{{$productos->tipo}}</td>
-                    <td>{{$productos->descripcion}}</td>
-                    <td>{{$productos->precio}}</td>
+                    <td>{{$almacenajes->idalm}}</td>
+                    <td>{{$almacenajes->nombre}}</td>
+                    <td>{{$almacenajes->descripcion}}</td>
+                    <td>{{$almacenajes->fechaIng}}</td>
+                    <td>{{$almacenajes->fechaCad}}</td>
+                    <td>{{$almacenajes->cantidad}}</td>
+                    <td>{{$almacenajes->categoria}}</td>
                 </tr>
                 @endforeach
             </tbody>
@@ -65,7 +69,7 @@
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
     <!-- Cargar el archivo producto.js -->
     {{-- <script type="text/javascript" src="js/producto/producto.js?v=1.0.1"></script> --}}
-    <script src="{{ asset('js/producto/producto.js?v=1.0.1') }}"></script>
+    <script src="{{ asset('js/almacenaje/almacenaje.js?v=1.0.1') }}"></script>
     
 </body>
 </html>

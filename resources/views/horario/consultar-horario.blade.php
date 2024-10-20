@@ -30,20 +30,18 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Tipo</th>
-                    <th>Descripción</th>
-                    <th>Precio</th>
+                    <th>Hora de entrada</th>
+                    <th>Hora de salida</th>
+                    <th>Día</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($producto as $productos)
+                @foreach($horario as $horarios)
                 <tr>
-                    <td>{{$productos->idpro}}</td>
-                    <td>{{$productos->nombre}}</td>
-                    <td>{{$productos->tipo}}</td>
-                    <td>{{$productos->descripcion}}</td>
-                    <td>{{$productos->precio}}</td>
+                    <td>{{$horarios->idh}}</td>
+                    <td>{{$horarios->horaentrada}}</td>
+                    <td>{{$horarios->horasalida}}</td>
+                    <td>{{$horarios->dia}}</td>
                 </tr>
                 @endforeach
             </tbody>
@@ -65,7 +63,7 @@
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
     <!-- Cargar el archivo producto.js -->
     {{-- <script type="text/javascript" src="js/producto/producto.js?v=1.0.1"></script> --}}
-    <script src="{{ asset('js/producto/producto.js?v=1.0.1') }}"></script>
+    <script src="{{ asset('js/horario/horario.js?v=1.0.1') }}"></script>
     
 </body>
 </html>

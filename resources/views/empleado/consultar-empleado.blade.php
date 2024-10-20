@@ -31,19 +31,29 @@
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
-                    <th>Tipo</th>
-                    <th>Descripción</th>
-                    <th>Precio</th>
+                    <th>Appelido paterno</th>
+                    <th>Appelido materno</th>
+                    <th>Género</th>
+                    <th>Fecha de nacimiento</th>
+                    <th>Fecha de ingreso</th>
+                    <th>Dirección</th>
+                    <th>Teléfono</th>
+                    <th>Email</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($producto as $productos)
+                @foreach($empleado as $empleados)
                 <tr>
-                    <td>{{$productos->idpro}}</td>
-                    <td>{{$productos->nombre}}</td>
-                    <td>{{$productos->tipo}}</td>
-                    <td>{{$productos->descripcion}}</td>
-                    <td>{{$productos->precio}}</td>
+                    <td>{{$empleados->ide}}</td>
+                    <td>{{$empleados->nombre}}</td>
+                    <td>{{$empleados->ap}}</td>
+                    <td>{{$empleados->am}}</td>
+                    <td>{{$empleados->genero}}</td>
+                    <td>{{$empleados->fenac}}</td>
+                    <td>{{$empleados->feIng}}</td>
+                    <td>{{$empleados->direccion}}</td>
+                    <td>{{$empleados->telefono}}</td>
+                    <td>{{$empleados->email}}</td>
                 </tr>
                 @endforeach
             </tbody>
@@ -65,7 +75,7 @@
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
     <!-- Cargar el archivo producto.js -->
     {{-- <script type="text/javascript" src="js/producto/producto.js?v=1.0.1"></script> --}}
-    <script src="{{ asset('js/producto/producto.js?v=1.0.1') }}"></script>
+    <script src="{{ asset('js/empleado/empleado.js?v=1.0.1') }}"></script>
     
 </body>
 </html>

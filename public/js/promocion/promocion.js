@@ -35,7 +35,7 @@ $(document).ready(function () {
 
         if (selectedRow.length) {
             const rowData = selectedRow.data(); // Obtener datos de la fila seleccionada
-            const productId = rowData[0]; // Suponiendo que el ID está en la primera columna
+            const promocionId = rowData[0]; // Suponiendo que el ID está en la primera columna
             Swal.fire({
                 title: "¿Estás seguro de eliminarlo?",
                 text: "No podrás revertir este cambio",
@@ -53,7 +53,7 @@ $(document).ready(function () {
                     });
                     // Realizar la solicitud AJAX para eliminar el producto
                     $.ajax({
-                        url: 'producto/' + productId,
+                        url: 'promocion/' + promocionId,
                         type: 'DELETE',
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Incluye el token CSRF
@@ -92,8 +92,8 @@ $(document).ready(function () {
 
         if (selectedRow.length) {
             const rowData = selectedRow.data(); // Obtener datos de la fila seleccionada
-            const productId = rowData[0]; // Suponiendo que el ID está en la primera columna
-            window.location.href='producto/'+productId+'/edit';
+            const promocionId = rowData[0]; // Suponiendo que el ID está en la primera columna
+            window.location.href='promocion/'+promocionId+'/edit';
         } else {
             const Toast = Swal.mixin({
                 toast: true,

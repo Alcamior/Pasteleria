@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-use App\Http\Controllers\Controller; 
-
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreProducto;
 use App\Models\Producto;
 
 class ProductoController extends Controller
@@ -19,58 +19,55 @@ class ProductoController extends Controller
 
     }
 
-    public function producto(){
-        return view('producto/registro-producto');
+    public function create(){
+        return view('producto/create');
     }
 
 
-    public function validarProducto(Request $request){
+    public function store(StoreProducto $request){
         $producto = new Producto();
+        $producto -> nombre = $request -> nombre;
         $producto -> tipo = $request -> tipo;
         $producto -> descripcion = $request -> descripcion;
         $producto -> precio = $request -> precio;
-        $producto -> tamano = $request -> tamano;
-        $producto -> feIngreso = $request -> feIngreso;
-        $producto -> caducidad = $request -> caducidad;
-        $producto -> categoria = $request -> categoria;
 
         $producto -> save();
         return redirect(route('principal'));
     }
+
 
     public function consultarProducto(){
         $producto= Producto::all();
         return view('producto/consultar-producto',compact('producto'));
     }
 
-    public function destroy($idpro)
-    {
-        $deleted = DB::delete('delete from producto where idpro = ?', [$idpro]);
-    
-        if ($deleted) {
-            return response()->json(['message' => 'Producto eliminado con éxito']);
-        } else {
-            return response()->json(['message' => 'Producto no encontrado'], 404);
-        }
-    }
 
-    public function editarProducto($idpro){
+    public function edit($idpro){
         $producto=Producto::find($idpro); 
-        return view('producto/editar-producto',compact('producto'));
+        return view('producto/edit',compact('producto'));
     }
 
-    public function actualizarProducto(Request $request,$idpro){
+    public function update(StoreProducto $request,$idpro){
         $producto = Producto::find($idpro);
+        $producto -> nombre = $request -> nombre;
         $producto -> tipo = $request -> tipo;
         $producto -> descripcion = $request -> descripcion;
         $producto -> precio = $request -> precio;
-        $producto -> tamano = $request -> tamano;
-        $producto -> feIngreso = $request -> feIngreso;
-        $producto -> caducidad = $request -> caducidad;
-        $producto -> categoria = $request -> categoria;
         $producto -> save();
 
         return redirect()->route('principal');
+    }
+
+
+    public function destroy($idpro){
+        $producto = Producto::find($idpro);
+
+        if($producto) {
+            $producto->delete();
+            return response()->json(['message' => 'Promoción eliminado con éxito']);
+        }else{
+            return response()->json(['message' => 'Registro no encontrado'], 404);
+        }
     }
     
 }

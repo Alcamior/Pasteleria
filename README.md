@@ -16,3 +16,6 @@ php artisan key:generate
 
 <h2>Agregar los permisos</h2>
 <p> composer require spatie/laravel-permission</p>
+
+<h2>Cambiar el idioma de las alertas</h2>
+<p> Para cambiar el idioma de las alertas instalar Laravel Lang (composer require laravel-lang/common)</p>

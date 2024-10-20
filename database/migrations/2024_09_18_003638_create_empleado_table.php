@@ -17,9 +17,11 @@ return new class extends Migration
             $table->String("nombre");
             $table->String("ap");
             $table->String("am");
+            $table->enum('genero', ['Femenino', 'Masculino'])->nullable();
             $table->date("fenac")->nullable();
+            $table->date("feIng");
             $table->String("direccion")->nullable();
-            $table->String("telefono");
+            $table->String("telefono")->nullable();
             $table->String("email");
             $table->String("contrasena");
         });
