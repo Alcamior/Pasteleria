@@ -13,7 +13,6 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
 
-
 class Empleado extends Authenticatable
 {
     use HasFactory, Notifiable, HasRoles;
@@ -23,24 +22,23 @@ class Empleado extends Authenticatable
     protected $primaryKey = 'ide';
 
     protected $guard_name = 'web';
-    protected $primaryKey = 'ide';
     
-    // Define las columnas que quieres usar para la autenticación
+    //columnas que quieres usar para la autenticación
     protected $fillable = ['email', 'contrasena'];
 
-    // Define el campo que usarás como contraseña
+    // campos que se usarán como contraseña
     protected $hidden = ['contrasena'];
     protected $authPasswordName = 'contrasena';
 
-    // Si el campo de la contraseña no se llama 'password', ajusta la columna que se usa para la autenticación:
+    //Esto se utiliza para recuperar la contraseña
     public function getAuthPassword()
     {
         return $this->contrasena;
     }
 
-    public function permisos()
+/*     public function permisos()
         {
             return $this->belongsToMany(Permiso::class, 'empleado_permiso', 'empleado_id', 'permiso_id');
-        }
+        } */
     
 }

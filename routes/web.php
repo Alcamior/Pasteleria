@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PasteleriaController;
 use App\Http\Controllers\ProductoController;
 use Laravel\Socialite\Facades\Socialite;
+use Spatie\Permission\Traits\HasRoles;
 
 Route::get('/', function () {
     return view('welcome');
@@ -15,9 +16,6 @@ Route::get('/', function () {
 Route::get('principal',function(){
     return "Hola";
 })->name('principal');
-
-
-
 
 //Páginas para la validación de los datos insertados
 Route::post('validar-registro',[LoginController::class,'validarRegistro'])->name('validar-registro');
