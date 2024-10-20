@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AlmacenajeController;
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\HorarioController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -74,6 +75,19 @@ Route::delete('promocion/{id}', [PromocionController::class, 'destroy'])->name('
 
 Route::middleware(['auth:empleado', 'can:crud tablas'])->group(function () {
     Route::get('consultar-promocion', [PromocionController::class, 'consultarPromocion'])->name('consultar-promocion');
+});
+
+
+//Rutas para cliente
+Route::get('cliente/create',[ClienteController::class,'create'])->name('cliente.create');
+Route::post('cliente',[ClienteController::class,'store'])->name('cliente.store');
+
+Route::get('cliente/{id}/edit',[ClienteController::class,'edit'])->name('cliente.edit');
+Route::put('cliente/{id}',[ClienteController::class,'update'])->name('cliente.update');
+Route::delete('cliente/{id}', [ClienteController::class, 'destroy'])->name('cliente.destroy');
+
+Route::middleware(['auth:empleado', 'can:crud tablas'])->group(function () {
+    Route::get('consultar-cliente', [ClienteController::class, 'consultarCliente'])->name('consultar-cliente');
 });
 
 
