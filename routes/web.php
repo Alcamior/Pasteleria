@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlmacenajeController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PasteleriaController;
@@ -33,6 +34,20 @@ Route::delete('producto/{id}', [ProductoController::class, 'destroy'])->name('pr
 Route::middleware(['auth:empleado', 'can:crud tablas'])->group(function () {
     Route::get('consultar-producto', [ProductoController::class, 'consultarProducto'])->name('consultar-producto');
 });
+
+
+//Rutas para almacenaje
+Route::get('almacenaje/create',[AlmacenajeController::class,'create'])->name('almacenaje.create');
+Route::post('almacenaje',[AlmacenajeController::class,'store'])->name('almacenaje.store');
+
+Route::get('almacenaje/{id}/edit',[AlmacenajeController::class,'edit'])->name('almacenaje.edit');
+Route::put('almacenaje/{id}',[AlmacenajeController::class,'update'])->name('almacenaje.update');
+Route::delete('almacenaje/{id}', [AlmacenajeController::class, 'destroy'])->name('almacenaje.destroy');
+
+Route::middleware(['auth:empleado', 'can:crud tablas'])->group(function () {
+    Route::get('consultar-almacenaje', [AlmacenajeController::class, 'consultarAlmacenaje'])->name('consultar-almacenaje');
+});
+
 
  
 

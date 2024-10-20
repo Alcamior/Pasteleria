@@ -59,8 +59,7 @@ class ProductoController extends Controller
     }
 
 
-    public function destroy($idpro)
-    {
+    public function destroy($idpro){
         $producto = Producto::findOrFail($idpro);
         $producto->delete();
         return response()->json(['message' => 'Producto eliminado con éxito']);
