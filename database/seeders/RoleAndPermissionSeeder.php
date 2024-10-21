@@ -14,40 +14,73 @@ class RoleAndPermissionSeeder extends Seeder
      */
     public function run(): void
     {
-        $roleSuperAdmin=Role::firstOrCreate([
-            'name'=>'super-admin',
+        //Diferentes roles
+        $roleAdministrador=Role::firstOrCreate([
+            'name'=>'administrador',
         ]);
 
-        $roleAdmin=Role::firstOrCreate([
-            'name'=>'admin',
+        $roleEmpleado=Role::firstOrCreate([
+            'name'=>'empleado',
         ]);
 
-        $roleUser=Role::firstOrCreate([
-            'name'=>'simple-user',
+        $roleCliente=Role::firstOrCreate([
+            'name'=>'cliente',
         ]);
 
-        Permission::firstOrCreate([
-            'name'=>'crud tablas',
-        ]);
+        // Crear permisos
+        $permissions = [
+            // Permisos para clientes
+            ['name' => 'actualizar cliente'],
+            ['name' => 'solicitar venta'],
+            
+            // Permisos para empleados
+            ['name' => 'crud pedido'],
+            ['name' => 'crud almacenaje'],
+            ['name' => 'crear cliente'],
+            ['name' => 'consultar cliente'],
+            ['name' => 'consultar horario'],
+            ['name' => 'consultar producto'],
+            ['name' => 'consultar promocion'],
+            
+            // Permisos para administradores
+            ['name' => 'crud empleado'],
+            ['name' => 'crud cliente'],
+            ['name' => 'crud producto'],
+            ['name' => 'crud horario'],
+            ['name' => 'crud promocion'],
+        ];
+        
+        foreach ($permissions as $permission) {
+            Permission::firstOrCreate($permission);
+        }
 
-        Permission::firstOrCreate([
-            'name'=>'insertar pedido',
-        ]);
+        //Roles para los empleados
+        $roleCliente->givePermissionTo(
+            'actualizar cliente',
+            'solicitar venta',
+        );
 
-        Permission::firstOrCreate([
-            'name'=>'solicitar pedido',
-        ]);
+        //Roles para los empleados
+        $roleEmpleado->givePermissionTo(
+            'crud pedido',
+            'crud almacenaje',
+            'crear cliente',
+            'consultar cliente',
+            'consultar horario',
+            'consultar producto',
+            'consultar promocion',
+        );
+        
+        //Roles para los administradores
+        $roleAdministrador->givePermissionTo(
+            'crud empleado',
+            'crud pedido',
+            'crud almacenaje',
+            'crud cliente',
+            'crud producto',
+            'crud horario',
+            'crud promocion',
+        );
 
-        //Roles para los super administradores
-        $roleSuperAdmin->givePermissionTo('crud tablas');
-        $roleSuperAdmin->givePermissionTo('insertar pedido');
-        $roleSuperAdmin->givePermissionTo('solicitar pedido');
-
-        //Roles para los administradores (empleados)
-        $roleAdmin->givePermissionTo('insertar pedido');
-        $roleAdmin->givePermissionTo('solicitar pedido');
-
-        //Roles para los usuarios (clientes)
-        $roleUser->givePermissionTo('solicitar pedido');
     }
 }

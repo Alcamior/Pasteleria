@@ -15,13 +15,15 @@ return new class extends Migration
             $table->engine = 'InnoDB';
             $table->bigIncrements("idcli");
             $table->String("nombre");
-            $table->String("ap");
+            $table->String("ap")->nullable();
             $table->String("am")->nullable();
+            $table->enum('genero', ['Femenino', 'Masculino'])->nullable();
             $table->String("direccion")->nullable();
             $table->date("fenac")->nullable();
-            $table->String("telefono");
-            $table->String("email")->nullable();
+            $table->String("telefono")->nullable();
+            $table->String("email");
             $table->String("contrasena")->nullable();
+            $table->String("google_id")->nullable();
         });
     }
 

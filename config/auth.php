@@ -39,6 +39,11 @@ return [
         'driver' => 'session',
         'provider' => 'empleados',
     ],
+
+    'cliente' => [
+        'driver' => 'session',
+        'provider' => 'clientes',
+    ],
 ],
 
 'providers' => [
@@ -50,6 +55,11 @@ return [
     'empleados' => [
         'driver' => 'eloquent',
         'model' => App\Models\Empleado::class,
+    ],
+
+    'clientes' => [
+        'driver' => 'eloquent',
+        'model' => App\Models\Cliente::class,
     ],
 ],
 
