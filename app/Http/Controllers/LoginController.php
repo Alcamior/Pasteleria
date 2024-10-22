@@ -52,9 +52,6 @@ class LoginController extends Controller
         // Obtener los permisos asignados al empleado usando Spatie
         $permisos = $empleado->getAllPermissions()->pluck('name'); // Obtén una lista de los nombres de los permisos
 
-        // Guardar los permisos en el archivo de log
-        Log::info('El usuario con email: ' . $empleado->email . ' ha iniciado sesión con los siguientes permisos: ' . $permisos->implode(', '));
-
             $request->session()->regenerate();
             return redirect()->intended('consultar-producto')->with('user', Auth::guard('empleado')->user());
         }
@@ -78,5 +75,9 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
     
         return redirect('/login'); // Redirige a la página de login o a donde desees
+    }
+
+    public function stencil(){
+        return view('layaout/stencil');
     }
 }

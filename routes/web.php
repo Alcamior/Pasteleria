@@ -4,6 +4,7 @@ use App\Models\Cliente;
 use App\Http\Controllers\AlmacenajeController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\EmpleadoController;
+use App\Http\Controllers\ExhibicionController;
 use App\Http\Controllers\HorarioController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -14,12 +15,7 @@ use Laravel\Socialite\Facades\Socialite;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Facades\Auth;
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-//paginas para el logeo
+//Inicio de sesión con google
 Route::get('login-google', function () {
     return Socialite::driver('google')->redirect();
 })->name('login-google');
@@ -38,9 +34,7 @@ Route::get('google-callback', function () {
 });
 
 //Pagina donde se mostrarán los productos
-Route::get('principal',function(){
-    return "Hola";
-})->name('principal');
+Route::middleware(['auth:empleado'])->get('principal',[ExhibicionController::class,'dashboard'])->name('principal');
 
 //Páginas para la validación de los datos insertados
 Route::post('validar-registro',[LoginController::class,'validarRegistro'])->name('validar-registro');
@@ -54,7 +48,7 @@ Route::put('producto/{id}',[ProductoController::class,'update'])->name('producto
 Route::delete('producto/{id}', [ProductoController::class, 'destroy'])->name('producto.destroy');
 
 Route::middleware(['auth:empleado', 'can:crud tablas'])->group(function () {
-    Route::get('producto/read', [ProductoController::class, 'read'])->name('producto.read');
+    Route::get('consultar-producto', [ProductoController::class, 'consultarProdcuto'])->name('consultar-producto');
 });
 
 
@@ -92,7 +86,7 @@ Route::get('promocion/{id}/edit',[PromocionController::class,'edit'])->name('pro
 Route::put('promocion/{id}',[PromocionController::class,'update'])->name('promocion.update');
 Route::delete('promocion/{id}', [PromocionController::class, 'destroy'])->name('promocion.destroy');
 
-Route::middleware(['auth:empleado', 'can:crud tablas'])->group(function () {
+Route::middleware(['auth:empleado', 'can:crud promocion'])->group(function () {
     Route::get('consultar-promocion', [PromocionController::class, 'consultarPromocion'])->name('consultar-promocion');
 });
 
@@ -122,11 +116,6 @@ Route::middleware(['auth:empleado', 'can:crud tablas'])->group(function () {
 });
 
 
-/* ->middleware('can:solicitar pedido') */
-
-
-
-
 //Página para la el inicio de sesión
 Route::get('login',[LoginController::class,'login'])->name('login');
 Route::post('validar-sesion',[LoginController::class,'validarSesion'])->name('validar-sesion');
@@ -135,3 +124,6 @@ Route::post('validar-sesion',[LoginController::class,'validarSesion'])->name('va
 Route::get('signup',[LoginController::class,'signup'])->name('signup');
 Route::get('cerrar-sesion',[LoginController::class,'cerrarSesion'])->name('cerrar-sesion');
 Route::post('logout',[LoginController::class,'logout'])->name('logout');
+
+//ELIMINAR
+Route::get('stencil',[LoginController::class,'stencil'])->name('stencil');

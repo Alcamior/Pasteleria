@@ -40,7 +40,6 @@
                                 <a href="{{route('login-google')}}"><i class="bi bi-google"></i>Inicia sesión con Google</a>
                             </div>
                         </div>
-
                     </form> 
                 </div>
                 <div class="column col-sm-12 col-md-6 col-lg-6 col-xxl-6 message d-flex align-items-center justify-content-center">
