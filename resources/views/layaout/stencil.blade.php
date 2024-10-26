@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    @yield('head')
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <meta charset="UTF-8">
@@ -19,7 +20,7 @@
     <div class="barra-lateral">
         <div>
             <div class="nombre-pagina">
-                <ion-icon id="cloud" name="cloud-outline"></ion-icon>
+                <img src="{{asset('img/logo_negro.png')}}" alt="Logo de la pastelería" name="cloud-outline" id="cloud">
                 <span>Divina <br>Tentación</span>
             </div>
         </div>
@@ -141,10 +142,12 @@
                 <div class="info-usuario">
                     <div class="nombre-email">
                         
-                        @if (Auth::check()) 
-                            <span class="nombre">{{Auth::user()->nombre}}</span>
-                            <span class="email">{{ Auth::user()->email }}</span> 
-                        @endif
+                        @if (Auth::guard('empleado')->check())
+                        <span class="nombre">{{ Auth::guard('empleado')->user()->nombre }}</span>
+                        <span class="email">{{ Auth::guard('empleado')->user()->email }}</span>
+                    @else
+                        <span>No autenticado</span>
+                    @endif
                     </div>
                     
                     <ion-icon name="ellipsis-vertical-outline"></ion-icon>

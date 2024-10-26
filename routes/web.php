@@ -9,6 +9,7 @@ use App\Http\Controllers\HorarioController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PasteleriaController;
+use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\PromocionController;
 use Laravel\Socialite\Facades\Socialite;
@@ -34,7 +35,7 @@ Route::get('google-callback', function () {
 });
 
 //Pagina donde se mostrarán los productos
-Route::middleware(['auth:empleado'])->get('principal',[ExhibicionController::class,'dashboard'])->name('principal');
+Route::get('/',[ExhibicionController::class,'dashboard'])->name('principal');
 
 //Páginas para la validación de los datos insertados
 Route::post('validar-registro',[LoginController::class,'validarRegistro'])->name('validar-registro');
@@ -115,6 +116,9 @@ Route::middleware(['auth:empleado', 'can:crud tablas'])->group(function () {
     Route::get('consultar-empleado', [EmpleadoController::class, 'consultarEmpleado'])->name('consultar-empleado');
 });
 
+//rutas para pedido
+Route::get('pedido/create',[PedidoController::class,'create'])->name('pedido.create');
+Route::post('empleado',[PedidoController::class,'store'])->name('pedido.store');
 
 //Página para la el inicio de sesión
 Route::get('login',[LoginController::class,'login'])->name('login');
@@ -125,5 +129,5 @@ Route::get('signup',[LoginController::class,'signup'])->name('signup');
 Route::get('cerrar-sesion',[LoginController::class,'cerrarSesion'])->name('cerrar-sesion');
 Route::post('logout',[LoginController::class,'logout'])->name('logout');
 
-//ELIMINAR
+//ELIMINAR ----------------------------------------------------------------------
 Route::get('stencil',[LoginController::class,'stencil'])->name('stencil');

@@ -91,7 +91,7 @@ body{
 }
 
 .mini-barra-lateral{
-    width: 80px;
+    width: 100px;
 }
 
 .barra-lateral span{
@@ -117,9 +117,9 @@ body{
     display: flex;
     align-items: center;
 }
-.barra-lateral .nombre-pagina ion-icon{
-    min-width: 50px;
-    font-size: 40px;
+.barra-lateral .nombre-pagina img{
+    width: 80px;
+    height: 80px;
     cursor: pointer;
 }
 .barra-lateral .nombre-pagina span{
@@ -194,6 +194,7 @@ body{
 .barra-lateral .navegacion .dropdown .dropdown-toggle i{
     min-width: 50px;
     font-size: 20px;
+    margin-left: 10px;
 }
 
 
