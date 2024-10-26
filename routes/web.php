@@ -7,6 +7,7 @@ use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\ExhibicionController;
 use App\Http\Controllers\HorarioController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ReporteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PasteleriaController;
 use App\Http\Controllers\ProductoController;
@@ -127,3 +128,15 @@ Route::post('logout',[LoginController::class,'logout'])->name('logout');
 
 //ELIMINAR
 Route::get('stencil',[LoginController::class,'stencil'])->name('stencil');
+
+
+
+//Rutas para los reportes
+Route::get('reportes', [ReporteController::class,'show'])->name('reportes.dashboard');
+
+Route::get('reportes/ventas', [ReporteController::class,'showVentas'])->name('reportes.ventas');
+Route::post('reportes/ventas-generar', [ReporteController::class,'showVentasReporte'])->name('ventas.generar');
+
+
+
+
