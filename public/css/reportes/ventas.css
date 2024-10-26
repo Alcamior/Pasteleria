@@ -1,0 +1,78 @@
+
+
+.botones {
+    margin-left: 50px;
+    margin-bottom: 20px;
+}
+
+.btn-outline-primary {
+    color: #FFB300;
+    border-color: #FFB300;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-outline-primary:hover {
+    color: #FFB300 !important;
+    border-color: #FFB300 !important;
+    background-color: transparent !important;
+}
+
+.btn-outline-primary:active {
+    background-color: #FFA000;
+    border-color: #FFB300;
+    color: white; 
+}
+
+.btn-check:checked + .btn-outline-primary {
+    background-color: #FFA000; 
+    border-color: #FFB300;
+    color: white; 
+}
+
+.formulario {
+    display: none;
+    padding-left: 50px;
+} 
+
+.formulario h3 {
+    font-family: "Jockey One", serif;
+}
+
+.formulario label, input, select, option {
+    font-family: "Inter", serif;
+    color: #333333;
+}
+
+.btn-primary {
+    background-color: #FFB300; 
+    color: white; 
+    border: none;
+}
+  
+.btn-primary:hover {
+    background-color: #FFA000; 
+}
+
+.resultados {
+    font-family: "Inter", serif;
+    color: black;
+    font-weight: bold;
+}
+
+.resultados .fecha {
+    margin-top: 20px;
+    margin-left: 55px;
+}
+
+.resultados .ganacias {
+    border: 1.5px solid #333333;
+    padding: 10px;
+    width: 93%; 
+    margin: 0 auto; 
+    border-radius: 1rem;
+}
+
+
+
+
+
