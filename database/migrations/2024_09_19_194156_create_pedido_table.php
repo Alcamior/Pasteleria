@@ -13,17 +13,20 @@ return new class extends Migration
     {
         Schema::create('pedido', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->bigIncrements("idpe");
-            $table->date("fecPed");
-            $table->date("fecEntrega");
-            $table->float("subtotal");
-            $table->float("total");
-            $table->String("direccion");
+            $table->bigIncrements("idped");
             $table->String("descripcion");
-            $table->unsignedBigInteger("idcli");
-            $table->unsignedBigInteger("ide");
-            $table->foreign('idcli')->references('idcli')->on('cliente')->onDelete('cascade');
-            $table->foreign('ide')->references('ide')->on('empleado')->onDelete('cascade');
+            $table->integer("cantidad");
+            $table->date("fePed");
+            $table->float("subtotal");
+            $table->float("descuento");
+            $table->float("totalP");
+            $table->String("status");
+            $table->unsignedBigInteger("idpro");
+            $table->unsignedBigInteger("idv");
+            $table->unsignedBigInteger("idprom");
+            $table->foreign('idpro')->references('idpro')->on('producto')->onDelete('cascade');
+            $table->foreign('idv')->references('idv')->on('venta')->onDelete('cascade');
+            $table->foreign('idprom')->references('idprom')->on('promocion')->onDelete('cascade');
         });
     }
 
