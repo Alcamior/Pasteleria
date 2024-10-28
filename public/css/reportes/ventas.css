@@ -1,4 +1,10 @@
-
+:root {
+    --color-principal: #FFB300;
+    --color-secundario: #FFA000;
+    --color-blanco: white;
+    --fuente-titulo: "Jockey One", serif;
+    --fuente-texto: "Inter", serif;
+}
 
 .botones {
     margin-left: 50px;
@@ -6,27 +12,27 @@
 }
 
 .btn-outline-primary {
-    color: #FFB300;
-    border-color: #FFB300;
+    color: var(--color-principal);
+    border-color: var(--color-principal);
     transition: background-color 0.3s, color 0.3s;
 }
 
 .btn-outline-primary:hover {
-    color: #FFB300 !important;
-    border-color: #FFB300 !important;
+    color: var(--color-principal) !important;
+    border-color: var(--color-principal) !important;
     background-color: transparent !important;
 }
 
 .btn-outline-primary:active {
-    background-color: #FFA000;
-    border-color: #FFB300;
-    color: white; 
+    background-color: var(--color-secundario);
+    border-color: var(--color-principal);
+    color: var(--color-blanco); 
 }
 
 .btn-check:checked + .btn-outline-primary {
-    background-color: #FFA000; 
-    border-color: #FFB300;
-    color: white; 
+    background-color: var(--color-secundario);
+    border-color: var(--color-principal);
+    color: var(--color-blanco); 
 }
 
 .formulario {
@@ -35,26 +41,25 @@
 } 
 
 .formulario h3 {
-    font-family: "Jockey One", serif;
+    font-family: var(--fuente-titulo);
 }
 
 .formulario label, input, select, option {
-    font-family: "Inter", serif;
-    color: #333333;
+    font-family: var(--fuente-texto);
 }
 
 .btn-primary {
-    background-color: #FFB300; 
-    color: white; 
+    background-color: var(--color-principal);
+    color: var(--color-blanco); 
     border: none;
 }
   
 .btn-primary:hover {
-    background-color: #FFA000; 
+    background-color: var(--color-secundario); 
 }
 
 .resultados {
-    font-family: "Inter", serif;
+    font-family: var(--fuente-texto);
     color: black;
     font-weight: bold;
 }
@@ -65,13 +70,20 @@
 }
 
 .resultados .ganacias {
-    border: 1.5px solid #333333;
+    border: 1.5px solid black;
     padding: 10px;
     width: 93%; 
     margin: 0 auto; 
     border-radius: 1rem;
 }
 
+.tabla {
+    margin: 50px;
+}
+
+.tabla th {
+    background-color: var(--color-principal);
+}
 
 
 

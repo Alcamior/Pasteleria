@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jockey+One&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="{{ asset('css/reportes/ventas.css') }}">
     <title>Reporte de ventas</title>
 </head>
@@ -30,6 +31,7 @@
         <!-- Formularios -->
         <div id="formulario1" class="formulario">
             <h3>Reporte diario de ventas</h3>
+            <br>
             <form action="{{route('ventas.generar')}}" method="post">
                 @csrf
                 <input type="hidden" name="formulario" value="formulario1"> 
@@ -37,12 +39,18 @@
                     <label for="input1">Fecha: </label>
                     <input type="date" name="fecha" id="input1">
                 </div>
+                @error('fecha')
+                    <span>*{{ $message }}</span>
+                @enderror
+                <br>
+                <br>
                 <button type="submit" class="btn btn-primary">Generar reporte</button>
             </form>
         </div>
 
         <div id="formulario2" class="formulario">
             <h3>Reporte semanal de ventas</h3>
+            <br>
             <form action="{{route('ventas.generar')}}" method="post">
                 @csrf
                 <input type="hidden" name="formulario" value="formulario2"> 
@@ -56,6 +64,7 @@
 
         <div id="formulario3" class="formulario">
             <h3>Reporte mensual de ventas</h3>
+            <br>
             <form action="{{route('ventas.generar')}}" method="post">
                 @csrf
                 <input type="hidden" name="formulario" value="formulario3"> 
@@ -83,36 +92,63 @@
         
         <!-- Mostrar Resultados -->
         <section class="resultados">
-            @if (isset($reporte) && $reporte == 'formulario1') 
+            @if (session('reporte') == 'formulario1') 
                 
                 <section class="fecha">
-                    <p>{{ $fechaN }}</p>
+                    <p>{{ session('fechaN') }}</p>
                 </section>
                 
                 <section class="text-center ganacias">
                     <div class="row justify-content-center">
                         <div class="col-md-4 col-sm-12">
                             <p>Ganancias pastelería</p>
-                            <h3>${{ $totalPP[0]->totalPas }}</h3>
+                            <h3>${{ session('totalPP')[0]->totalPas }}</h3>
                         </div>
 
                         <div class="col-md-4 col-sm-12">
                             <p>Ganancias cafetería</p>
-                            <h3>${{ $totalPC[0]->totalCaf }}</h3>
+                            <h3>${{ session('totalPC')[0]->totalCaf }}</h3>
                         </div>
 
                         <div class="col-md-4 col-sm-12">
                             <p>Ganancias totales</p>
-                            <h3>${{ $total[0]->total }}</h3>
+                            <h3>${{ session('total')[0]->total }}</h3>
                         </div>
                     </div>
+                </section>
+
+                <section class="tabla table-responsive">
+                    <table id="ventasTable" class="table table-striped table-bordered tabla-custom"> 
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Cantidad vendida</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ( session('ventas') as $venta )
+                            <tr>
+                                <td>{{ $venta->nombre }}</td>
+                                <td>{{ $venta->cantidad }}</td>
+                                <td>${{ $venta->total }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </section>
             @endif 
         </section>
     </main>
 
-    <script src="{{ asset('js/reportes/ventas.js?v=1.0.1') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Cargar jQuery antes de DataTables -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Cargar DataTables -->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+    <!-- Script de ventas -->
+    <script src="{{ asset('js/reportes/ventas.js') }}"></script>
 </body>
 </html>
 

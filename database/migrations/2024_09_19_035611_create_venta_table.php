@@ -15,12 +15,12 @@ return new class extends Migration
             $table->engine = 'InnoDB';
             $table->bigIncrements("idv");
             $table->date("fechaVent");
-            $table->float("subtotal");
+            $table->date("fecEntrega");
             $table->float("total");
-            $table->float("promo");
-            $table->String("estatus");
             $table->unsignedBigInteger("ide");
+            $table->unsignedBigInteger("idcli");
             $table->foreign("ide")->references("ide")->on("empleado")->onDelete('cascade');
+            $table->foreign("idcli")->references("idcli")->on("cliente")->onDelete('cascade');
         });
     }
 
