@@ -57,18 +57,17 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <!-- Cargar jQuery antes de DataTables -->
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <!-- Cargar DataTables -->
+    <!-- DataTables -->
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <!-- JS de DataTables y extensiones de botones -->
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
-    <!-- Cargar el archivo producto.js -->
-    {{-- <script type="text/javascript" src="js/producto/producto.js?v=1.0.1"></script> --}}
+    <!-- archivo producto.js -->
     <script src="{{ asset('js/almacenaje/almacenaje.js?v=1.0.1') }}"></script>
     
 </body>

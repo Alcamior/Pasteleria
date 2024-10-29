@@ -40,9 +40,6 @@ Route::get('google-callback', function () {
 //Pagina donde se mostrarán los productos
 Route::get('/',[ExhibicionController::class,'dashboard'])->name('principal');
 
-//Páginas para la validación de los datos insertados
-Route::post('validar-registro',[LoginController::class,'validarRegistro'])->name('validar-registro');
-
 //Rutas para producto
 Route::get('producto/create',[ProductoController::class,'create'])
     ->middleware(['auth:empleado','can:crear producto,crud producto'])
@@ -170,6 +167,10 @@ Route::get('pedido/create',[PedidoController::class,'create'])
 Route::post('empleado',[PedidoController::class,'store'])->name('pedido.store');
 
 
+//Páginas para la validación de los datos insertados
+Route::post('validar-registro',[LoginController::class,'validarRegistro'])->name('validar-registro');
+
+
 //Página para la el inicio de sesión
 Route::get('login',[LoginController::class,'login'])->name('login');
 Route::post('validar-sesion',[LoginController::class,'validarSesion'])->name('validar-sesion');
@@ -178,10 +179,6 @@ Route::post('validar-sesion',[LoginController::class,'validarSesion'])->name('va
 Route::get('signup',[LoginController::class,'signup'])->name('signup');
 Route::get('cerrar-sesion',[LoginController::class,'cerrarSesion'])->name('cerrar-sesion');
 Route::post('logout',[LoginController::class,'logout'])->name('logout');
-
-//ELIMINAR ----------------------------------------------------------------------
-Route::get('stencil',[LoginController::class,'stencil'])->name('stencil');
-
 
 
 //Rutas para los reportes

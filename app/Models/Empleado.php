@@ -37,10 +37,5 @@ class Empleado extends Authenticatable
     {
         return $this->contrasena;
     }
-
-/*     public function permisos()
-        {
-            return $this->belongsToMany(Permiso::class, 'empleado_permiso', 'empleado_id', 'permiso_id');
-        } */
     
 }

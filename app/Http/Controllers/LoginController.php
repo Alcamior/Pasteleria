@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Traits\HasRoles;
-
+use App\Http\Requests\StoreLogin;
 
 
 class LoginController extends Controller
@@ -42,22 +42,24 @@ class LoginController extends Controller
 
     public function validarSesion(Request $request)
     {
+        //validar las credenciales
         $credentials = $request->validate([
             'email' => ['required', 'email'],
-            'contrasena' => ['required'],
+            'contrasena' => ['required','string'],
         ]);
+
         $empleado = Empleado::where('email', $credentials['email'])->first();
+
+        //Realizando el intento de autenticación
         if (Auth::guard('empleado')->attempt(['email' => $credentials['email'], 'password' => $credentials['contrasena']])){
             Auth::guard('empleado')->login($empleado);
-            // Obtener los permisos asignados al empleado usando Spatie
-            $permisos = $empleado->getAllPermissions()->pluck('name'); // Obtén una lista de los nombres de los permisos
 
             $request->session()->regenerate();
             return redirect()->intended('consultar-producto')->with('user', Auth::guard('empleado')->user());
         }
-        return back()->withErrors([
-            'email' => 'Las credenciales proporcionadas no coinciden con nuestros registros.',
-        ])->onlyInput('email');
+
+        //Devolver mensaje de error en caso de que no se haya mandado la información correctamente
+        return response()->json(['errors' => ['usuario' => 'Las credenciales proporcionadas son incorrectas.']], 422);
     }
 
     public function logout(Request $request)
