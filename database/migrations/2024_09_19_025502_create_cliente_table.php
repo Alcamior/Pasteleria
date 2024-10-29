@@ -24,6 +24,7 @@ return new class extends Migration
             $table->String("email");
             $table->String("contrasena")->nullable();
             $table->String("google_id")->nullable();
+            $table->string('profile_image')->nullable();
         });
     }
 

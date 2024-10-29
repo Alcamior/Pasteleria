@@ -91,7 +91,7 @@ body{
 }
 
 .mini-barra-lateral{
-    width: 80px;
+    width: 100px;
 }
 
 .barra-lateral span{
@@ -117,9 +117,9 @@ body{
     display: flex;
     align-items: center;
 }
-.barra-lateral .nombre-pagina ion-icon{
-    min-width: 50px;
-    font-size: 40px;
+.barra-lateral .nombre-pagina img{
+    width: 80px;
+    height: 80px;
     cursor: pointer;
 }
 .barra-lateral .nombre-pagina span{
@@ -194,6 +194,7 @@ body{
 .barra-lateral .navegacion .dropdown .dropdown-toggle i{
     min-width: 50px;
     font-size: 20px;
+    margin-left: 10px;
 }
 
 
@@ -205,7 +206,7 @@ body{
     background-color: var(--color-linea);
 }
 
-/*----------------> Modo Oscuro*/
+/*----------------> Cerrar sesión*/
 
 .barra-lateral .logout{
     position: relative !important;
@@ -225,7 +226,7 @@ body{
     background-color: white;
 }
 
-.barra-lateral .logout .content a{
+.barra-lateral .logout .content button{
     width: 150px;
     height: 45px;
     overflow: hidden;
@@ -233,6 +234,9 @@ body{
     align-items: center;
     color: var(--color-texto-menu);
     text-decoration: none;
+    border: none;
+    background-color: white;
+    
 }
 
 .barra-lateral .logout .content i{

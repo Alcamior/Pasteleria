@@ -11,11 +11,13 @@ use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Foundation\Auth\Access\Authorizable;
 
 
 class Empleado extends Authenticatable
 {
     use HasFactory, Notifiable, HasRoles;
+    use Authorizable;
     
     public $timestamps = false;
     protected $table="empleado";
@@ -35,10 +37,5 @@ class Empleado extends Authenticatable
     {
         return $this->contrasena;
     }
-
-/*     public function permisos()
-        {
-            return $this->belongsToMany(Permiso::class, 'empleado_permiso', 'empleado_id', 'permiso_id');
-        } */
     
 }

@@ -17,7 +17,7 @@ class Cliente extends Authenticatable
     protected $guard_name = 'web';
     
     //columnas que quieres usar para la autenticación
-    protected $fillable = ['email','nombre','contrasena','google_id'];
+    protected $fillable = ['email','nombre','contrasena','google_id','profile_image'];
 
     // campos que se usarán como contraseña
     protected $hidden = ['contrasena'];
