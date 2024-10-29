@@ -48,9 +48,11 @@ Route::get('producto/{id}/edit',[ProductoController::class,'edit'])->name('produ
 Route::put('producto/{id}',[ProductoController::class,'update'])->name('producto.update');
 Route::delete('producto/{id}', [ProductoController::class, 'destroy'])->name('producto.destroy');
 
-Route::middleware(['auth:empleado', 'can:crud tablas'])->group(function () {
-    Route::get('consultar-producto', [ProductoController::class, 'consultarProdcuto'])->name('consultar-producto');
-});
+/* Route::middleware(['auth:empleado','can:crud producto'])->group(function () {
+    Route::get('consultar-producto', [ProductoController::class, 'consultarProducto'])->name('consultar-producto');
+}); */
+
+Route::get('consultar-producto', [ProductoController::class, 'consultarProducto'])->middleware(['auth:empleado','can:crud producto','can:crear producto'])->name('consultar-producto');
 
 
 //Rutas para almacenaje
@@ -61,7 +63,7 @@ Route::get('almacenaje/{id}/edit',[AlmacenajeController::class,'edit'])->name('a
 Route::put('almacenaje/{id}',[AlmacenajeController::class,'update'])->name('almacenaje.update');
 Route::delete('almacenaje/{id}', [AlmacenajeController::class, 'destroy'])->name('almacenaje.destroy');
 
-Route::middleware(['auth:empleado', 'can:crud tablas'])->group(function () {
+Route::middleware(['auth:empleado', 'can:crud almacenaje'])->group(function () {
     Route::get('consultar-almacenaje', [AlmacenajeController::class, 'consultarAlmacenaje'])->name('consultar-almacenaje');
 });
 
