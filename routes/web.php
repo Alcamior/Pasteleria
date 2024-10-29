@@ -48,7 +48,7 @@ Route::get('producto/{id}/edit',[ProductoController::class,'edit'])->name('produ
 Route::put('producto/{id}',[ProductoController::class,'update'])->name('producto.update');
 Route::delete('producto/{id}', [ProductoController::class, 'destroy'])->name('producto.destroy');
 
-Route::middleware(['auth:empleado', 'can:crud tablas'])->group(function () {
+Route::middleware(['auth:empleado','can:crud producto'])->group(function () {
     Route::get('consultar-producto', [ProductoController::class, 'consultarProdcuto'])->name('consultar-producto');
 });
 

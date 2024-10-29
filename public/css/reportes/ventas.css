@@ -64,6 +64,13 @@
     font-weight: bold;
 }
 
+.resultados .title {
+    font-family: var(--fuente-titulo);
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-bottom: 20px;
+}
+
 .resultados .fecha {
     margin-top: 20px;
     margin-left: 55px;
@@ -84,6 +91,21 @@
 .tabla th {
     background-color: var(--color-principal);
 }
+
+.grafica {
+    margin: 60px;
+}
+
+#graficoVentasSem {
+    width: 80%; 
+    height: 500px;
+    margin: 0 auto; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 
 
 

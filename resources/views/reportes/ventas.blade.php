@@ -30,7 +30,7 @@
 
         <!-- Formularios -->
         <div id="formulario1" class="formulario">
-            <h3>Reporte diario de ventas</h3>
+            <h3>Reportes</h3>
             <br>
             <form action="{{route('ventas.generar')}}" method="post">
                 @csrf
@@ -49,7 +49,7 @@
         </div>
 
         <div id="formulario2" class="formulario">
-            <h3>Reporte semanal de ventas</h3>
+            <h3>Reportes</h3>
             <br>
             <form action="{{route('ventas.generar')}}" method="post">
                 @csrf
@@ -58,12 +58,17 @@
                     <label for="input2">Fecha de inicio de semana: </label>
                     <input type="date" name="fecha" id="input2">
                 </div>
+                @error('fecha')
+                    <span>*{{ $message }}</span>
+                @enderror
+                <br>
+                <br>
                 <button type="submit" class="btn btn-primary">Generar reporte</button>
             </form>
         </div>
 
         <div id="formulario3" class="formulario">
-            <h3>Reporte mensual de ventas</h3>
+            <h3>Reportes</h3>
             <br>
             <form action="{{route('ventas.generar')}}" method="post">
                 @csrf
@@ -94,6 +99,8 @@
         <section class="resultados">
             @if (session('reporte') == 'formulario1') 
                 
+                <h3 class="title">Reporte diario de ventas</h3>    
+
                 <section class="fecha">
                     <p>{{ session('fechaN') }}</p>
                 </section>
@@ -112,7 +119,7 @@
 
                         <div class="col-md-4 col-sm-12">
                             <p>Ganancias totales</p>
-                            <h3>${{ session('total')[0]->total }}</h3>
+                            <h3>${{ session('total') }}</h3>
                         </div>
                     </div>
                 </section>
@@ -138,6 +145,42 @@
                     </table>
                 </section>
             @endif 
+
+            @if (session('reporte') == 'formulario2')
+                
+                <h3 class="title">Reporte semanal de ventas</h3>
+
+                <section class="fecha">
+                    <p>{{ session('fechaInicio') }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ session('fechaFin') }}</p>
+                </section>
+
+                <section class="text-center ganacias">
+                    <div class="row justify-content-center">
+                        <div class="col-md-4 col-sm-12">
+                            <p>Ganancias pastelería</p>
+                            <h3>${{ session('totalPP')[0]->totalPas }}</h3>
+                        </div>
+
+                        <div class="col-md-4 col-sm-12">
+                            <p>Ganancias cafetería</p>
+                            <h3>${{ session('totalPC')[0]->totalCaf }}</h3>
+                        </div>
+
+                        <div class="col-md-4 col-sm-12">
+                            <p>Ganancias totales</p>
+                            <h3>${{ session('total') }}</h3>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="grafica">
+                    <script>
+                        var jsonData = {!! session('jsonData') !!};
+                        console.log(jsonData);
+                    </script>
+                    <div id="graficoVentasSem"></div>
+                </section>
+            @endif
         </section>
     </main>
 
@@ -146,6 +189,9 @@
 
     <!-- Cargar DataTables -->
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+    <!-- Cargar Highcharts -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
 
     <!-- Script de ventas -->
     <script src="{{ asset('js/reportes/ventas.js') }}"></script>
