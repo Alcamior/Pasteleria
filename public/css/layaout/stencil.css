@@ -206,7 +206,7 @@ body{
     background-color: var(--color-linea);
 }
 
-/*----------------> Modo Oscuro*/
+/*----------------> Cerrar sesión*/
 
 .barra-lateral .logout{
     position: relative !important;
@@ -226,7 +226,7 @@ body{
     background-color: white;
 }
 
-.barra-lateral .logout .content a{
+.barra-lateral .logout .content button{
     width: 150px;
     height: 45px;
     overflow: hidden;
@@ -234,6 +234,9 @@ body{
     align-items: center;
     color: var(--color-texto-menu);
     text-decoration: none;
+    border: none;
+    background-color: white;
+    
 }
 
 .barra-lateral .logout .content i{

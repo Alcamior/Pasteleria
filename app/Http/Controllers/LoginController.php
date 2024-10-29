@@ -49,32 +49,26 @@ class LoginController extends Controller
         $empleado = Empleado::where('email', $credentials['email'])->first();
         if (Auth::guard('empleado')->attempt(['email' => $credentials['email'], 'password' => $credentials['contrasena']])){
             Auth::guard('empleado')->login($empleado);
-        // Obtener los permisos asignados al empleado usando Spatie
-        $permisos = $empleado->getAllPermissions()->pluck('name'); // Obtén una lista de los nombres de los permisos
+            // Obtener los permisos asignados al empleado usando Spatie
+            $permisos = $empleado->getAllPermissions()->pluck('name'); // Obtén una lista de los nombres de los permisos
 
             $request->session()->regenerate();
             return redirect()->intended('consultar-producto')->with('user', Auth::guard('empleado')->user());
         }
-        Log::warning('Error de autenticación. Las credenciales no son válidas.', $credentials);
         return back()->withErrors([
             'email' => 'Las credenciales proporcionadas no coinciden con nuestros registros.',
         ])->onlyInput('email');
     }
 
-    public function cerrarSesion(){
-        return view('logout');
-    }
-
-
     public function logout(Request $request)
     {
         Auth::guard('empleado')->logout();
     
-        // Opcional: Regenerar la sesión y redirigir al usuario
+        //Regenerar la sesión y redirigir al usuario
         $request->session()->invalidate();
         $request->session()->regenerateToken();
     
-        return redirect('/login'); // Redirige a la página de login o a donde desees
+        return redirect('/login'); // Redirige a la página de login
     }
 
     public function stencil(){

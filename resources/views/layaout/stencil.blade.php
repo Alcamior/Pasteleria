@@ -127,32 +127,48 @@
         </nav>
 
         <div>
+            @php
+                $empleado = Auth::guard('empleado')->user();
+                $cliente = Auth::guard('cliente')->user();
+            @endphp   
+            @if ($empleado || $cliente)
             <div class="linea"></div>
-            @auth
-            @csrf
             <div class="logout">
-                <div class="content">
-                    <i class="bi bi-box-arrow-right"></i>
-                    <a href="{{route('logout')}}">Cerrar sesión</a>
-                </div>
+                <form action="{{route('logout')}}" method="post">
+                    @csrf
+                    <div class="content">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <button>Cerrar sesión</button>
+                    </div>
+                </form>
             </div>
-            @endauth
             <div class="usuario">
-                <img src="/Jhampier.jpg" alt="">
+                <img src="{{ $empleado ? $empleado->profile_image : $cliente->profile_image }}" alt="Profile Image" />
                 <div class="info-usuario">
                     <div class="nombre-email">
-                        
-                        @if (Auth::guard('empleado')->check())
-                        <span class="nombre">{{ Auth::guard('empleado')->user()->nombre }}</span>
-                        <span class="email">{{ Auth::guard('empleado')->user()->email }}</span>
-                    @else
-                        <span>No autenticado</span>
-                    @endif
+                        <span class="nombre">{{ $empleado ? $empleado->nombre : $cliente->nombre }}</span>
+                        <span class="email">{{ $empleado ? $empleado->email : $cliente->email }}</span>
                     </div>
-                    
-                    <ion-icon name="ellipsis-vertical-outline"></ion-icon>
                 </div>
             </div>
+            @else
+                <span>No autenticado</span>
+            @endif
+            
+{{--             <div class="usuario">
+                <img src="{{ Auth::guard('empleado')->user()->profile_image }}" alt="Profile Image" />
+                <div class="info-usuario">
+                    <div class="nombre-email">
+                        @if (Auth::guard('empleado')->check())
+                        
+                            <span class="nombre">{{ Auth::guard('empleado')->user()->nombre }}</span>
+                            <span class="email">{{ Auth::guard('empleado')->user()->email }}</span>
+                        @else
+                            <span>No autenticado</span>
+                        @endif
+                    </div>
+                </div>
+            </div> --}}
         </div>
 
     </div>

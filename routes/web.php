@@ -24,15 +24,17 @@ Route::get('login-google', function () {
  
 Route::get('google-callback', function () {
     $user_google = Socialite::driver('google')->user();
+
     $user = Cliente::updateOrCreate([
         'google_id'=>$user_google->id,
     ],[
         'nombre'=>$user_google->name,
         'email'=>$user_google->email,
+        'profile_image' => $user_google->avatar
     ]);
 
-    Auth::login($user);
-    return redirect('principal');
+    Auth::guard('cliente')->login($user);
+    return redirect('/');
 });
 
 //Pagina donde se mostrarán los productos
@@ -42,84 +44,131 @@ Route::get('/',[ExhibicionController::class,'dashboard'])->name('principal');
 Route::post('validar-registro',[LoginController::class,'validarRegistro'])->name('validar-registro');
 
 //Rutas para producto
-Route::get('producto/create',[ProductoController::class,'create'])->name('producto.create');
+Route::get('producto/create',[ProductoController::class,'create'])
+    ->middleware(['auth:empleado','can:crear producto,crud producto'])
+    ->name('producto.create');
 Route::post('producto',[ProductoController::class,'store'])->name('producto.store');
 
-Route::get('producto/{id}/edit',[ProductoController::class,'edit'])->name('producto.edit');
+Route::get('producto/{id}/edit',[ProductoController::class,'edit'])
+    ->middleware(['auth:empleado','can:crud producto,editar producto'])
+    ->name('producto.edit');
 Route::put('producto/{id}',[ProductoController::class,'update'])->name('producto.update');
-Route::delete('producto/{id}', [ProductoController::class, 'destroy'])->name('producto.destroy');
 
-Route::middleware(['auth:empleado', 'can:crud tablas'])->group(function () {
-    Route::get('consultar-producto', [ProductoController::class, 'consultarProdcuto'])->name('consultar-producto');
-});
+Route::delete('producto/{id}', [ProductoController::class, 'destroy'])
+    ->middleware(['auth:empleado','can:crud producto,eliminar producto'])
+    ->name('producto.destroy');
+
+Route::get('consultar-producto', [ProductoController::class, 'consultarProducto'])
+    ->middleware(['auth:empleado', 'can:crud producto,consultar producto'])
+    ->name('consultar-producto');
 
 
 //Rutas para almacenaje
-Route::get('almacenaje/create',[AlmacenajeController::class,'create'])->name('almacenaje.create');
+Route::get('almacenaje/create',[AlmacenajeController::class,'create'])
+    ->middleware(['auth:empleado','can:crud almacenaje,crear almacenaje'])
+    ->name('almacenaje.create');
 Route::post('almacenaje',[AlmacenajeController::class,'store'])->name('almacenaje.store');
 
-Route::get('almacenaje/{id}/edit',[AlmacenajeController::class,'edit'])->name('almacenaje.edit');
+Route::get('almacenaje/{id}/edit',[AlmacenajeController::class,'edit'])
+    ->middleware(['auth:empleado','can:crud almacenaje,editar almacenaje'])
+    ->name('almacenaje.edit');
 Route::put('almacenaje/{id}',[AlmacenajeController::class,'update'])->name('almacenaje.update');
-Route::delete('almacenaje/{id}', [AlmacenajeController::class, 'destroy'])->name('almacenaje.destroy');
 
-Route::middleware(['auth:empleado', 'can:crud tablas'])->group(function () {
-    Route::get('consultar-almacenaje', [AlmacenajeController::class, 'consultarAlmacenaje'])->name('consultar-almacenaje');
-});
+Route::delete('almacenaje/{id}', [AlmacenajeController::class, 'destroy'])
+    ->middleware(['auth:empleado','can:crud almacenaje,eliminar almacenaje'])
+    ->name('almacenaje.destroy');
+
+Route::get('consultar-almacenaje', [AlmacenajeController::class, 'consultarAlmacenaje'])
+    ->middleware(['auth:empleado','can:crud almacenaje,consultar almacenaje'])
+    ->name('consultar-almacenaje');
 
 
 //Rutas para horario
-Route::get('horario/create',[HorarioController::class,'create'])->name('horario.create');
+Route::get('horario/create',[HorarioController::class,'create'])
+    ->middleware(['auth:empleado','can:crud horario,crear horario'])
+    ->name('horario.create');
 Route::post('horario',[HorarioController::class,'store'])->name('horario.store');
 
-Route::get('horario/{id}/edit',[HorarioController::class,'edit'])->name('horario.edit');
+Route::get('horario/{id}/edit',[HorarioController::class,'edit'])
+    ->middleware(['auth:empleado','can:crud horario,editar horario'])
+    ->name('horario.edit');
 Route::put('horario/{id}',[HorarioController::class,'update'])->name('horario.update');
-Route::delete('horario/{id}', [HorarioController::class, 'destroy'])->name('horario.destroy');
 
-Route::middleware(['auth:empleado', 'can:crud tablas'])->group(function () {
-    Route::get('consultar-horario', [HorarioController::class, 'consultarHorario'])->name('consultar-horario');
-});
+Route::delete('horario/{id}', [HorarioController::class, 'destroy'])
+    ->middleware(['auth:empleado','can:crud horario,eliminar horario'])
+    ->name('horario.destroy');
+
+Route::get('consultar-horario', [HorarioController::class, 'consultarHorario'])
+    ->middleware(['auth:empleado','can:crud horario,consultar horario'])
+    ->name('consultar-horario');
 
 
 //Rutas para promocion
-Route::get('promocion/create',[PromocionController::class,'create'])->name('promocion.create');
+Route::get('promocion/create',[PromocionController::class,'create'])
+    ->middleware(['auth:empleado','can:crud promocion,crear promocion'])
+    ->name('promocion.create');
 Route::post('promocion',[PromocionController::class,'store'])->name('promocion.store');
 
-Route::get('promocion/{id}/edit',[PromocionController::class,'edit'])->name('promocion.edit');
+Route::get('promocion/{id}/edit',[PromocionController::class,'edit'])
+    ->middleware(['auth:empleado','can:crud promocion,editar promocion'])
+    ->name('promocion.edit');
 Route::put('promocion/{id}',[PromocionController::class,'update'])->name('promocion.update');
-Route::delete('promocion/{id}', [PromocionController::class, 'destroy'])->name('promocion.destroy');
 
-Route::middleware(['auth:empleado', 'can:crud promocion'])->group(function () {
-    Route::get('consultar-promocion', [PromocionController::class, 'consultarPromocion'])->name('consultar-promocion');
-});
+Route::delete('promocion/{id}', [PromocionController::class, 'destroy'])
+    ->middleware(['auth:empleado','can:crud promocion,eliminar promocion'])
+    ->name('promocion.destroy');
+
+Route::get('consultar-promocion', [PromocionController::class, 'consultarPromocion'])
+    ->middleware(['auth:empleado','can:crud promocion,consultar promocion'])
+    ->name('consultar-promocion');
 
 
 //Rutas para cliente
-Route::get('cliente/create',[ClienteController::class,'create'])->name('cliente.create');
+Route::get('cliente/create',[ClienteController::class,'create'])
+    ->middleware(['auth:empleado','can:crud cliente,crear cliente'])
+    ->name('cliente.create');
 Route::post('cliente',[ClienteController::class,'store'])->name('cliente.store');
 
-Route::get('cliente/{id}/edit',[ClienteController::class,'edit'])->name('cliente.edit');
+Route::get('cliente/{id}/edit',[ClienteController::class,'edit'])
+    ->middleware(['auth:empleado','can:crud cliente,editar cliente'])
+    ->name('cliente.edit');
 Route::put('cliente/{id}',[ClienteController::class,'update'])->name('cliente.update');
-Route::delete('cliente/{id}', [ClienteController::class, 'destroy'])->name('cliente.destroy');
 
-Route::middleware(['auth:empleado', 'can:crud tablas'])->group(function () {
-    Route::get('consultar-cliente', [ClienteController::class, 'consultarCliente'])->name('consultar-cliente');
-});
+Route::delete('cliente/{id}', [ClienteController::class, 'destroy'])
+    ->middleware(['auth:empleado','can:crud cliente,eliminar cliente'])
+    ->name('cliente.destroy');
+
+Route::get('consultar-cliente', [ClienteController::class, 'consultarCliente'])
+    ->middleware(['auth:empleado','can:crud cliente,consultar cliente'])
+    ->name('consultar-cliente');
+
 
 //Rutas para empleado
-Route::get('empleado/create',[EmpleadoController::class,'create'])->name('empleado.create');
+Route::get('empleado/create',[EmpleadoController::class,'create'])
+    ->middleware(['auth:empleado','can:crud empleado,crear empleado'])
+    ->name('empleado.create');
 Route::post('empleado',[EmpleadoController::class,'store'])->name('empleado.store');
 
-Route::get('empleado/{id}/edit',[EmpleadoController::class,'edit'])->name('empleado.edit');
+Route::get('empleado/{id}/edit',[EmpleadoController::class,'edit'])
+    ->middleware(['auth:empleado','can:crud empleado,editar empleado'])
+    ->name('empleado.edit');
 Route::put('empleado/{id}',[EmpleadoController::class,'update'])->name('empleado.update');
-Route::delete('empleado/{id}', [EmpleadoController::class, 'destroy'])->name('empleado.destroy');
 
-Route::middleware(['auth:empleado', 'can:crud tablas'])->group(function () {
-    Route::get('consultar-empleado', [EmpleadoController::class, 'consultarEmpleado'])->name('consultar-empleado');
-});
+Route::delete('empleado/{id}', [EmpleadoController::class, 'destroy'])
+    ->middleware(['auth:empleado','can:crud empleado,eliminar empleado'])
+    ->name('empleado.destroy');
+
+Route::get('consultar-empleado', [EmpleadoController::class, 'consultarEmpleado'])
+    ->middleware(['auth:empleado','can:crud empleado,consultar empleado'])
+    ->name('consultar-empleado');
+
 
 //rutas para pedido
-Route::get('pedido/create',[PedidoController::class,'create'])->name('pedido.create');
+Route::get('pedido/create',[PedidoController::class,'create'])
+    ->middleware(['auth:empleado','can:crud pedido,crear pedido'])
+    ->name('pedido.create');
 Route::post('empleado',[PedidoController::class,'store'])->name('pedido.store');
+
 
 //Página para la el inicio de sesión
 Route::get('login',[LoginController::class,'login'])->name('login');
