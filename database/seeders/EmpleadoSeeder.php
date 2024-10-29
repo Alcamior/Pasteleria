@@ -41,6 +41,7 @@ class EmpleadoSeeder extends Seeder
         $empleado -> email = "acco220170@upemor.edu.mx";
         $empleado -> contrasena = Hash::make('123456');
         $empleado -> assignRole(roles:'empleado');
+        $empleado -> profile_image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCAJH4R87uV3Rvncs3L3urjeNESAfJGTMTrA&s";
         $empleado -> save();
 
     }

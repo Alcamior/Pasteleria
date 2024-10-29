@@ -91,7 +91,7 @@ body{
 }
 
 .mini-barra-lateral{
-    width: 100px;
+    width: 110px;
 }
 
 .barra-lateral span{
@@ -243,7 +243,46 @@ body{
     text-align: center;
     min-width: 50px;
     font-size: 20px;
+    margin-left: 15px;
 }
+
+.barra-lateral .logout .content button p{
+    width: 100%; 
+}
+
+.barra-lateral .logout .content button p{
+    width: 100%; 
+    text-align: center; 
+    margin: 0; 
+}
+
+.mini-barra-lateral .logout .content button p{
+    display: none;
+}
+
+.login .content a{
+    margin-top: 10px;
+    text-decoration: none;
+}
+
+.login .content i{
+    text-align: center;
+    min-width: 50px;
+    font-size: 20px;
+    margin-left: 10px;
+    color: black;
+}
+
+.login .content p{
+    padding-left: 0;
+    margin-left: 0;
+    color: black;
+}
+
+.mini-barra-lateral .login  .content  p{
+    display: none;
+}
+
 
 .barra-lateral .logout:hover{
     background-color: var(--color-menu-hover) !important;
@@ -259,6 +298,7 @@ body{
     width: 50px;
     min-width: 50px;
     border-radius: 10px;
+    margin-left: 15px;
 }
 .barra-lateral .usuario .info-usuario{
     width: 100%;
@@ -295,7 +335,7 @@ main{
 }
 
 main.min-main{
-    margin-left: 80px;
+    margin-left: 100px;
 }
 
 
