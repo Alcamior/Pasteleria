@@ -20,7 +20,3 @@ php artisan key:generate
 <h2>Cambiar el idioma de las alertas</h2>
 <p> Para cambiar el idioma de las alertas instalar Laravel Lang (composer require laravel-lang/common)</p>
 
-
-```php
-$_POS[]
-```
