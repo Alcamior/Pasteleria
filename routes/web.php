@@ -61,7 +61,7 @@ Route::get('almacenaje/{id}/edit',[AlmacenajeController::class,'edit'])->name('a
 Route::put('almacenaje/{id}',[AlmacenajeController::class,'update'])->name('almacenaje.update');
 Route::delete('almacenaje/{id}', [AlmacenajeController::class, 'destroy'])->name('almacenaje.destroy');
 
-Route::middleware(['auth:empleado', 'can:crud tablas'])->group(function () {
+Route::middleware(['auth:empleado', 'can:crud almacenaje'])->group(function () {
     Route::get('consultar-almacenaje', [AlmacenajeController::class, 'consultarAlmacenaje'])->name('consultar-almacenaje');
 });
 
@@ -74,7 +74,7 @@ Route::get('horario/{id}/edit',[HorarioController::class,'edit'])->name('horario
 Route::put('horario/{id}',[HorarioController::class,'update'])->name('horario.update');
 Route::delete('horario/{id}', [HorarioController::class, 'destroy'])->name('horario.destroy');
 
-Route::middleware(['auth:empleado', 'can:crud tablas'])->group(function () {
+Route::middleware(['auth:empleado', 'can:crud horario'])->group(function () {
     Route::get('consultar-horario', [HorarioController::class, 'consultarHorario'])->name('consultar-horario');
 });
 
@@ -100,7 +100,7 @@ Route::get('cliente/{id}/edit',[ClienteController::class,'edit'])->name('cliente
 Route::put('cliente/{id}',[ClienteController::class,'update'])->name('cliente.update');
 Route::delete('cliente/{id}', [ClienteController::class, 'destroy'])->name('cliente.destroy');
 
-Route::middleware(['auth:empleado', 'can:crud tablas'])->group(function () {
+Route::middleware(['auth:empleado', 'can:crud cliente'])->group(function () {
     Route::get('consultar-cliente', [ClienteController::class, 'consultarCliente'])->name('consultar-cliente');
 });
 
@@ -112,7 +112,7 @@ Route::get('empleado/{id}/edit',[EmpleadoController::class,'edit'])->name('emple
 Route::put('empleado/{id}',[EmpleadoController::class,'update'])->name('empleado.update');
 Route::delete('empleado/{id}', [EmpleadoController::class, 'destroy'])->name('empleado.destroy');
 
-Route::middleware(['auth:empleado', 'can:crud tablas'])->group(function () {
+Route::middleware(['auth:empleado', 'can:crud empleado'])->group(function () {
     Route::get('consultar-empleado', [EmpleadoController::class, 'consultarEmpleado'])->name('consultar-empleado');
 });
 
