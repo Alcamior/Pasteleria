@@ -9,7 +9,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{asset('css/layaout/stencil.css') }}">
     <title>@yield('title')</title>
-    
 </head>
 <body>
     <div class="menu">
@@ -34,8 +33,8 @@
                             <span>Pedido</span> 
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" {{-- href="{{route('consultar-pedido')}}" --}}>Consultar</a></li>
-                            <li><a class="dropdown-item"{{--  href="{{route('pedido/create')}}" --}}>Agregr nuevo</a></li>
+                            <li><a class="dropdown-item" >Consultar</a></li>
+                            <li><a class="dropdown-item" href="{{route('pedido.create')}}">Agregr nuevo</a></li>
                         </ul>
                     </div>
                 </li>
@@ -71,8 +70,8 @@
                             <span>Promociones</span> 
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{route('consultar-producto')}}">Consultar</a></li>
-                            <li><a class="dropdown-item" href="{{route('producto.create')}}">Agregr nuevo</a></li>
+                            <li><a class="dropdown-item" href="{{route('consultar-promocion')}}">Consultar</a></li>
+                            <li><a class="dropdown-item" href="{{route('promocion.create')}}">Agregr nuevo</a></li>
                         </ul>
                     </div>
                 </li>
@@ -107,8 +106,8 @@
                             <span>Horario</span> 
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{route('consultar-cliente')}}">Consultar</a></li>
-                            <li><a class="dropdown-item" href="{{route('cliente.create')}}">Agregr nuevo</a></li>
+                            <li><a class="dropdown-item" href="{{route('consultar-horario')}}">Consultar</a></li>
+                            <li><a class="dropdown-item" href="{{route('horario.create')}}">Agregr nuevo</a></li>
                         </ul>
                     </div>
                 </li>

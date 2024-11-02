@@ -177,7 +177,6 @@ Route::post('validar-sesion',[LoginController::class,'validarSesion'])->name('va
 
 //Página para registrarse
 Route::get('signup',[LoginController::class,'signup'])->name('signup');
-Route::get('cerrar-sesion',[LoginController::class,'cerrarSesion'])->name('cerrar-sesion');
 Route::post('logout',[LoginController::class,'logout'])->name('logout');
 
 

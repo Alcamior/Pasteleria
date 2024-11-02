@@ -5,6 +5,8 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 @endsection
 
+@section('title','Realizar pedido')
+
 @section('main')
 
 <h2>Datos del pedido</h2>
@@ -33,22 +35,25 @@
 <button id="agregarProducto" class="btn btn-primary">Agregar Producto</button><br><br>
 
 <h2>Productos Agregados</h2>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Producto</th>
-            <th>Descripción</th>
-            <th>Cantidad</th>
-            <th>Descuento</th>
-            <th>Precio Unitario</th>
-            <th>Total</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody id="listaProductos">
-        <!--Productos seleccionados -->
-    </tbody>
-</table>
+<div class="table">
+    <table id="myTable" class="table" >
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Descripción</th>
+                <th>Cantidad</th>
+                <th>Descuento</th>
+                <th>Precio Unitario</th>
+                <th>Total</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="listaProductos">
+            <!--Productos seleccionados -->
+        </tbody>
+    </table>
+</div>
+
 
 <br>
 <p>Subtotal: <span id="subtotal">0</span></p>
@@ -59,8 +64,6 @@
 @csrf
     <button>Enviar</button>
 </form>
-
-
 
 @endsection
 
