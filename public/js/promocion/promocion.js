@@ -1,12 +1,12 @@
 $(document).ready(function () {
     // Inicializa el DataTable y guarda la instancia en una variable
     const myTable = $('#myTable').DataTable({
-        responsive: true,
         autoWidth: false,
+        pagingType: 'simple_numbers',
         language: {
             url: "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
         },
-        dom: 'Bfrtip', // Define la estructura de los controles, 'B' es para los botones
+        dom: 'frt<"button-container"B>ip',// Define la estructura de los controles, 'B' es para los botones
         buttons: [
             {
                 extend: 'excelHtml5', // Extensión para exportar a Excel
