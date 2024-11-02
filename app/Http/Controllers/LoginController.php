@@ -55,7 +55,7 @@ class LoginController extends Controller
             Auth::guard('empleado')->login($empleado);
 
             $request->session()->regenerate();
-            return redirect()->intended('consultar-producto')->with('user', Auth::guard('empleado')->user());
+            return redirect()->intended('/')->with('user', Auth::guard('empleado')->user());
         }
 
         //Devolver mensaje de error en caso de que no se haya mandado la información correctamente
@@ -70,7 +70,7 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
     
-        return redirect('/login'); // Redirige a la página de login
+        return redirect('/'); // Redirige a la página principal
     }
 
     public function stencil(){

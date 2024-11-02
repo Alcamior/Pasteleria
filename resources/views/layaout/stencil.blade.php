@@ -137,7 +137,7 @@
                 <form action="{{route('logout')}}" method="post">
                     @csrf
                     <div class="content d-flex">
-                        <button class="align-items-center justify-content-center d-flex w-100">
+                        <button class="align-items-center d-flex w-100">
                             <i class="bi bi-box-arrow-right me-2"></i>
                             <p class="mb-0 w-100">Cerrar sesión</p>
                         </button>
