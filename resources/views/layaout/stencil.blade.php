@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    @yield('head')
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <meta charset="UTF-8">
@@ -8,7 +9,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{asset('css/layaout/stencil.css') }}">
     <title>@yield('title')</title>
-    
 </head>
 <body>
     <div class="menu">
@@ -19,7 +19,7 @@
     <div class="barra-lateral">
         <div>
             <div class="nombre-pagina">
-                <ion-icon id="cloud" name="cloud-outline"></ion-icon>
+                <img src="{{asset('img/logo_negro.png')}}" alt="Logo pastelería" name="cloud-outline" id="cloud">
                 <span>Divina <br>Tentación</span>
             </div>
         </div>
@@ -33,8 +33,8 @@
                             <span>Pedido</span> 
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" {{-- href="{{route('consultar-pedido')}}" --}}>Consultar</a></li>
-                            <li><a class="dropdown-item"{{--  href="{{route('pedido/create')}}" --}}>Agregr nuevo</a></li>
+                            <li><a class="dropdown-item" >Consultar</a></li>
+                            <li><a class="dropdown-item" href="{{route('pedido.create')}}">Agregr nuevo</a></li>
                         </ul>
                     </div>
                 </li>
@@ -70,8 +70,8 @@
                             <span>Promociones</span> 
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{route('consultar-producto')}}">Consultar</a></li>
-                            <li><a class="dropdown-item" href="{{route('producto.create')}}">Agregr nuevo</a></li>
+                            <li><a class="dropdown-item" href="{{route('consultar-promocion')}}">Consultar</a></li>
+                            <li><a class="dropdown-item" href="{{route('promocion.create')}}">Agregr nuevo</a></li>
                         </ul>
                     </div>
                 </li>
@@ -106,8 +106,8 @@
                             <span>Horario</span> 
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{route('consultar-cliente')}}">Consultar</a></li>
-                            <li><a class="dropdown-item" href="{{route('cliente.create')}}">Agregr nuevo</a></li>
+                            <li><a class="dropdown-item" href="{{route('consultar-horario')}}">Consultar</a></li>
+                            <li><a class="dropdown-item" href="{{route('horario.create')}}">Agregr nuevo</a></li>
                         </ul>
                     </div>
                 </li>
@@ -126,30 +126,42 @@
         </nav>
 
         <div>
-            <div class="linea"></div>
-            @auth
-            @csrf
+            @php
+                $empleado = Auth::guard('empleado')->user();
+                $cliente = Auth::guard('cliente')->user();
+            @endphp  
+            <div class="linea"></div> 
+            @if ($empleado || $cliente)
             <div class="logout">
-                <div class="content">
-                    <i class="bi bi-box-arrow-right"></i>
-                    <a href="{{route('logout')}}">Cerrar sesión</a>
-                </div>
+                <form action="{{route('logout')}}" method="post">
+                    @csrf
+                    <div class="content d-flex">
+                        <button class="align-items-center d-flex w-100">
+                            <i class="bi bi-box-arrow-right me-2"></i>
+                            <p class="mb-0 w-100">Cerrar sesión</p>
+                        </button>
+                    </div>
+                </form>
             </div>
-            @endauth
             <div class="usuario">
-                <img src="/Jhampier.jpg" alt="">
+                <img src="{{ $empleado ? $empleado->profile_image : $cliente->profile_image }}" alt="Imagen perfil" />
                 <div class="info-usuario">
                     <div class="nombre-email">
-                        
-                        @if (Auth::check()) 
-                            <span class="nombre">{{Auth::user()->nombre}}</span>
-                            <span class="email">{{ Auth::user()->email }}</span> 
-                        @endif
+                        <span class="nombre">{{ $empleado ? $empleado->nombre : $cliente->nombre }}</span>
+                        <span class="email">{{ $empleado ? $empleado->email : $cliente->email }}</span>
                     </div>
-                    
-                    <ion-icon name="ellipsis-vertical-outline"></ion-icon>
                 </div>
             </div>
+            @else
+            <div class="login">
+                <div class="content d-flex">
+                    <a  href="{{route('login')}}" class="align-items-center justify-content-center d-flex w-100">
+                        <i class="bi bi-person me-2"></i>
+                        <p class="mb-0 w-100">Iniciar sesión</p>
+                    </a>
+                </div>
+            </div>
+            @endif
         </div>
 
     </div>

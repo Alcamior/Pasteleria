@@ -1,11 +1,20 @@
 <h2>Generar la llave para el funcionamiento de laravel</h2>
+
+```bash
 php artisan key:generate
+```
 
 <h2>Instalar la carpeta de vendor</h2>
-<p>composer install</p>
+
+```bash 
+composer install
+```
 
 <h2>Instalar el paquete para socialite</h2>
-<p>composer require laravel/socialite</p>
+
+```bash
+composer require laravel/socialite
+```
 
 <h2>Variables utilizadas</h2>
 <lu>
@@ -15,7 +24,7 @@ php artisan key:generate
 </lu>
 
 <h2>Agregar los permisos</h2>
-<p> composer require spatie/laravel-permission</p>
 
-<h2>Cambiar el idioma de las alertas</h2>
-<p> Para cambiar el idioma de las alertas instalar Laravel Lang (composer require laravel-lang/common)</p>
+```bash
+composer require spatie/laravel-permission
+```

@@ -8,7 +8,12 @@ use Illuminate\Support\Facades\Auth;
 class exhibicionController extends Controller
 {
     public function dashboard(){
-        /* $correo = Auth::user()->email; */
-        return view('dashboard');
+        if (Auth::guard('empleado')->check()) {
+            // Usamos el guard 'empleado' para autenticar
+            $user = Auth::guard('empleado')->user();
+            return view('index', ['user' => $user]);  // Pasas la variable 'user' a la vista
+        } else {
+            return view('index');
+        }
     }
 }

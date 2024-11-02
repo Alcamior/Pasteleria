@@ -24,6 +24,7 @@ return new class extends Migration
             $table->String("telefono")->nullable();
             $table->String("email");
             $table->String("contrasena");
+            $table->string('profile_image')->nullable();
         });
     }
 

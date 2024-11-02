@@ -21,7 +21,7 @@ class Authenticate
         // Verificar si el usuario está autenticado usando el guard "empleado"
         if (!Auth::guard('empleado')->check()) {
             // Si el usuario no está autenticado, redirigir a la página de inicio de sesión
-            return redirect()->route('login');  // Cambia 'login' por la ruta adecuada para tu login
+            return redirect()->route('login');
         }
 
         // Si está autenticado, permitir que continúe con la solicitud

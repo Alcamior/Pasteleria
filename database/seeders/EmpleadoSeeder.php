@@ -25,6 +25,7 @@ class EmpleadoSeeder extends Seeder
         $empleado -> telefono = "7774571517";
         $empleado -> email = "kevinyahirt@gmail.com";
         $empleado -> contrasena = Hash::make('123456');
+        $empleado -> profile_image= "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcT0GjmhUuqjA7qN8Vm7mENIjZOlx-pEtHOHYaxaeBX4BripJovU";
         $empleado -> assignRole(roles:'administrador');
         $empleado -> save();
 
@@ -40,6 +41,7 @@ class EmpleadoSeeder extends Seeder
         $empleado -> email = "acco220170@upemor.edu.mx";
         $empleado -> contrasena = Hash::make('123456');
         $empleado -> assignRole(roles:'empleado');
+        $empleado -> profile_image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCAJH4R87uV3Rvncs3L3urjeNESAfJGTMTrA&s";
         $empleado -> save();
 
     }
