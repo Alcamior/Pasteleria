@@ -51,6 +51,7 @@ Route::get('producto/{id}/edit',[ProductoController::class,'edit'])
     ->name('producto.edit');
 Route::put('producto/{id}',[ProductoController::class,'update'])->name('producto.update');
 
+
 Route::delete('producto/{id}', [ProductoController::class, 'destroy'])
     ->middleware(['auth:empleado','can:crud producto,eliminar producto'])
     ->name('producto.destroy');
@@ -90,6 +91,7 @@ Route::get('horario/{id}/edit',[HorarioController::class,'edit'])
     ->middleware(['auth:empleado','can:crud horario,editar horario'])
     ->name('horario.edit');
 Route::put('horario/{id}',[HorarioController::class,'update'])->name('horario.update');
+
 
 Route::delete('horario/{id}', [HorarioController::class, 'destroy'])
     ->middleware(['auth:empleado','can:crud horario,eliminar horario'])
@@ -150,6 +152,7 @@ Route::get('empleado/{id}/edit',[EmpleadoController::class,'edit'])
     ->middleware(['auth:empleado','can:crud empleado,editar empleado'])
     ->name('empleado.edit');
 Route::put('empleado/{id}',[EmpleadoController::class,'update'])->name('empleado.update');
+
 
 Route::delete('empleado/{id}', [EmpleadoController::class, 'destroy'])
     ->middleware(['auth:empleado','can:crud empleado,eliminar empleado'])

@@ -36,7 +36,7 @@ class ProductoController extends Controller
     }
 
 
-    public function consultarProducto(){
+    public function consultarProdcuto(){
         $producto= Producto::all();
         return view('producto/consultar-producto',compact('producto'));
     }
