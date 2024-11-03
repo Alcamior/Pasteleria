@@ -41,16 +41,22 @@
 
                     @csrf
 
-                    <input type="time" name="horaentrada" placeholder="Hora de entrada" value="{{old('horaentrada')}}">
-                    <br>
+                    <div class="contenedor">
+                        <label>Hora de entrada:</label>
+                        <input type="time" name="horaentrada" value="{{old('horaentrada')}}">
+                        <br>
+                    </div>
                     @error('horaentrada')
                         <span>*{{ $message }}</span>
                     @enderror
                     <br>
                     <br>
 
-                    <input type="time" name="horasalida" placeholder="Hora de salida" value="{{old('horasalida')}}">
-                    <br>
+                    <div class="contenedor">
+                        <label>Hora de salida:</label>
+                        <input type="time" name="horasalida" value="{{old('horasalida')}}">
+                    </div>
+                        <br>
                     @error('horasalida')
                         <span>*{{ $message }}</span>
                     @enderror

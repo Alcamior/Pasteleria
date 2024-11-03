@@ -23,7 +23,7 @@ class StoreHorario extends FormRequest
     {
         return [
             'horaentrada' => 'required|date_format:H:i',
-            'horasalida' => 'required|date_format:H:i', 
+            'horasalida' => 'required|date_format:H:i|after:horaentrada', 
             'dia' => 'required|in:Lunes,Martes,Miércoles,Jueves,Viernes,Sábado,Domingo'
         ];
     }

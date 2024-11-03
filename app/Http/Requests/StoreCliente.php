@@ -28,9 +28,17 @@ class StoreCliente extends FormRequest
             'genero' => 'nullable|in:Femenino,Masculino,Otro',
             'direccion' => 'nullable|string|max:255',
             'fenac' => 'nullable|date',
-            'telefono' => 'nullable|string|max:255',
-            'email' => 'required|string|max:255',
+            'telefono' => 'nullable|string|max:255|regex:/^[0-9]+$/|unique:cliente,telefono',
+            'email' => 'required|string|max:255|email|unique:cliente,email',
             'contrasena' => 'required|string|max:255'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'telefono.regex' => 'El número de teléfono solo puede contener dígitos.',
+            'email.email' => 'El correo electrónico debe de tener una estructura válida.',
         ];
     }
 }

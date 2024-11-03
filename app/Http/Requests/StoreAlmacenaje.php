@@ -25,9 +25,16 @@ class StoreAlmacenaje extends FormRequest
             'nombre' => 'required|string|max:255',
             'descripcion' => 'required|string|max:255', 
             'fechaIng' => 'required|date',
-            'fechaCad' => 'nullable|date',
+            'fechaCad' => 'nullable|date|after:fechaIng',
             'cantidad' => 'required|integer|min:1',
             'categoria' => 'required|string|max:255'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'fechaCad.after' => 'La fecha de caducidad debe ser mayor que la fecha de ingreso.',
         ];
     }
 }

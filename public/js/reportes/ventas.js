@@ -49,8 +49,17 @@ document.addEventListener('DOMContentLoaded', function () {
              } 
          },
          series: [
-             { name: 'Pastelería', data: jsonData.ventasP },
-             { name: 'Cafetería', data: jsonData.ventasC }
+            { 
+                name: 'Pastelería', 
+                data: jsonData.ventasP,
+                color: '#b88a64'
+            },
+             
+            { 
+                name: 'Cafetería', 
+                data: jsonData.ventasC,
+                color: '#6c6c70'
+            }
          ]
      });
  });
