@@ -17,13 +17,13 @@ return new class extends Migration
             $table->String("descripcion");
             $table->integer("cantidad");
             $table->date("fePed");
-            $table->float("subtotal");
-            $table->float("descuento");
-            $table->float("totalP");
+            $table->float("subtotal")->nullable();
+            $table->float("descuento")->nullable();
+            $table->float("totalP")->nullable();
             $table->String("status");
             $table->unsignedBigInteger("idpro");
             $table->unsignedBigInteger("idv");
-            $table->unsignedBigInteger("idprom");
+            $table->unsignedBigInteger("idprom")->nullable();
             $table->foreign('idpro')->references('idpro')->on('producto')->onDelete('cascade');
             $table->foreign('idv')->references('idv')->on('venta')->onDelete('cascade');
             $table->foreign('idprom')->references('idprom')->on('promocion')->onDelete('cascade');

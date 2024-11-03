@@ -167,7 +167,7 @@ Route::get('consultar-empleado', [EmpleadoController::class, 'consultarEmpleado'
 Route::get('pedido/create',[PedidoController::class,'create'])
     ->middleware(['auth:empleado','can:crud pedido,crear pedido'])
     ->name('pedido.create');
-Route::post('empleado',[PedidoController::class,'store'])->name('pedido.store');
+Route::post('pedido',[PedidoController::class,'store'])->name('pedido.store');
 
 
 //Páginas para la validación de los datos insertados
