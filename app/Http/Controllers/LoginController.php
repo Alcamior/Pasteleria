@@ -46,6 +46,10 @@ class LoginController extends Controller
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'contrasena' => ['required','string'],
+        ],[
+            'email.required' => 'El campo correo electrónico es obligatorio.',
+            'email.email' => 'El formato del correo electrónico es inválido.',
+            'contrasena.required' => 'El campo contraseña es obligatorio.',
         ]);
 
         $empleado = Empleado::where('email', $credentials['email'])->first();
@@ -58,8 +62,8 @@ class LoginController extends Controller
             return redirect()->intended('/')->with('user', Auth::guard('empleado')->user());
         }
 
-        //Devolver mensaje de error en caso de que no se haya mandado la información correctamente
-        return response()->json(['errors' => ['usuario' => 'Las credenciales proporcionadas son incorrectas.']], 422);
+    // Devolver error de autenticación
+    return back()->withErrors(['usuario' => 'Las credenciales proporcionadas son incorrectas.'])->withInput();
     }
 
     public function logout(Request $request)

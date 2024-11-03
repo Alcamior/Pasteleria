@@ -23,10 +23,16 @@
                         <div>
                             <label>Email</label><br>
                             <input type="text" name="email" id="email" placeholder="ejemplo@gmail.com">
+                            @error('email')
+                                <span class="error">{{ $message }}</span>
+                            @enderror
                         </div><br>
                         <div>
                             <label>Contraseña</label><br>
                             <input type="password" name="contrasena" id="contra" placeholder="Escribe tu contraseña aquí">
+                            @error('contrasena')
+                                <span class="error">{{ $message }}</span>
+                            @enderror
                         </div><br>
                         <div class="d-flex align-items-center justify-content-center">
                             <button class="send">Enviar</button>
@@ -35,6 +41,10 @@
                             <p class="sign-up">¿No tienes cuenta? <a href="{{route('signup')}}">Regístrate</a></p>
                         </div>
                         <hr>
+                        <!-- Mostrar errores -->
+                        @if ($errors->has('usuario'))
+                            <span class="error">{{ $errors->first('usuario') }}</span>
+                        @endif
                         <div class="d-flex align-items-center justify-content-center" >
                             <div class="google d-flex align-items-center justify-content-center">
                                 <a href="{{route('login-google')}}"><i class="bi bi-google"></i>Inicia sesión con Google</a>
