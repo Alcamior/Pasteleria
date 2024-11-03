@@ -19,26 +19,33 @@ class PedidoController extends Controller
     }
 
 
-    public function store(/* StorePedido $request */){
-/*      $pedido = new Pedido();
-        $pedid -> nombre = $request -> nombre;
-        $producto -> tipo = $request -> tipo;
-        $producto -> descripcion = $request -> descripcion;
-        $producto -> precio = $request -> precio;
+    public function store(Request $request){
 
-        $producto -> save();
-        return redirect(route('principal')); */
         $venta = new Venta();
         $venta->fechaVent= now();
         $venta->fecEntrega= now();
+        $venta->total= 0;
         $venta->ide=Auth::guard('empleado')->user()->ide;
         $venta->save();
+
+        $pedidos = json_decode($request->input('productos'), true); // true para convertir a array asociativo
+
+        foreach ($pedidos as $item) {
+            $pedido = new Pedido();
+            $pedido->nombre = $item['nombre']; 
+            $pedido->tipo = $item['tipo']; 
+            $pedido->descripcion = $item['descripcion']; 
+            $pedido->precio = $item['precio']; 
+            $pedido->idv = $venta->id; 
+            $pedido->save();
+        } 
+
     }
 
 
     public function consultarProducto(){
 /*         $producto= Producto::all();
-        return view('producto/consultar-producto',compact('producto')); */
+        return view('producto/consultar-producto',compact('producto'));
     }
 
 

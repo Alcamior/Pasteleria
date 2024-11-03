@@ -19,10 +19,10 @@
 </select><br>
 
 <label>Descripción</label><br>
-<input type="text" id="descripcion" class="form-control"><br>
+<input type="text" id="descripcion" class="form-control" name="descripcion"><br>
 
 <label>Cantidad</label><br>
-<input type="number" id="cantidad" class="form-control"><br>
+<input type="number" id="cantidad" class="form-control" name="cantidad"><br>
 
 <label>Promoción</label><br>
 <select name="promocion " id="promocion" class="form-control select2">
@@ -60,8 +60,10 @@
 <p>Total: <span id="total">0</span></p>
 
 
-<form action="{{route('pedido.store')}}" method="post">
+<form action="{{route('pedido.store')}}" method="post" id="formVenta">
 @csrf
+<!-- Campo oculto para almacenar los productos -->
+<input type="hidden" id="productos" name="productos">
     <button>Enviar</button>
 </form>
 
@@ -149,6 +151,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     document.getElementById('formVenta').addEventListener('submit', function() {
+
         // Productos guardados en un campo oculto
         const lista = document.getElementById('listaProductos');
         const productos = Array.from(lista.children).map(tr => ({
