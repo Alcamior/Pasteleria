@@ -1,19 +1,17 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+@extends('layaout.stencil')
+
+@section('head')
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jockey+One&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="{{ asset('css/reportes/ventas.css') }}">
-    <title>Reporte de ventas</title>
-</head>
-<body>
-    <main>
+@endsection
+
+@section('title','Reporte de ventas')
+
+
+@section('main')
         <!-- Botones -->
         <div class="botones mt-5">
             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
@@ -182,7 +180,6 @@
                 </section>
             @endif
         </section>
-    </main>
 
     <!-- Cargar jQuery antes de DataTables -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -195,7 +192,7 @@
 
     <!-- Script de ventas -->
     <script src="{{ asset('js/reportes/ventas.js') }}"></script>
-</body>
-</html>
+
+@endsection
 
 
