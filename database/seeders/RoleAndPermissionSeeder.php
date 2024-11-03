@@ -48,6 +48,7 @@ class RoleAndPermissionSeeder extends Seeder
             ['name' => 'crud producto'],
             ['name' => 'crud horario'],
             ['name' => 'crud promocion'],
+            ['name' => 'reporte'],
         ];
         
         foreach ($permissions as $permission) {
@@ -80,6 +81,7 @@ class RoleAndPermissionSeeder extends Seeder
             'crud producto',
             'crud horario',
             'crud promocion',
+            'reporte'
         );
 
     }

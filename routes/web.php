@@ -184,9 +184,13 @@ Route::post('logout',[LoginController::class,'logout'])->name('logout');
 
 
 //Rutas para los reportes
-Route::get('reportes', [ReporteController::class,'show'])->name('reportes.dashboard');
+Route::get('reportes', [ReporteController::class,'show'])
+    ->middleware(['auth:empleado','can:reporte'])
+    ->name('reportes.dashboard');
 
-Route::get('reportes/ventas', [ReporteController::class,'showVentas'])->name('reportes.ventas');
+Route::get('reportes/ventas', [ReporteController::class,'showVentas'])
+    ->middleware(['auth:empleado','can:reporte'])
+    ->name('reportes.ventas');
 Route::post('reportes/ventas-generar', [ReporteController::class,'showVentasReporte'])->name('ventas.generar');
 
 
