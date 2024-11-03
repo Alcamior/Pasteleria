@@ -12,6 +12,7 @@ body {
     align-items: center;
     justify-content: center;
     background-repeat: no-repeat;
+    min-height: 550px;
 }
 
 
@@ -42,6 +43,10 @@ form{
     padding-left:30px;
 }
 
+form div{
+    width: 90%;
+}
+
 .container{
     width: 900px;
 }
@@ -66,7 +71,7 @@ form{
 }
 
 input {
-    width: 90%;
+    width: 100%;
     border-radius: 0.5rem;
     border: 2px solid rgb(182, 182, 182);
     height: 40px;
@@ -145,4 +150,9 @@ hr{
     .container{
         width: 350px;
     }
+
+    .column form{
+        padding: 0;
+    }
+
 }
