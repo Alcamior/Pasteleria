@@ -43,6 +43,7 @@
                     @method('put')
 
                     <label>Código:</label>
+                    <br>
                     <input type="text" name="codigo" value="{{ old('codigo', $promocion->codigo) }}">
                     <br>
                     @error('codigo')
@@ -52,6 +53,7 @@
                     <br>
 
                     <label>Descuento:</label>
+                    <br>
                     <input type="text" name="descuento" value="{{ old('descuento', $promocion->descuento) }}">
                     <br>
                     @error('descuento')
@@ -61,6 +63,7 @@
                     <br>
 
                     <label>Días:</label>
+                    <br>
                     <input type="text" name="dias" value="{{old('dias', $promocion->dias) }}">
                     <br>
                     @error('dias')
@@ -70,6 +73,7 @@
                     <br>
 
                     <label>Descripción:</label>
+                    <br>
                     <div class="descripcion">
                         <input type="text" name="descripcion" value="{{old('descripcion', $promocion->descripcion) }}">
                     </div>
