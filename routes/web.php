@@ -42,7 +42,7 @@ Route::get('/',[ExhibicionController::class,'dashboard'])->name('principal');
 
 //Rutas para producto
 Route::get('producto/create',[ProductoController::class,'create'])
-    ->middleware(['auth:empleado','can:crear producto,crud producto'])
+    ->middleware(['auth:empleado','can:crud producto,crear producto'])
     ->name('producto.create');
 Route::post('producto',[ProductoController::class,'store'])->name('producto.store');
 
