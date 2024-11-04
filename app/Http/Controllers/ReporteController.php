@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ReporteController extends Controller
 {
@@ -15,7 +16,7 @@ class ReporteController extends Controller
     }
 
     public function showVentas(){
-        return view('reportes/ventas');
+        return view('reportes.ventas');
     }
 
     public function showVentasReporte(Request $request){
@@ -138,13 +139,40 @@ class ReporteController extends Controller
                     'ventasC' => $ventasC,
                 ]);
 
+                //Modificar formato de fecha 
+                $fechaInicioN = $fechaInicio->format('Y - F - d');
+                $fechaFinN = $fechaFin->format('Y - F - d');
+
                 //Devolución de datos
-                return redirect()->route('reportes.ventas')->with(compact('fechaInicio', 'fechaFin', 'totalPP', 'totalPC', 'total', 'jsonData', 'reporte'));
+                return redirect()->route('reportes.ventas')->with(compact('fechaInicioN', 'fechaFinN', 'totalPP', 'totalPC', 'total', 'jsonData', 'reporte'));
 
                 break;
 
             case 'formulario3':
                 break;
         }        
+    }
+
+    public function generarPDF(){
+        $data = [
+            'reporte' => session('reporte'),
+            'totalPP' => session('totalPP'),
+            'totalPC' => session('totalPC'),
+            'total' => session('total'),
+            'ventas' => session('ventas'),
+            'fechaN' => session('fechaN'),
+            'fechaInicioN' => session('fechaInicioN'),
+            'fechaFinN' => session('fechaFinN'),
+        ];
+
+        dd($data);
+
+        return view('reportes.ventas_pdf',['data' => $data]);
+
+        // Generar el PDF usando los datos
+        // $pdf = Pdf::loadView('reportes.ventas_pdf', $data);
+
+        // // Retornar el PDF para su descarga
+        // return $pdf->download('reporte_ventas.pdf');
     }
 }

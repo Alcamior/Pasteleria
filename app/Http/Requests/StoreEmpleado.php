@@ -29,8 +29,8 @@ class StoreEmpleado extends FormRequest
             'fenac' => 'nullable|date',
             'feIng' => 'required|date',
             'direccion' => 'nullable|string|max:255',
-            'telefono' => 'nullable|string|max:255',
-            'email' => 'required|string|max:255',
+            'telefono' => 'nullable|string|max:255|unique:empleado,telefono|regex:/^[0-9]+$/',
+            'email' => 'required|string|max:255|unique:empleado,email|email',
             'contrasena' => 'required|string|max:255'
         ];
     }

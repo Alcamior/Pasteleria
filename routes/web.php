@@ -193,6 +193,9 @@ Route::get('reportes/ventas', [ReporteController::class,'showVentas'])
     ->name('reportes.ventas');
 Route::post('reportes/ventas-generar', [ReporteController::class,'showVentasReporte'])->name('ventas.generar');
 
+Route::get('reportes/ventas-pdf', [ReporteController::class, 'generarPDF'])
+    ->middleware(['auth:empleado', 'can:reporte'])
+    ->name('reportes.ventas.pdf');
 
 
 

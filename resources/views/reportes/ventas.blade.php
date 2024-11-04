@@ -150,7 +150,7 @@
                 <h3 class="title">Reporte semanal de ventas</h3>
 
                 <section class="fecha">
-                    <p>{{ session('fechaInicio') }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ session('fechaFin') }}</p>
+                    <p>{{ session('fechaInicioN') }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ session('fechaFinN') }}</p>
                 </section>
 
                 <section class="text-center ganacias">
@@ -180,7 +180,11 @@
                     <div id="graficoVentasSem"></div>
                 </section>
             @endif
+
+            <a href="{{ route('reportes.ventas.pdf') }}" class="btn btn-secondary mt-3">Descargar PDF</a>
+
         </section>
+    
 
     <!-- Cargar jQuery antes de DataTables -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
