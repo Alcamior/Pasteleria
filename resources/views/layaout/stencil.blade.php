@@ -24,9 +24,16 @@
                 <span>Divina <br>Tentación</span>
             </div>
         </div>
-
         <nav class="navegacion">
             <ul>
+                <div class="contenedor">
+                    <a href="{{route('principal')}}">
+                        <button class="contenedor-secundario" type="button">
+                            <i class="bi bi-house-door-fill"></i>
+                            <span>Principal</span> 
+                        </button>
+                    </a>
+                </div>
                 <li>
                     <div class="dropdown">
                         <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -39,7 +46,6 @@
                         </ul>
                     </div>
                 </li>
-                
                 <li>
                     <div class="dropdown">
                         <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -124,14 +130,13 @@
                     </div>
                 </li>
                 <li>
-                    <div class="dropdown">
-                        <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-graph-up-arrow"></i>
-                            <span>Reportes</span> 
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{route('reportes.dashboard')}}">Menu prncipal</a></li>
-                        </ul>
+                    <div class="contenedor">
+                        <a href="{{route('reportes.dashboard')}}">
+                            <button class="contenedor-secundario" type="button">
+                                <i class="bi bi-graph-up-arrow"></i>
+                                <span>Reportes</span> 
+                            </button>
+                        </a>
                     </div>
                 </li>
             </ul>
