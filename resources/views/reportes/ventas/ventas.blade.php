@@ -222,6 +222,7 @@
     <!-- Cargar Highcharts -->
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/offline-exporting.js"></script>    
 
     <!-- Script de ventas -->
     <script src="{{ asset('js/reportes/ventas.js') }}"></script>

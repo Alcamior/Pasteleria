@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreEmpleado extends FormRequest
 {
@@ -29,9 +30,11 @@ class StoreEmpleado extends FormRequest
             'fenac' => 'nullable|date',
             'feIng' => 'required|date',
             'direccion' => 'nullable|string|max:255',
-            'telefono' => 'nullable|string|max:255|unique:empleado,telefono|regex:/^[0-9]+$/',
-            'email' => 'required|string|max:255|unique:empleado,email|email',
-            'contrasena' => 'required|string|max:255'
+            'telefono' => ['nullable','string','max:255','regex:/^[0-9]+$/',
+                Rule::unique(table:'empleado', column:'telefono')->ignore($this->route(param: 'id'),'ide')],
+            'email' => ['required', 'string', 'max:255', 'email',
+                Rule::unique(table:'empleado', column:'email')->ignore($this->route(param: 'id'),'ide')],
+            'contrasena' => 'required|string|max:255|min:8'
         ];
     }
 }

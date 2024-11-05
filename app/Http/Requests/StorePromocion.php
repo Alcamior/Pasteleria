@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StorePromocion extends FormRequest
 {
@@ -22,7 +23,8 @@ class StorePromocion extends FormRequest
     public function rules(): array
     {
         return [
-            'codigo' => 'required|string|max:10',
+            'codigo' => ['required','string','max:10',
+                Rule::unique(table:'promocion', column:'codigo')->ignore($this->route(param: 'id'),'idprom')],
             'descuento' => 'required|numeric|min:0.05', 
             'dias' => 'required|string|max:255', 
             'descripcion' => 'required|string|max:255',

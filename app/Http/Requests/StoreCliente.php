@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreCliente extends FormRequest
 {
@@ -28,9 +29,11 @@ class StoreCliente extends FormRequest
             'genero' => 'nullable|in:Femenino,Masculino,Otro',
             'direccion' => 'nullable|string|max:255',
             'fenac' => 'nullable|date',
-            'telefono' => 'nullable|string|max:255|regex:/^[0-9]+$/|unique:cliente,telefono',
-            'email' => 'required|string|max:255|email|unique:cliente,email',
-            'contrasena' => 'required|string|max:255'
+            'telefono' => ['nullable','string','max:255','regex:/^[0-9]+$/',
+                Rule::unique(table:'cliente', column:'telefono')->ignore($this->route(param: 'id'),'idcli')],
+            'email' => ['required', 'string', 'max:255', 'email',
+                Rule::unique(table:'cliente', column:'email')->ignore($this->route(param: 'id'),'idcli')],
+            'contrasena' => 'required|string|max:255|min:8'
         ];
     }
 
