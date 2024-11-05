@@ -142,8 +142,23 @@
                         </tbody>
                     </table>
                 </section>
+
+                <!-- Datos para el PDF -->
+                <section class="datos-pdf">
+                    <form action="{{ route('reportes.ventasdiarias.pdf') }}" method="GET">
+                        @csrf
+                        <input type="hidden" name="fechaN" value="{{ session('fechaN') }}">
+                        <input type="hidden" name="totalPP" value="{{ session('totalPP')[0]->totalPas }}">
+                        <input type="hidden" name="totalPC" value="{{ session('totalPC')[0]->totalCaf }}">
+                        <input type="hidden" name="total" value="{{ session('total') }}">
+                        <input type="hidden" name="ventas" value="{{ json_encode(session('ventas')) }}">
+                        
+                        <button type="submit" class="btn btn-primary">Descargar en PDF</button>
+                    </form>
+                </section>
             @endif 
 
+            
             @if (session('reporte') == 'formulario2')
                 
                 <h3 class="title">Reporte semanal de ventas</h3>
@@ -178,9 +193,22 @@
                     </script>
                     <div id="graficoVentasSem"></div>
                 </section>
+
+                <section class="datos-pdf">
+                    <form action="{{ route('reportes.ventassemanales.pdf') }}" enctype="multipart/form-data" method="GET">
+                        @csrf
+                        <input type="hidden" name="fechaInicioN" value="{{ session('fechaInicioN') }}">
+                        <input type="hidden" name="fechaFinN" value="{{ session('fechaFinN') }}">
+                        <input type="hidden" name="totalPP" value="{{ session('totalPP')[0]->totalPas }}">
+                        <input type="hidden" name="totalPC" value="{{ session('totalPC')[0]->totalCaf }}">
+                        <input type="hidden" name="total" value="{{ session('total') }}">
+                        
+                        <button type="submit" class="btn btn-primary">Descargar en PDF</button>
+                    </form>
+                </section>
             @endif
 
-            <a href="{{ route('reportes.ventas.pdf') }}" class="btn btn-secondary mt-3">Descargar PDF</a>
+            
 
         </section>
     
@@ -193,6 +221,7 @@
 
     <!-- Cargar Highcharts -->
     <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
     <!-- Script de ventas -->
     <script src="{{ asset('js/reportes/ventas.js') }}"></script>

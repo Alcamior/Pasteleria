@@ -7,7 +7,7 @@ use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\ExhibicionController;
 use App\Http\Controllers\HorarioController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\ReporteController;
+use App\Http\Controllers\ReporteVentaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PasteleriaController;
 use App\Http\Controllers\PedidoController;
@@ -184,18 +184,24 @@ Route::post('logout',[LoginController::class,'logout'])->name('logout');
 
 
 //Rutas para los reportes
-Route::get('reportes', [ReporteController::class,'show'])
+Route::get('reportes', [ReporteVentaController::class,'show'])
     ->middleware(['auth:empleado','can:reporte'])
     ->name('reportes.dashboard');
 
-Route::get('reportes/ventas', [ReporteController::class,'showVentas'])
-    ->middleware(['auth:empleado','can:reporte'])
-    ->name('reportes.ventas');
-Route::post('reportes/ventas-generar', [ReporteController::class,'showVentasReporte'])->name('ventas.generar');
+    //Rutas para reportes de ventas
+    Route::get('reportes/ventas', [ReporteVentaController::class,'showVentas'])
+        ->middleware(['auth:empleado','can:reporte'])
+        ->name('reportes.ventas');
 
-Route::get('reportes/ventas-pdf', [ReporteController::class, 'generarPDF'])
+    Route::post('reportes/ventas-generar', [ReporteVentaController::class,'showVentasReporte'])->name('ventas.generar');
+
+    Route::get('reportes/ventas/diarias/pdf', [ReporteVentaController::class, 'generarDiarioPDF'])
+        ->middleware(['auth:empleado', 'can:reporte'])
+        ->name('reportes.ventasdiarias.pdf');
+
+    Route::get('reportes/ventas/semanales/pdf', [ReporteVentaController::class, 'generarSemanalPDF'])
     ->middleware(['auth:empleado', 'can:reporte'])
-    ->name('reportes.ventas.pdf');
+    ->name('reportes.ventassemanales.pdf');
 
 
 
