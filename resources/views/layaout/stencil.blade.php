@@ -100,7 +100,7 @@
                     <div class="dropdown">
                         <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-file-person"></i>
-                            <span>Empelados</span> 
+                            <span>Empleados</span> 
                         </button>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{route('consultar-empleado')}}">Consultar</a></li>

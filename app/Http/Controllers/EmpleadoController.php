@@ -34,6 +34,16 @@ class EmpleadoController extends Controller
         $empleado -> contrasena = Hash::make($request->contrasena);
 
         $empleado -> save();
+
+        $empleado->givePermissionTo(
+            'crud pedido',
+            'crud almacenaje',
+            'crear cliente',
+            'consultar cliente',
+            'consultar horario',
+            'consultar producto',
+            'consultar promocion',
+        );
         return redirect(route('principal'));
     }
 

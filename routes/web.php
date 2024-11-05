@@ -42,130 +42,130 @@ Route::get('/',[ExhibicionController::class,'dashboard'])->name('principal');
 
 //Rutas para producto
 Route::get('producto/create',[ProductoController::class,'create'])
-    ->middleware(['auth:empleado','can:crud producto,crear producto'])
+    ->middleware(['auth:empleado','can:crear producto'])
     ->name('producto.create');
 Route::post('producto',[ProductoController::class,'store'])->name('producto.store');
 
 Route::get('producto/{id}/edit',[ProductoController::class,'edit'])
-    ->middleware(['auth:empleado','can:crud producto,editar producto'])
+    ->middleware(['auth:empleado','can:editar producto'])
     ->name('producto.edit');
 Route::put('producto/{id}',[ProductoController::class,'update'])->name('producto.update');
 
 
 Route::delete('producto/{id}', [ProductoController::class, 'destroy'])
-    ->middleware(['auth:empleado','can:crud producto,eliminar producto'])
+    ->middleware(['auth:empleado','can:eliminar producto'])
     ->name('producto.destroy');
 
 Route::get('consultar-producto', [ProductoController::class, 'consultarProducto'])
-    ->middleware(['auth:empleado', 'can:crud producto,consultar producto'])
+    ->middleware(['auth:empleado', 'can:consultar producto'])
     ->name('consultar-producto');
 
 
 //Rutas para almacenaje
 Route::get('almacenaje/create',[AlmacenajeController::class,'create'])
-    ->middleware(['auth:empleado','can:crud almacenaje,crear almacenaje'])
+    ->middleware(['auth:empleado','can:crear almacenaje'])
     ->name('almacenaje.create');
 Route::post('almacenaje',[AlmacenajeController::class,'store'])->name('almacenaje.store');
 
 Route::get('almacenaje/{id}/edit',[AlmacenajeController::class,'edit'])
-    ->middleware(['auth:empleado','can:crud almacenaje,editar almacenaje'])
+    ->middleware(['auth:empleado','can:editar almacenaje'])
     ->name('almacenaje.edit');
 Route::put('almacenaje/{id}',[AlmacenajeController::class,'update'])->name('almacenaje.update');
 
 Route::delete('almacenaje/{id}', [AlmacenajeController::class, 'destroy'])
-    ->middleware(['auth:empleado','can:crud almacenaje,eliminar almacenaje'])
+    ->middleware(['auth:empleado','can:eliminar almacenaje'])
     ->name('almacenaje.destroy');
 
 Route::get('consultar-almacenaje', [AlmacenajeController::class, 'consultarAlmacenaje'])
-    ->middleware(['auth:empleado','can:crud almacenaje,consultar almacenaje'])
+    ->middleware(['auth:empleado','can:consultar almacenaje'])
     ->name('consultar-almacenaje');
 
 
 //Rutas para horario
 Route::get('horario/create',[HorarioController::class,'create'])
-    ->middleware(['auth:empleado','can:crud horario,crear horario'])
+    ->middleware(['auth:empleado','can:crear horario'])
     ->name('horario.create');
 Route::post('horario',[HorarioController::class,'store'])->name('horario.store');
 
 Route::get('horario/{id}/edit',[HorarioController::class,'edit'])
-    ->middleware(['auth:empleado','can:crud horario,editar horario'])
+    ->middleware(['auth:empleado','can:editar horario'])
     ->name('horario.edit');
 Route::put('horario/{id}',[HorarioController::class,'update'])->name('horario.update');
 
 
 Route::delete('horario/{id}', [HorarioController::class, 'destroy'])
-    ->middleware(['auth:empleado','can:crud horario,eliminar horario'])
+    ->middleware(['auth:empleado','can:eliminar horario'])
     ->name('horario.destroy');
 
 Route::get('consultar-horario', [HorarioController::class, 'consultarHorario'])
-    ->middleware(['auth:empleado','can:crud horario,consultar horario'])
+    ->middleware(['auth:empleado','can:consultar horario'])
     ->name('consultar-horario');
 
 
 //Rutas para promocion
 Route::get('promocion/create',[PromocionController::class,'create'])
-    ->middleware(['auth:empleado','can:crud promocion,crear promocion'])
+    ->middleware(['auth:empleado','can:crear promocion'])
     ->name('promocion.create');
 Route::post('promocion',[PromocionController::class,'store'])->name('promocion.store');
 
 Route::get('promocion/{id}/edit',[PromocionController::class,'edit'])
-    ->middleware(['auth:empleado','can:crud promocion,editar promocion'])
+    ->middleware(['auth:empleado','can:editar promocion'])
     ->name('promocion.edit');
 Route::put('promocion/{id}',[PromocionController::class,'update'])->name('promocion.update');
 
 Route::delete('promocion/{id}', [PromocionController::class, 'destroy'])
-    ->middleware(['auth:empleado','can:crud promocion,eliminar promocion'])
+    ->middleware(['auth:empleado','can:eliminar promocion'])
     ->name('promocion.destroy');
 
 Route::get('consultar-promocion', [PromocionController::class, 'consultarPromocion'])
-    ->middleware(['auth:empleado','can:crud promocion,consultar promocion'])
+    ->middleware(['auth:empleado','can:consultar promocion'])
     ->name('consultar-promocion');
 
 
 //Rutas para cliente
 Route::get('cliente/create',[ClienteController::class,'create'])
-    ->middleware(['auth:empleado','can:crud cliente,crear cliente'])
+    ->middleware(['auth:empleado','can:crear cliente'])
     ->name('cliente.create');
 Route::post('cliente',[ClienteController::class,'store'])->name('cliente.store');
 
 Route::get('cliente/{id}/edit',[ClienteController::class,'edit'])
-    ->middleware(['auth:empleado','can:crud cliente,editar cliente'])
+    ->middleware(['auth:empleado','can:editar cliente'])
     ->name('cliente.edit');
 Route::put('cliente/{id}',[ClienteController::class,'update'])->name('cliente.update');
 
 Route::delete('cliente/{id}', [ClienteController::class, 'destroy'])
-    ->middleware(['auth:empleado','can:crud cliente,eliminar cliente'])
+    ->middleware(['auth:empleado','can:eliminar cliente'])
     ->name('cliente.destroy');
 
 Route::get('consultar-cliente', [ClienteController::class, 'consultarCliente'])
-    ->middleware(['auth:empleado','can:crud cliente,consultar cliente'])
+    ->middleware(['auth:empleado','can:consultar cliente'])
     ->name('consultar-cliente');
 
 
 //Rutas para empleado
 Route::get('empleado/create',[EmpleadoController::class,'create'])
-    ->middleware(['auth:empleado','can:crud empleado,crear empleado'])
+    ->middleware(['auth:empleado','can:crear empleado'])
     ->name('empleado.create');
 Route::post('empleado',[EmpleadoController::class,'store'])->name('empleado.store');
 
 Route::get('empleado/{id}/edit',[EmpleadoController::class,'edit'])
-    ->middleware(['auth:empleado','can:crud empleado,editar empleado'])
+    ->middleware(['auth:empleado','can:editar empleado'])
     ->name('empleado.edit');
 Route::put('empleado/{id}',[EmpleadoController::class,'update'])->name('empleado.update');
 
 
 Route::delete('empleado/{id}', [EmpleadoController::class, 'destroy'])
-    ->middleware(['auth:empleado','can:crud empleado,eliminar empleado'])
+    ->middleware(['auth:empleado','can:eliminar empleado'])
     ->name('empleado.destroy');
 
 Route::get('consultar-empleado', [EmpleadoController::class, 'consultarEmpleado'])
-    ->middleware(['auth:empleado','can:crud empleado,consultar empleado'])
+    ->middleware(['auth:empleado','can:consultar empleado'])
     ->name('consultar-empleado');
 
 
 //rutas para pedido
 Route::get('pedido/create',[PedidoController::class,'create'])
-    ->middleware(['auth:empleado','can:crud pedido,crear pedido'])
+    ->middleware(['auth:empleado','can:crear pedido'])
     ->name('pedido.create');
 Route::post('pedido',[PedidoController::class,'store'])->name('pedido.store');
 
