@@ -9,14 +9,14 @@ use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use Barryvdh\DomPDF\Facade\Pdf;
 
-class ReporteController extends Controller
+class ReporteVentaController extends Controller
 {
     public function show(){
         return view('reportes/dashboard');
     }
 
     public function showVentas(){
-        return view('reportes.ventas');
+        return view('reportes.ventas.ventas');
     }
 
     public function showVentasReporte(Request $request){
@@ -153,26 +153,41 @@ class ReporteController extends Controller
         }        
     }
 
-    public function generarPDF(){
+    public function generarDiarioPDF(Request $request){
+        $fechaN = $request->input('fechaN');
+        $totalPP = $request->input('totalPP');
+        $totalPC = $request->input('totalPC');
+        $total = $request->input('total');
+        $ventas = json_decode($request->input('ventas'));
+
         $data = [
-            'reporte' => session('reporte'),
-            'totalPP' => session('totalPP'),
-            'totalPC' => session('totalPC'),
-            'total' => session('total'),
-            'ventas' => session('ventas'),
-            'fechaN' => session('fechaN'),
-            'fechaInicioN' => session('fechaInicioN'),
-            'fechaFinN' => session('fechaFinN'),
+            'fechaN' => $fechaN,
+            'totalPP' => $totalPP,
+            'totalPC' => $totalPC,
+            'total' => $total,
+            'ventas' => $ventas
         ];
 
-        dd($data);
+        $pdf = Pdf::loadView('reportes.ventas.ventas_diarias_pdf', $data);
+        return $pdf->download('reporte_ventas_diarias.pdf');
+    }
 
-        return view('reportes.ventas_pdf',['data' => $data]);
+    public function generarSemanalPDF(Request $request){
+        $fechaInicioN = $request->input('fechaInicioN');
+        $fechaFinN = $request->input('fechaFinN');
+        $totalPP = $request->input('totalPP');
+        $totalPC = $request->input('totalPC');
+        $total = $request->input('total');
 
-        // Generar el PDF usando los datos
-        // $pdf = Pdf::loadView('reportes.ventas_pdf', $data);
+        $data = [
+            'fechaInicioN' => $fechaInicioN,
+            'fechaFinN' => $fechaFinN,
+            'totalPP' => $totalPP,
+            'totalPC' => $totalPC,
+            'total' => $total
+        ];
 
-        // // Retornar el PDF para su descarga
-        // return $pdf->download('reporte_ventas.pdf');
+        $pdf = Pdf::loadView('reportes.ventas.ventas_semanales_pdf', $data);
+        return $pdf->download('reporte_ventas_semanales.pdf');
     }
 }
