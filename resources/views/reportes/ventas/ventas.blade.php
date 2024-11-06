@@ -6,7 +6,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jockey+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ request()->getHost() === 'localhost' ? asset('css/reportes/ventas.css') : secure_asset('css/reportes/ventas.css') }}">
-
 @endsection
 
 @section('title','Reporte de ventas')
@@ -224,9 +223,10 @@
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
+    <script src="https://code.highcharts.com/modules/offline-exporting.js"></script>    
+
     <!-- Script de ventas -->
     <script src="{{ request()->getHost() === 'localhost' ? asset('js/reportes/ventas.js') : secure_asset('js/reportes/ventas.js') }}"></script>
-
 
 @endsection
 
