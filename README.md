@@ -28,3 +28,9 @@ composer require laravel/socialite
 ```bash
 composer require spatie/laravel-permission
 ```
+
+<h2>Bibliotecas para generar archivos PDF</h2>
+
+```bash
+composer require barryvdh/laravel-dompdf
+```

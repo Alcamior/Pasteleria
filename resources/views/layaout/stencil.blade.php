@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jockey+One&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     @yield('head')
@@ -24,9 +26,16 @@
                 <span>Divina <br>Tentación</span>
             </div>
         </div>
-
         <nav class="navegacion">
             <ul>
+                <div class="contenedor">
+                    <a href="{{route('principal')}}">
+                        <button class="contenedor-secundario" type="button">
+                            <i class="bi bi-house-door-fill"></i>
+                            <span>Principal</span> 
+                        </button>
+                    </a>
+                </div>
                 <li>
                     <div class="dropdown">
                         <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -39,7 +48,6 @@
                         </ul>
                     </div>
                 </li>
-                
                 <li>
                     <div class="dropdown">
                         <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -92,7 +100,7 @@
                     <div class="dropdown">
                         <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-file-person"></i>
-                            <span>Empelados</span> 
+                            <span>Empleados</span> 
                         </button>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{route('consultar-empleado')}}">Consultar</a></li>
@@ -124,14 +132,13 @@
                     </div>
                 </li>
                 <li>
-                    <div class="dropdown">
-                        <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-graph-up-arrow"></i>
-                            <span>Reportes</span> 
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{route('reportes.dashboard')}}">Menu prncipal</a></li>
-                        </ul>
+                    <div class="contenedor">
+                        <a href="{{route('reportes.dashboard')}}">
+                            <button class="contenedor-secundario" type="button">
+                                <i class="bi bi-graph-up-arrow"></i>
+                                <span>Reportes</span> 
+                            </button>
+                        </a>
                     </div>
                 </li>
             </ul>

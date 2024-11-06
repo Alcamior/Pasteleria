@@ -3,7 +3,7 @@
 {{-- Datos del head --}}
 @section('head')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="{{ asset('css/layaout/table.css') }}">
+    <link rel="stylesheet" href="{{ request()->getHost() === 'localhost' ? asset('css/layaout/table.css') : secure_asset('css/layaout/table.css') }}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
@@ -62,6 +62,6 @@
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
     <!-- archivo producto.js -->
-    <script src="{{ asset('js/almacenaje/almacenaje.js?v=1.0.1') }}"></script>
+    <script src="{{ request()->getHost() === 'localhost' ? asset('js/almacenaje/almacenaje.js?v=1.0.1') : secure_asset('js/almacenaje/almacenaje.js?v=1.0.1') }}"></script>
 
 @endsection

@@ -62,8 +62,8 @@
 
 <form action="{{route('pedido.store')}}" method="post" id="formVenta">
 @csrf
-<!-- Campo oculto para almacenar los productos -->
-<input type="hidden" id="productos" name="productos">
+    <input type="hidden" id="totalHidden" name="total">
+    <input type="hidden" id="productos" name="productos">
     <button>Enviar</button>
 </form>
 
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const nombreProducto = select.options[select.selectedIndex].dataset.nombre;
         const precio = parseFloat(select.options[select.selectedIndex].dataset.precio); // Obtener el precio
         const descripcion = document.getElementById('descripcion').value;
-        const cantidad = parseInt(document.getElementById('cantidad').value) || 0; // Asegurarse de que sea un número
+        const cantidad = parseInt(document.getElementById('cantidad').value) || 0; 
 
         const promocionSelect = document.getElementById("promocion");
         const promocionText = promocionSelect.options[promocionSelect.selectedIndex].text;
@@ -93,8 +93,11 @@ document.addEventListener("DOMContentLoaded", function() {
             // Calcular subtotal
             const subtotalProducto = precio * cantidad;
 
+            const idPromocion = document.getElementById('promocion').value;
+
             // Crear una nueva fila en la tabla
             const tr = document.createElement('tr');
+            tr.setAttribute('data-id-promocion', idPromocion); 
             tr.innerHTML = `
                 <td>${nombreProducto}</td>
                 <td>${descripcion}</td>
@@ -150,23 +153,36 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
 
-    document.getElementById('formVenta').addEventListener('submit', function() {
+    document.getElementById('formVenta').addEventListener('submit', function(event) {
+    event.preventDefault(); // Evita que el formulario se envíe inmediatamente
 
-        // Productos guardados en un campo oculto
-        const lista = document.getElementById('listaProductos');
-        const productos = Array.from(lista.children).map(tr => ({
-            id: tr.querySelector('.eliminar').dataset.id,
-            nombre: tr.children[0].innerText,
-            descripcion: tr.children[1].innerText,
-            cantidad: tr.children[2].innerText,
-            promocion: tr.children[3].innerText,
-            precio: tr.children[4].innerText,
-            subtotal: tr.children[5].innerText 
-        }));
-
-        // Convertir el objeto a JSON y almacenar en el campo oculto
-        document.getElementById('productos').value = JSON.stringify(productos);
+    // Productos guardados en un campo oculto
+    const lista = document.getElementById('listaProductos');
+    const productos = Array.from(lista.children).map(tr => {
+        // Asegúrate de que cada tr tenga las celdas necesarias
+        return {
+            id: tr.querySelector('.eliminar').dataset.id, // ID del producto
+            nombre: tr.children[0].innerText, // Nombre del producto
+            descripcion: tr.children[1].innerText, // Descripción del producto
+            cantidad: tr.children[2].innerText, // Cantidad del producto
+            descuento: tr.children[3].innerText, // Descuento del producto
+            promocion: tr.getAttribute('data-id-promocion') || null, // ID de la promoción
+            precio: tr.children[4].innerText, // Precio del producto
+            subtotal: tr.children[5].innerText // Subtotal del producto
+        };
     });
+
+    // Convertir el objeto a JSON y almacenar en el campo oculto
+    document.getElementById('productos').value = JSON.stringify(productos);
+
+    // Capturar el valor del total y almacenarlo en el campo oculto
+    const total = document.getElementById('total').innerText;
+    document.getElementById('totalHidden').value = total;
+
+    // Enviar el formulario de forma programática
+    this.submit(); // Envía el formulario después de capturar todos los datos
+});
+
 });
 </script>
 

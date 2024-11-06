@@ -159,7 +159,6 @@ body{
 .barra-lateral .navegacion .dropdown{
     position: relative !important;
     width: 100% !important;
-    
 }
 
 .barra-lateral .navegacion .dropdown span{
@@ -186,9 +185,38 @@ body{
     overflow: hidden !important;
 }
 
-.barra-lateral .navegacion .dropdown-toggle:hover{
-    background-color: var(--color-menu-hover) !important;
-    color: var(--color-menu-hover-texto) !important;
+.barra-lateral .navegacion .contenedor .contenedor-secundario i{
+    min-width: 50px;
+    font-size: 20px;
+    margin-left: 15px;
+}
+
+.barra-lateral .navegacion .contenedor{
+    position: relative !important;
+    width: 100% !important;
+}
+
+.barra-lateral .navegacion .contenedor a{
+    text-decoration: none;
+}
+
+.barra-lateral .navegacion .contenedor span{
+    margin-right: 30px;
+    
+}
+
+.barra-lateral .navegacion .contenedor .contenedor-secundario{
+    border: none !important;
+    width: 100% !important;
+    height: 45px !important;
+    display: flex !important;
+    align-items: center !important;
+    text-decoration: none !important;
+    border-radius: 10px !important;
+    color: var(--color-texto-menu) !important;
+    background-color: var(--color-barra-lateral);
+    overflow: hidden !important;
+
 }
 
 .barra-lateral .navegacion .dropdown .dropdown-toggle i{
@@ -197,6 +225,15 @@ body{
     margin-left: 15px;
 }
 
+.barra-lateral .navegacion .dropdown-toggle:hover{
+    background-color: var(--color-menu-hover) !important;
+    color: var(--color-menu-hover-texto) !important;
+}
+
+.barra-lateral .navegacion .contenedor .contenedor-secundario:hover{
+    background-color: var(--color-menu-hover) !important;
+    color: var(--color-menu-hover-texto) !important;
+}
 
 /*-----------------> Linea*/
 .barra-lateral .linea{

@@ -27,62 +27,115 @@ class RoleAndPermissionSeeder extends Seeder
             'name'=>'cliente',
         ]);
 
-        // Crear permisos
         $permissions = [
             // Permisos para clientes
             ['name' => 'actualizar cliente'],
             ['name' => 'solicitar venta'],
-            
+        
             // Permisos para empleados
-            ['name' => 'crud pedido'],
-            ['name' => 'crud almacenaje'],
+            ['name' => 'crear pedido'],
+            ['name' => 'eliminar pedido'],
+            ['name' => 'consultar pedido'],
+            ['name' => 'editar pedido'],
+        
+            ['name' => 'crear almacenaje'],
+            ['name' => 'eliminar almacenaje'],
+            ['name' => 'consultar almacenaje'],
+            ['name' => 'editar almacenaje'],
+        
             ['name' => 'crear cliente'],
             ['name' => 'consultar cliente'],
             ['name' => 'consultar horario'],
             ['name' => 'consultar producto'],
             ['name' => 'consultar promocion'],
-            
+        
             // Permisos para administradores
-            ['name' => 'crud empleado'],
-            ['name' => 'crud cliente'],
-            ['name' => 'crud producto'],
-            ['name' => 'crud horario'],
-            ['name' => 'crud promocion'],
+            ['name' => 'crear empleado'],
+            ['name' => 'eliminar empleado'],
+            ['name' => 'consultar empleado'],
+            ['name' => 'editar empleado'],
+        
+            ['name' => 'crear cliente'],
+            ['name' => 'eliminar cliente'],
+            ['name' => 'consultar cliente'],
+            ['name' => 'editar cliente'],
+        
+            ['name' => 'crear producto'],
+            ['name' => 'eliminar producto'],
+            ['name' => 'consultar producto'],
+            ['name' => 'editar producto'],
+        
+            ['name' => 'crear horario'],
+            ['name' => 'eliminar horario'],
+            ['name' => 'consultar horario'],
+            ['name' => 'editar horario'],
+        
+            ['name' => 'crear promocion'],
+            ['name' => 'eliminar promocion'],
+            ['name' => 'consultar promocion'],
+            ['name' => 'editar promocion'],
+        
             ['name' => 'reporte'],
         ];
         
         foreach ($permissions as $permission) {
             Permission::firstOrCreate($permission);
         }
-
-        //Roles para los empleados
+        
+        // Roles para los clientes
         $roleCliente->givePermissionTo(
             'actualizar cliente',
-            'solicitar venta',
+            'solicitar venta'
         );
-
-        //Roles para los empleados
+        
+        // Roles para los empleados
         $roleEmpleado->givePermissionTo(
-            'crud pedido',
-            'crud almacenaje',
+            'crear pedido',
+            'eliminar pedido',
+            'consultar pedido',
+            'editar pedido',
+            
+            'crear almacenaje',
+            'eliminar almacenaje',
+            'consultar almacenaje',
+            'editar almacenaje',
+            
             'crear cliente',
             'consultar cliente',
             'consultar horario',
             'consultar producto',
-            'consultar promocion',
+            'consultar promocion'
         );
         
-        //Roles para los administradores
+        // Roles para los administradores
         $roleAdministrador->givePermissionTo(
-            'crud empleado',
-            'crud pedido',
-            'crud almacenaje',
-            'crud cliente',
-            'crud producto',
-            'crud horario',
-            'crud promocion',
+            'crear empleado',
+            'eliminar empleado',
+            'consultar empleado',
+            'editar empleado',
+        
+            'crear cliente',
+            'eliminar cliente',
+            'consultar cliente',
+            'editar cliente',
+        
+            'crear producto',
+            'eliminar producto',
+            'consultar producto',
+            'editar producto',
+        
+            'crear horario',
+            'eliminar horario',
+            'consultar horario',
+            'editar horario',
+        
+            'crear promocion',
+            'eliminar promocion',
+            'consultar promocion',
+            'editar promocion',
+        
             'reporte'
         );
-
+        
     }
 }

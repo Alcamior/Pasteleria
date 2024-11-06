@@ -9,6 +9,7 @@ use App\Models\Producto;
 use App\Models\Promocion;
 use App\Models\Venta;
 use Illuminate\Support\Facades\Auth;
+use Psy\CodeCleaner\ReturnTypePass;
 
 class PedidoController extends Controller
 {
@@ -21,25 +22,34 @@ class PedidoController extends Controller
 
     public function store(Request $request){
 
+
         $venta = new Venta();
         $venta->fechaVent= now();
         $venta->fecEntrega= now();
-        $venta->total= 0;
+        $venta->total=$request->total;
         $venta->ide=Auth::guard('empleado')->user()->ide;
         $venta->save();
 
         $pedidos = json_decode($request->input('productos'), true); // true para convertir a array asociativo
 
         foreach ($pedidos as $item) {
+
+            $producto = Producto::where('nombre', $item['nombre'])->first();
+
             $pedido = new Pedido();
-            $pedido->nombre = $item['nombre']; 
-            $pedido->tipo = $item['tipo']; 
             $pedido->descripcion = $item['descripcion']; 
-            $pedido->precio = $item['precio']; 
-            $pedido->idv = $venta->id; 
+            $pedido->fePed = now();
+            $pedido->cantidad = $item['cantidad']; 
+            $pedido->status = "Vendido";
+            $pedido->subtotal = $item['precio']*$item['cantidad'];
+            $pedido->descuento = ($item['descuento'] / 100) * $pedido->subtotal;
+            $pedido->totalP = $item['subtotal'];
+            $pedido->idv = $venta->idv; 
+            $pedido->idpro = $producto->idpro;
+            $pedido->idprom = $item['promocion'];
             $pedido->save();
         } 
-
+        return redirect()->route('pedido.create');
     }
 
 
