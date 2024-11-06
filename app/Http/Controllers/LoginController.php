@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Empleado;
+use App\Models\Cliente;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Http\Request;
@@ -60,10 +61,18 @@ class LoginController extends Controller
 
             $request->session()->regenerate();
             return redirect()->intended('/')->with('user', Auth::guard('empleado')->user());
+        }else{
+            $cliente = Cliente::where('email', $credentials['email'])->first();
+            if (Auth::guard('cliente')->attempt(['email' => $credentials['email'], 'password' => $credentials['contrasena']])){
+                Auth::guard('cliente')->login($cliente);
+                $request->session()->regenerate();
+                return redirect()->intended('/')->with('user', Auth::guard('cliente')->user());
+            }
+            // Devolver error de autenticación
+            return back()->withErrors(['usuario' => 'Las credenciales proporcionadas son incorrectas.'])->withInput();
         }
 
-    // Devolver error de autenticación
-    return back()->withErrors(['usuario' => 'Las credenciales proporcionadas son incorrectas.'])->withInput();
+
     }
 
     public function logout(Request $request)

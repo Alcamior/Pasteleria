@@ -74,6 +74,12 @@ class RoleAndPermissionSeeder extends Seeder
             ['name' => 'eliminar promocion'],
             ['name' => 'consultar promocion'],
             ['name' => 'editar promocion'],
+
+            ['name' => 'crear pedido'],
+            ['name' => 'eliminar pedido'],
+            ['name' => 'consultar pedido'],
+            ['name' => 'editar pedido'],
+
         
             ['name' => 'reporte'],
         ];
@@ -133,8 +139,12 @@ class RoleAndPermissionSeeder extends Seeder
             'eliminar promocion',
             'consultar promocion',
             'editar promocion',
-        
-            'reporte'
+            'reporte',
+
+            'crear pedido',
+            'eliminar pedido',
+            'consultar pedido',
+            'editar pedido',
         );
         
     }
