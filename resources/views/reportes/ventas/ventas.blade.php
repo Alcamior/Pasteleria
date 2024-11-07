@@ -186,6 +186,7 @@
                     </div>
                 </section>
 
+                <!-- Gráfica -->
                 <section class="grafica">
                     <script>
                         var jsonData = {!! session('jsonData') !!};
@@ -194,6 +195,7 @@
                     <div id="graficoVentasSem"></div>
                 </section>
 
+                <!-- Datos para el PDF -->
                 <section class="datos-pdf">
                     <form action="{{ route('reportes.ventassemanales.pdf') }}" enctype="multipart/form-data" method="GET">
                         @csrf
@@ -202,8 +204,9 @@
                         <input type="hidden" name="totalPP" value="{{ session('totalPP')[0]->totalPas }}">
                         <input type="hidden" name="totalPC" value="{{ session('totalPC')[0]->totalCaf }}">
                         <input type="hidden" name="total" value="{{ session('total') }}">
-                        
-                        <button type="submit" class="btn btn-primary">Descargar en PDF</button>
+                        <input type="hidden" name="graficoImagen" id="graficoImagen">
+
+                        <button id="exportarGrafico" class="btn btn-primary">Descargar en PDF</button>
                     </form>
                 </section>
             @endif

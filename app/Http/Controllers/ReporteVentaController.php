@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -178,16 +179,25 @@ class ReporteVentaController extends Controller
         $totalPP = $request->input('totalPP');
         $totalPC = $request->input('totalPC');
         $total = $request->input('total');
+        $graficoImagen = $request->input('graficoImagen');
 
-        $data = [
+        // Cargar la librería DOMPDF
+        $pdf = App::make('dompdf.wrapper');
+
+        // Construir el contenido HTML del PDF
+        $html = view('reportes.ventas.ventas_semanales_pdf', [
             'fechaInicioN' => $fechaInicioN,
             'fechaFinN' => $fechaFinN,
             'totalPP' => $totalPP,
             'totalPC' => $totalPC,
-            'total' => $total
-        ];
+            'total' => $total,
+            'graficoImagen' => $graficoImagen
+        ])->render();
 
-        $pdf = Pdf::loadView('reportes.ventas.ventas_semanales_pdf', $data);
+        // Cargar el contenido HTML al PDF
+        $pdf->loadHTML($html);
+
+        // Descargar el PDF
         return $pdf->download('reporte_ventas_semanales.pdf');
     }
 }

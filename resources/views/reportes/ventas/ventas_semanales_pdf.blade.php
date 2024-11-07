@@ -34,24 +34,6 @@
         padding: 10px;
         margin: 0;
     }
-
-    /* Estilo de la tabla */
-    .tabla table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-    }
-
-    .tabla th, .tabla td {
-        border: 1px solid black;
-        padding: 8px;
-        text-align: center;
-    }
-
-    .tabla th {
-        background-color: #d4b398;
-        font-weight: bold;
-    }
 </style>
 
 
@@ -77,6 +59,9 @@
             <h3>${{ $total }}</h3>
         </div>  
     </section>
+
+    <h3>Gráfico de Ventas</h3>
+    <img src="data:image/svg+xml;base64,{{ $graficoImagen }}" alt="Gráfico de ventas">
 
 
     
