@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             EmpleadoSeeder::class, 
             ProductoSeeder::class,
             PromocionSeeder::class,
+            ClienteSeeder::class,
         ]);
     }
 }

@@ -8,20 +8,22 @@ use App\Models\Pedido;
 use App\Models\Producto;
 use App\Models\Promocion;
 use App\Models\Venta;
+use App\Models\Cliente;
 use Illuminate\Support\Facades\Auth;
 use Psy\CodeCleaner\ReturnTypePass;
 
 class PedidoController extends Controller
 {
     public function create(){
+        $clientes = Cliente::all();
         $productos = Producto::all();
-        $promociones = Promocion::all();
-        return view('pedido/create',compact('productos','promociones'));
+        $promociones = Promocion::where('estatus', 'Activa')->get();
+        return view('pedido/create',compact('productos','promociones','clientes'));
     }
 
 
     public function store(Request $request){
-
+        dd($request->all());
 
         $venta = new Venta();
         $venta->fechaVent= now();

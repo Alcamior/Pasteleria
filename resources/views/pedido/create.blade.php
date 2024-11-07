@@ -24,6 +24,24 @@
 <label>Cantidad</label><br>
 <input type="number" id="cantidad" class="form-control" name="cantidad"><br>
 
+<label>Fecha de entrega</label>
+<input type="date" name="fecha" id="fecha">
+
+<label for="status">Estado:</label>
+<select id="status" name="status">
+    <option value="aprobado">Aprobado</option>
+    <option value="espera">En espera</option>
+</select>
+
+<label>Clientes</label><br>
+<select name="cliente " id="cliente" class="form-control select2">
+    <option value="">Selecciona un cliente</option>
+    @foreach ($clientes as $cliente)
+        <option value="{{ $cliente->nombre }} {{$cliente->ap}} {{$cliente->am}}" data-idcli="{{ $cliente->idcli }}">{{ $cliente->nombre }} {{$cliente->ap}} {{$cliente->am}}</option>
+    @endforeach
+</select><br><br>
+
+
 <label>Promoción</label><br>
 <select name="promocion " id="promocion" class="form-control select2">
     <option value="">Selecciona una promoción</option>
@@ -43,6 +61,7 @@
                 <th>Descripción</th>
                 <th>Cantidad</th>
                 <th>Descuento</th>
+                <th>Estado</th>
                 <th>Precio Unitario</th>
                 <th>Total</th>
                 <th>Acciones</th>
@@ -55,15 +74,18 @@
 </div>
 
 
-<br>
+<br>¨
 <p>Subtotal: <span id="subtotal">0</span></p>
 <p>Total: <span id="total">0</span></p>
-
+<p>Cliente: <span id="clienteN"></span></p>
+<p>Fecha de entrega <span id="fechaentrega">0000/00/00</span></p>
 
 <form action="{{route('pedido.store')}}" method="post" id="formVenta">
 @csrf
+    <input type="hidden" id="fechaP" name="fechaP">
     <input type="hidden" id="totalHidden" name="total">
     <input type="hidden" id="productos" name="productos">
+    <input type="hidden" id="cli" name="cli">
     <button>Enviar</button>
 </form>
 
@@ -84,6 +106,9 @@ document.addEventListener("DOMContentLoaded", function() {
         const precio = parseFloat(select.options[select.selectedIndex].dataset.precio); // Obtener el precio
         const descripcion = document.getElementById('descripcion').value;
         const cantidad = parseInt(document.getElementById('cantidad').value) || 0; 
+        const statusSelect = document.getElementById('status');
+        const status = statusSelect.options[statusSelect.selectedIndex].text;
+
 
         const promocionSelect = document.getElementById("promocion");
         const promocionText = promocionSelect.options[promocionSelect.selectedIndex].text;
@@ -103,6 +128,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 <td>${descripcion}</td>
                 <td>${cantidad}</td>
                 <td>${descuento*100}</td>
+                <td>${status}</td>
                 <td>${precio.toFixed(2)}</td> <!-- Mostrar precio unitario -->
                 <td>${subtotalProducto.toFixed(2)-descuento*precio}</td> <!-- Mostrar subtotal -->
                 <td>
@@ -116,7 +142,6 @@ document.addEventListener("DOMContentLoaded", function() {
             select.value = '';
             document.getElementById('descripcion').value = '';
             document.getElementById('cantidad').value = '';
-            document.getElementById('promocion').value = '';
             $(select).val('').trigger('change');
 
             // Actualizar subtotal y total
@@ -150,6 +175,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
         document.getElementById('subtotal').innerText = subtotal.toFixed(2);
         document.getElementById('total').innerText = subtotal.toFixed(2);
+        // Actualizar el nombre del cliente seleccionado en el elemento `clienteN`
+        document.getElementById('clienteN').innerText = document.getElementById('cliente').value;
+        document.getElementById('fechaentrega').innerText = document.getElementById('fecha').value;
     }
 
 
@@ -167,8 +195,9 @@ document.addEventListener("DOMContentLoaded", function() {
             cantidad: tr.children[2].innerText, // Cantidad del producto
             descuento: tr.children[3].innerText, // Descuento del producto
             promocion: tr.getAttribute('data-id-promocion') || null, // ID de la promoción
-            precio: tr.children[4].innerText, // Precio del producto
-            subtotal: tr.children[5].innerText // Subtotal del producto
+            status: tr.children[4].innerText,
+            precio: tr.children[5].innerText, // Precio del producto
+            subtotal: tr.children[6].innerText // Subtotal del producto
         };
     });
 
@@ -178,8 +207,11 @@ document.addEventListener("DOMContentLoaded", function() {
     // Capturar el valor del total y almacenarlo en el campo oculto
     const total = document.getElementById('total').innerText;
     document.getElementById('totalHidden').value = total;
+    const selectedOption = document.getElementById('cliente').options[document.getElementById('cliente').selectedIndex];
+    const idcli = selectedOption.getAttribute('data-idcli');
+    document.getElementById('cli').value = idcli;
+    document.getElementById('fechaP').value = document.getElementById('fecha').value;
 
-    // Enviar el formulario de forma programática
     this.submit(); // Envía el formulario después de capturar todos los datos
 });
 

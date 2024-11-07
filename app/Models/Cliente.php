@@ -6,10 +6,14 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Foundation\Auth\Access\Authorizable;
+
 
 class Cliente extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, Notifiable, HasRoles;
+    use Authorizable;
     public $timestamps = false;
     protected $table="cliente";
     protected $primaryKey = 'idcli';
