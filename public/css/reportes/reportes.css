@@ -1,6 +1,6 @@
 
 .card {
-    background-color: #FFF1DA;
+    background-color: #d4b398;
     color: #333333;
     border: none;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
@@ -8,13 +8,13 @@
 }
 
 .btn-primary {
-  background-color: #FFB300; 
+  background-color: #b88a64; 
   color: white; 
   border: none;
 }
 
 .btn-primary:hover {
-  background-color: #FFA000; 
+  background-color: #745531;
 }
 
 
