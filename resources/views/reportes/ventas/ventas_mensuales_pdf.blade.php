@@ -37,10 +37,10 @@
 </style>
 
 
-    <h3 class="title">Reporte semanal de ventas</h3>
+    <h3 class="title">Reporte mensual de ventas</h3>
 
     <section class="fecha">
-        <p>{{ $fechaInicioN }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $fechaFinN }}</p>
+        <p>{{ $nombreMes }} del {{ $year }}</p>
     </section>
 
     <section class="ganancias">
@@ -61,7 +61,7 @@
     </section>
 
     <h3>Gráfico de Ventas</h3>
-    <img src="data:image/svg+xml;base64,{{ $graficoImagenSem }}" alt="Gráfico de ventas">
+    <img src="data:image/svg+xml;base64,{{ $graficoImagenMen }}" alt="Gráfico de ventas">
 
 
     
