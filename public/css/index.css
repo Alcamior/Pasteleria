@@ -1,0 +1,67 @@
+@font-face {
+    font-family: "Divina";
+    src: url("../font/William Christmas.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+main{
+    background-color: #fffcf9;
+}
+
+/*---------------->Cabecera*/
+
+
+header .titulo{
+    margin:40px;
+}
+
+header .titulo h1{ 
+    font-family: "Divina",sans-serif;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 60px;
+}
+
+.carousel-inner img {
+    max-height: 500px; /* Ajusta este valor según tus necesidades */
+    object-fit: cover; /* Esto asegura que la imagen se recorte y se ajuste sin deformarse */
+    width: 100%; /* Mantiene el ancho completo del carrusel */
+}
+
+header #carouselExample .carousel-control-next .carousel-control-next-icon{
+    background-color: black;
+}
+
+header #carouselExample .carousel-control-prev .carousel-control-prev-icon{
+    background-color: black;
+}
+
+
+header .descripcion{
+    font-family: "Jost", sans-serif;
+    font-size: 23px;
+    text-align: center;
+    margin:40px;
+}
+
+/*---------------->Cuerpo*/
+
+section{
+    margin: 150px 0 150px 0;
+}
+
+section article .container .pasteles_predisenados div p,h2,a{
+    font-family: "Jost", sans-serif;
+    text-align: left;
+    width: 100%;
+}
+
+section article .container .pasteles_predisenados div img{
+    width: 100%; /* La imagen ocupa el ancho completo del contenedor */
+    height: auto; /* Mantiene la proporción original */
+    object-fit: cover; /* Recorta la imagen si es necesario para ajustarse */
+}
+
+
+/*---------------->Footer*/
