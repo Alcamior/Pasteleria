@@ -1,12 +1,10 @@
 
- // Función para mostrar el formulario correspondiente
- function mostrarFormulario() {
+// Función para mostrar el formulario correspondiente
+function mostrarFormulario() {
     document.querySelectorAll('.formulario').forEach(form => form.style.display = 'none');
     
     if (document.getElementById('btnradio1').checked) {
         document.getElementById('formulario1').style.display = 'block';
-    } else if (document.getElementById('btnradio2').checked) {
-        document.getElementById('formulario2').style.display = 'block';
     }
 }
 
@@ -19,4 +17,3 @@ document.querySelectorAll('input[name="btnradio"]').forEach(radio => {
 mostrarFormulario();
 
 
- 

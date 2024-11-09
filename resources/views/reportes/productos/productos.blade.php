@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{ request()->getHost() === 'localhost' ? asset('css/reportes/ventas.css') : secure_asset('css/reportes/ventas.css') }}">
 @endsection
 
-@section('title','Reporte de ventas')
+@section('title','Reporte de productos')
 
 
 @section('main')

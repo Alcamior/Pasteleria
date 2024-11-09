@@ -38,7 +38,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Empleado del mes</h5>
                             <p class="card-text">Consulta al empleado que realizó más ventas durante el mes.</p>
-                            <a href="#" class="btn btn-primary">Generar reporte</a>
+                            <a href="{{ route('reportes.empleados') }}" class="btn btn-primary">Generar reporte</a>
                         </div>
                     </div>
                 </div>

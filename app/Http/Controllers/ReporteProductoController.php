@@ -36,12 +36,12 @@ class ReporteProductoController extends Controller
                 inner join producto on pedido.idpro = producto.idpro
                 where (fechaVent between ? and ?) and
                 pedido.status = "Vendido" 
-                group by nombre order by totalProd desc;', [$fechaInicio, $fechaFin]);
+                group by nombre order by totalProd desc limit 3;', [$fechaInicio, $fechaFin]);
 
                 $productos = [];
                 $cantidad = [];
 
-                foreach (array_slice($conProductos, 0, 3) as $producto) {
+                foreach ($conProductos as $producto) {
                     $productos[] = $producto->nombre;
                     $cantidad[] = $producto->totalProd;
                 }
@@ -71,14 +71,14 @@ class ReporteProductoController extends Controller
                 $conProductos = DB::select('select nombre, sum(cantidad) as totalProd from venta
                 inner join pedido on venta.idv = pedido.idv
                 inner join producto on pedido.idpro = producto.idpro
-                where (month(fechaVent) = ?) and
+                where (month(fechaVent) = ? and year(fechaVent) = ?) and
                 pedido.status = "Vendido" 
-                group by nombre order by totalProd desc;', [$mes]);
+                group by nombre order by totalProd desc limit 3;', [$mes, $year]);
 
                 $productos = [];
                 $cantidad = [];
 
-                foreach (array_slice($conProductos, 0, 3) as $producto) {
+                foreach ($conProductos as $producto) {
                     $productos[] = $producto->nombre;
                     $cantidad[] = $producto->totalProd;
                 }

@@ -13,6 +13,7 @@ use App\Http\Controllers\PasteleriaController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\PromocionController;
+use App\Http\Controllers\ReporteEmpleadoController;
 use App\Http\Controllers\ReporteProductoController;
 use Laravel\Socialite\Facades\Socialite;
 use Spatie\Permission\Traits\HasRoles;
@@ -223,5 +224,13 @@ Route::get('reportes', [ReporteVentaController::class,'show'])
     ->middleware(['auth:empleado', 'can:reporte'])
     ->name('reportes.productosmensuales.pdf');
 
+    //Rutas para reporte de empleados
+    Route::get('reportes/empleados', [ReporteEmpleadoController::class,'showEmpleados'])
+        ->middleware(['auth:empleado','can:reporte'])
+        ->name('reportes.empleados');
 
+    Route::post('reportes/empleados-generar', [ReporteEmpleadoController::class,'showEmpleadosReporte'])->name('empleados.generar');    
 
+    Route::get('reportes/empleados/mensuales/pdf', [ReporteEmpleadoController::class, 'generarMensualPDF'])
+    ->middleware(['auth:empleado', 'can:reporte'])
+    ->name('reportes.empleadosmensuales.pdf');
