@@ -6,11 +6,11 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
     <link rel="stylesheet"
         href="{{ request()->getHost() === 'localhost' ? asset('css/formularios/formularios.css') : secure_asset('css/formularios/formularios.css') }}">
-        <link rel="stylesheet"
+    <link rel="stylesheet"
         href="{{ request()->getHost() === 'localhost' ? asset('css/pedido/pedido.css') : secure_asset('css/pedido/pedido.css') }}">
 @endsection
 
-@section('title', 'Consultar pedido')
+@section('title', 'Editar pedido')
 
 @section('main')
     <div class="container mt-5">
@@ -23,7 +23,7 @@
                 @elseif (Auth::guard('empleado')->check())
                     <h6>Hola, {{ Auth::guard('empleado')->user()->nombre }}</h6>
                 @endif
-                <h1>Registro de un nuevo pedido</h1>
+                <h1>Edición de pedido</h1>
             </div>
 
             <div class="col-sm-1 col-md-2"></div>
@@ -34,68 +34,81 @@
         <div class="row formulario">
             <div class="col-sm-1 col-md-2"></div>
 
-            <div class="col-sm-10 col-md-8">
+            <form action="{{ route('pedido.update',$pedido->idped) }}" method="post" id="formVenta">
+                @csrf
+                @method('put')
+                <div class="col-sm-10 col-md-8">
 
-                <h3>Datos del pedido</h3>
-                <br>
+                    <h3>Datos del pedido</h3>
+                    <br>
 
-                <label>Producto</label>
-                <br>
-                <select name="producto" id="producto" class="form-control select2" >
-                    <option value="">Selecciona un producto</option>
-                    @foreach ($productos as $producto)
-                        <option value="{{ $producto->idpro }}" data-nombre="{{ $producto->nombre }}"
-                            data-precio="{{ $producto->precio }}">{{ $producto->nombre }}</option>
-                    @endforeach
-                </select>
-                <br>
-                <br>
+                    <label>Producto</label>
+                    <br>
+                    <select name="producto" id="producto" class="form-control select2">
+                        <option value="">Selecciona un producto</option>
+                        @foreach ($productos as $producto)
+                            <option value="{{ $producto->idpro }}" {{old('producto',$pedido->idpro) == $producto->idpro ? 'selected' : ''}}>{{ $producto->nombre }}</option>
+                        @endforeach
+                    </select>
+                    <br>
+                    <br>
 
-                <label>Descripción</label><br>
-                <input type="text" id="descripcion" class="form-control" name="descripcion">
-                <br>
+                    <label>Descripción</label><br>
+                    <input type="text" id="descripcion" class="form-control" name="descripcion" value="{{old('descripcion',$pedido->descripcion)}}">
+                    <br>
 
-                <label>Cantidad</label><br>
-                <input type="number" id="cantidad" class="form-control" name="cantidad"><br>
+                    <label>Cantidad</label><br>
+                    <input type="number" id="cantidad" class="form-control" name="cantidad" value="{{old('cantidad',$pedido->cantidad)}}"><br>
 
 
-                <label for="status">Estado:</label><br>
-                <select id="status" name="status">
-                    <option value="aprobado">Aprobado</option>
-                    <option value="espera">En espera</option>
-                </select>
-                <br>
-                <br>
+                    <label for="status">Estado:</label><br>
+                    <select id="status" name="status">
+                        <option value="aprobado" {{old('status', $pedido->status) == 'Aprobado' ? 'selected' : ''}}>Aprobado</option>
+                        <option value="espera" {{old('status', $pedido->status) == 'En espera' ? 'selected' : ''}}>En espera</option>
+                    </select>
+                    <br>
+                    <br>
 
-                <label>Promoción</label><br>
-                <select name="promocion " id="promocion" class="form-control select2">
-                    <option value="{{}}">Selecciona una promoción</option>
-                    @foreach ($promociones as $promocion)
-                        <option value="{{ $promocion->idprom }}" data-codigo="{{ $promocion->codigo }}"
-                            data-descuento="{{ $promocion->descuento }}">{{ $promocion->descripcion }}</option>
-                    @endforeach
-                </select>
+                    <label>Promoción</label><br>
+                    <select name="promocion" id="promocion" class="form-control select2">
+                        <option value="">Selecciona una promoción</option>
+                        @foreach ($promociones as $promocion)
+                            <option value="{{ $promocion->idprom }}" {{old('promocion',$pedido->idprom) == $promocion->idprom ? 'selected' : ''}}>{{ $promocion->descripcion }}</option>
+                        @endforeach
+                    </select>
+                    <br>
+                    <br>
+                </div>
+
                 <br>
                 <br>
-            </div>
-            
-            <div class="col-sm-1 col-md-2"></div>
+                <button class="btn-enviar">Enviar</button>
+            </form>
         </div>
-        <br>
-        <br>
 
-
-        <form action="{{ route('pedido.store') }}" method="post" id="formVenta">
-            @csrf
-            <input type="hidden" id="totalHidden" name="total">
-            <input type="hidden" id="productos" name="productos">
-            <input type="hidden" id="cli" name="cli">
-            <button class="btn-enviar">Enviar</button>
-        </form>
+        <div class="col-sm-1 col-md-2"></div>
     </div>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#producto').select2({
+                placeholder: "Selecciona o escribe un producto",
+                allowClear: true,
+                width: '100%'
+            });
+
+            $('#promocion').select2({
+                placeholder: "Selecciona o escribe una promoción",
+                allowClear: true,
+                width: '100%'
+            });
+        });
+
+    </script>
+
 @endsection
 
 
-<script>
 
-</script>

@@ -120,17 +120,14 @@
                         </ul>
                     </div>
                 </li>
-                <li>
-                    <div class="dropdown">
-                        <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="contenedor">
+                    <a href="{{route('consultar-venta')}}">
+                        <button class="contenedor-secundario" type="button">
                             <i class="bi bi-currency-dollar"></i>
                             <span>Venta</span> 
                         </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" {{-- href="{{route('consultar-cliente')}}" --}}>Consultar</a></li>
-                        </ul>
-                    </div>
-                </li>
+                    </a>
+                </div>
                 <li>
                     <div class="contenedor">
                         <a href="{{route('reportes.dashboard')}}">

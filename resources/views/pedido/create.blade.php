@@ -137,7 +137,7 @@
         {{-- <p>Subtotal: <span id="subtotal">0</span></p> --}}
         <p>Total: <span id="total">0</span></p>
         <p>Cliente: <span id="clienteN"></span></p>
-        <p>Fecha de entrega: <span id="fechaentrega">00/00/0000</span></p>
+        <p>Fecha de entrega: <span id="fechaentrega">0000-00-00</span></p>
 
         <form action="{{ route('pedido.store') }}" method="post" id="formVenta">
             @csrf

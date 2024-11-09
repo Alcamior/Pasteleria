@@ -23,11 +23,11 @@ class PedidoController extends Controller
 
 
     public function store(Request $request){
-        /* dd($request->all()); */
+        dd($request->all());
 
         $venta = new Venta();
         $venta->fechaVent= now();
-        $venta->fecEntrega= now();
+        $venta->fecEntrega= $request->fecha;
         $venta->total=$request->total;
         $venta->ide=Auth::guard('empleado')->user()->ide;
         $venta->save();
@@ -44,7 +44,7 @@ class PedidoController extends Controller
             $pedido->cantidad = $item['cantidad']; 
             $pedido->status = $item['status'];
             $pedido->subtotal = $item['precio']*$item['cantidad'];
-            $pedido->descuento = ($item['descuento'] / 100) * $pedido->subtotal;
+            $pedido->descuento = ($item['descuento']);
             $pedido->totalP = $item['subtotal'];
             $pedido->idv = $venta->idv; 
             $pedido->idpro = $producto->idpro;
@@ -71,13 +71,32 @@ class PedidoController extends Controller
 
     public function update(Request $request,$idped){
         $pedido = Pedido::find($idped);
-        $pedido -> nombre = $request -> nombre;
-        $pedido -> tipo = $request -> tipo;
-        $pedido -> descripcion = $request -> descripcion;
-        $pedido -> precio = $request -> precio;
-        $pedido -> save();
 
-        return redirect()->route('principal');
+        $producto = Producto::find($request->producto);
+        $precio = $producto -> precio;
+
+        $promocion = Promocion::find($request->promocion);
+        $descuento = $promocion->descuento;
+
+        $venta = Venta::where('idv', $pedido->idv)->first();
+        $venta -> total -= $pedido -> totalP;
+
+        $pedido -> descripcion = $request -> descripcion;
+        $pedido -> cantidad = $request -> cantidad;
+        $pedido -> subtotal = ($precio*$pedido->cantidad);
+        $pedido -> descuento = ($descuento*$pedido->subtotal);
+        $pedido -> totalP = $pedido -> subtotal - ($pedido -> subtotal)*$descuento;
+        $pedido -> status = $request -> status;
+        $pedido -> idpro = $request -> producto;
+        $pedido -> idprom = $request -> promocion;
+
+        $venta -> total = $pedido -> totalP;
+        
+        $pedido -> save();
+        $venta -> save();
+
+        $pedidos= Pedido::all();
+        return view('pedido/consultar-pedido',compact('pedidos'));
     }
 
 

@@ -13,6 +13,7 @@ use App\Http\Controllers\PasteleriaController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\PromocionController;
+use App\Http\Controllers\VentaController;
 use Laravel\Socialite\Facades\Socialite;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Facades\Auth;
@@ -184,6 +185,23 @@ Route::delete('pedido/{id}', [PedidoController::class, 'destroy'])
 Route::get('consultar-pedido', [PedidoController::class, 'consultarPedido'])
     ->middleware(['auth:empleado','can:consultar pedido'])
     ->name('consultar-pedido');
+
+
+//Rutas para venta
+Route::get('consultar-venta',[VentaController::class,'consultarVenta'])
+    ->middleware(['auth:empleado','can:consultar venta'])
+    ->name('consultar-venta');
+
+
+Route::get('venta/{id}/edit',[VentaController::class,'edit'])
+    ->middleware(['auth:empleado','can:editar venta'])
+    ->name('venta.edit');
+Route::put('venta/{id}',[VentaController::class,'update'])->name('venta.update');
+
+
+Route::delete('venta/{id}', [VentaController::class, 'destroy'])
+    ->middleware(['auth:empleado','can:eliminar venta'])
+    ->name('venta.destroy');   
 
 
 //Páginas para la validación de los datos insertados
