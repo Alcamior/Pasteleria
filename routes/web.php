@@ -219,5 +219,9 @@ Route::get('reportes', [ReporteVentaController::class,'show'])
     ->middleware(['auth:empleado', 'can:reporte'])
     ->name('reportes.productossemanales.pdf');
 
+    Route::get('reportes/productos/mensuales/pdf', [ReporteProductoController::class, 'generarMensualPDF'])
+    ->middleware(['auth:empleado', 'can:reporte'])
+    ->name('reportes.productosmensuales.pdf');
+
 
 

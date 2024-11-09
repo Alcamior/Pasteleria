@@ -99,6 +99,35 @@
                     </form>
                 </section>
             @endif
+
+            @if (session('reporte') == 'formulario2')
+                <h3 class="title">Reporte mensual de productos más vendidos</h3>
+
+                <section class="fecha">
+                    <p>{{ session('nombreMes') }} del {{ session('year') }}</p>
+                </section>
+
+                <!-- Gráfica -->
+                <section class="grafica">
+                    <script>
+                        var jsonDataMen = {!! session('jsonDataMen') !!};
+                        console.log(jsonDataMen);
+                    </script>
+                    <div id="graficoProductosMen"></div>
+                </section>
+
+                <!-- Datos para el PDF -->
+                <section class="datos-pdf">
+                    <form action="{{ route('reportes.productosmensuales.pdf') }}" enctype="multipart/form-data" method="GET">
+                        @csrf
+                        <input type="hidden" name="nombreMes" value="{{ session('nombreMes') }}">
+                        <input type="hidden" name="year" value="{{ session('year') }}">
+                        <input type="hidden" name="graficoImagenMen" id="graficoImagenMen">
+
+                        <button id="exportarGraficoMen" class="btn btn-primary">Descargar en PDF</button>
+                    </form>
+                </section>
+            @endif
         </section>
         
     
@@ -118,7 +147,7 @@
     <!-- Script de ventas -->
     <script src="{{ request()->getHost() === 'localhost' ? asset('js/reportes/productos/productos.js') : secure_asset('js/reportes/productos/productos.js') }}"></script>
     <script src="{{ request()->getHost() === 'localhost' ? asset('js/reportes/productos/productosSem.js') : secure_asset('js/reportes/productos/productosSem.js') }}"></script>
-    {{-- <script src="{{ request()->getHost() === 'localhost' ? asset('js/reportes/ventas/ventasMen.js') : secure_asset('js/reportes/ventas/ventasMen.js') }}"></script>  --}}
+    <script src="{{ request()->getHost() === 'localhost' ? asset('js/reportes/productos/productosMen.js') : secure_asset('js/reportes/productos/productosMen.js') }}"></script>
 
 @endsection
 

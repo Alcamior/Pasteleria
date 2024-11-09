@@ -21,15 +21,15 @@
 </style>
 
 
-    <h3 class="title">Reporte de productos más vendidos en la semana</h3>
+    <h3 class="title">Reporte de productos más vendidos en el mes</h3>
 
     <section class="fecha">
-        <p>{{ $fechaInicioN }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $fechaFinN }}</p>
+        <p>{{ $nombreMes }} del {{ $year }}</p>
     </section>
 
 
     <h3>Gráfico de productos</h3>
-    <img src="data:image/svg+xml;base64,{{ $graficoImagenSem }}" alt="Gráfico de productos">
+    <img src="data:image/svg+xml;base64,{{ $graficoImagenMen }}" alt="Gráfico de productos">
 
 
     
