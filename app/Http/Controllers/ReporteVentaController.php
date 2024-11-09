@@ -33,13 +33,13 @@ class ReporteVentaController extends Controller
                 ]);
 
                 // Totales
-                $totalPP = DB::select('select sum(totalP) as totalPas from venta 
+                $totalPP = DB::select('select COALESCE(sum(totalP), 0) as totalPas from venta 
                 inner join pedido on venta.idv = pedido.idv
                 inner join producto on pedido.idpro = producto.idpro
                 where producto.tipo = "Pastelería" 
                 and fechaVent = ? and pedido.status="Vendido";', [$fecha]);
 
-                $totalPC = DB::select('select sum(totalP) totalCaf from venta 
+                $totalPC = DB::select('select COALESCE(sum(totalP), 0) totalCaf from venta 
                 inner join pedido on venta.idv = pedido.idv
                 inner join producto on pedido.idpro = producto.idpro
                 where producto.tipo = "Cafetería" 
@@ -73,14 +73,14 @@ class ReporteVentaController extends Controller
                 $fechaFin = Carbon::parse($fechaInicio)->addWeek(1)->endOfDay();
 
                 //Totales
-                $totalPP = DB::select('select sum(totalP) as totalPas from venta 
+                $totalPP = DB::select('select COALESCE(sum(totalP), 0) as totalPas from venta 
                 inner join pedido on venta.idv = pedido.idv
                 inner join producto on pedido.idpro = producto.idpro
                 where producto.tipo = "Pastelería" 
                 and (fechaVent between ? and ?) 
                 and pedido.status = "Vendido";', [$fechaInicio, $fechaFin]);
 
-                $totalPC = DB::select('select sum(totalP) as totalCaf from venta 
+                $totalPC = DB::select('select COALESCE(sum(totalP), 0) as totalCaf from venta 
                 inner join pedido on venta.idv = pedido.idv
                 inner join producto on pedido.idpro = producto.idpro
                 where producto.tipo = "Cafetería" 
@@ -158,14 +158,14 @@ class ReporteVentaController extends Controller
                 $nombreMes = ucfirst(Carbon::create()->month($mes)->translatedFormat('F'));
 
                 // Totales
-                $totalPP = DB::select('select sum(totalP) as totalPas from venta 
+                $totalPP = DB::select('select COALESCE(sum(totalP), 0) as totalPas from venta 
                 inner join pedido on venta.idv = pedido.idv
                 inner join producto on pedido.idpro = producto.idpro
                 where producto.tipo = "Pastelería" 
                 and (month(fechaVent) = ? and year(fechaVent)=?) 
                 and pedido.status = "Vendido";', [$mes, $year]);
 
-                $totalPC = DB::select('select sum(totalP) as totalCaf from venta 
+                $totalPC = DB::select('select COALESCE(sum(totalP), 0) as totalCaf from venta 
                 inner join pedido on venta.idv = pedido.idv
                 inner join producto on pedido.idpro = producto.idpro
                 where producto.tipo = "Cafetería" 
