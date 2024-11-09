@@ -1,36 +1,45 @@
 @extends('layaout.stencil')
 
-{{-- Datos del head --}}
 @section('head')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="{{ request()->getHost() === 'localhost' ? asset('css/layaout/table.css') : secure_asset('css/layaout/table.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 
-@section('title','Consulta de productos')
-
 @section('main')
     <div>
-        <h1>Consulta de productos</h1>
+        <h1>Consulta de pedidos</h1>
         <div class="table">
             <table id="myTable" class="cell-border">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Tipo</th>
                         <th>Descripción</th>
-                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Descripción</th>
+                        <th>Fecha</th>
+                        <th>Subtotal</th>
+                        <th>Descuento</th>
+                        <th>Estado</th>
+                        <th>ID producto</th>
+                        <th>ID venta</th>
+                        <th>ID promoción</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($producto as $productos)
+                    @foreach($pedidos as $pedido)
                     <tr>
-                        <td>{{$productos->idpro}}</td>
-                        <td>{{$productos->nombre}}</td>
-                        <td>{{$productos->tipo}}</td>
-                        <td>{{$productos->descripcion}}</td>
-                        <td>{{$productos->precio}}</td>
+                        <td>{{$pedido->idped}}</td>
+                        <td>{{$pedido->descripcion}}</td>
+                        <td>{{$pedido->cantidad}}</td>
+                        <td>{{$pedido->fePed}}</td>
+                        <td>{{$pedido->subtotal}}</td>
+                        <td>{{$pedido->descuento}}</td>
+                        <td>{{$pedido->totalP}}</td>
+                        <td>{{$pedido->status}}</td>
+                        <td>{{$pedido->idpro}}</td>
+                        <td>{{$pedido->idv}}</td>
+                        <td>{{$pedido->idprom}}</td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -55,5 +64,6 @@
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
     <!-- Cargar el archivo producto.js -->
-    <script src="{{ request()->getHost() === 'localhost' ? asset('js/producto/producto.js?v=1.0.1') : secure_asset('js/producto/producto.js?v=1.0.1') }}"></script>
+    <script src="{{ request()->getHost() === 'localhost' ? asset('js/pedido/pedido.js?v=1.0.1') : secure_asset('js/pedido/pedido.js?v=1.0.1') }}"></script>
 @endsection
+

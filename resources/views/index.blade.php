@@ -53,19 +53,85 @@
     <section>
         <article>
             <div class="container w-75">
+
                 <div class="row pasteles_predisenados">
                     <div class="col-xs-12 col-md-6 flex-column d-flex justify-content-center align-items-center">
-                        <h2>¡Prueba nuestros pasteles!</h2>
+                        <h2>Prueba nuestros pasteles</h2>
                         <p>Cada pastel está pensado para crear momentos únicos y memorables. 
                             ¿Cuál probarás primero?</p>
-                        <a href="" class="text-left">Conocer más</a>
+                        <a href="" class="text-left">
+                            <button>Conocer más</button>
+                        </a>
                     </div>
                     <div class="col-xs-12 col-md-6">
                         <img src="{{ asset('img/pastel_flan.png') }}" alt="Pastel">
+                    </div>
+
+                    <div class="row pasteles_predisenados">
+                        <div class="col-xs-12 col-md-6 order-last order-md-first">
+                            <img src="{{ asset('img/pastel_personalizado.png') }}" alt="Pastel personalizado">
+                        </div>
+                        <div class="col-xs-12 col-md-6 flex-column d-flex justify-content-center align-items-center">
+                            <h2>Crea el pastel de tu sueños</h2>
+                            <p>Tenemos una variedad de sabores y estilos, ¡y puedes personalizar el tuyo para cualquier ocasión especial!</p>
+                            <a href="" class="text-left">
+                                <button>Conocer más</button>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="row pasteles_predisenados">
+                        <div class="col-md-6 flex-column d-flex justify-content-center align-items-center">
+                            <h2>Productos para cada gusto</h2>
+                            <p>Desde sabores clásicos hasta combinaciones únicas, tenemos algo 
+                                especial para cada ocasión. Echa un vistazo a nuestras opciones 
+                                y encuentra el tuyo.</p>
+                            <a href="" class="text-left">
+                                <button>Conocer más</button>
+                            </a>
+                        </div>
+                        <div class="col-md-6">
+                            <img src="{{ asset('img/fraMoka.png') }}" alt="Frappe">
+                        </div>
                     </div>
                 </div>
             </div>
         </article>
     </section>
 
+    <hr>
+    
+  
+
+@endsection
+
+@section('footer')
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-xl-4 ">
+                <a href="">
+                    <i class="bi bi-whatsapp"></i> 
+                    <p>WhatsApp</p>
+                </a>
+                <a href="">
+                    <i class="bi bi-facebook"></i>
+                    <p>Facebook</p>
+                </a>
+                <a href="">
+                    <i class="bi bi-instagram"></i>
+                    <p>Instragram</p>
+                </a> 
+                <a href="">
+                    <i class="bi bi-instagram"></i>
+                    <p>Instragram</p>
+                </a>     
+            </div>
+            <div class="col-md-6 col-xl-4 ">
+                <a href="">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    <p></p>
+                </a>
+            </div>
+        </div>
+    </div>
 @endsection

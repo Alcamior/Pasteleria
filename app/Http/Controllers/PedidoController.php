@@ -23,7 +23,7 @@ class PedidoController extends Controller
 
 
     public function store(Request $request){
-        dd($request->all());
+        /* dd($request->all()); */
 
         $venta = new Venta();
         $venta->fechaVent= now();
@@ -42,7 +42,7 @@ class PedidoController extends Controller
             $pedido->descripcion = $item['descripcion']; 
             $pedido->fePed = now();
             $pedido->cantidad = $item['cantidad']; 
-            $pedido->status = "Vendido";
+            $pedido->status = $item['status'];
             $pedido->subtotal = $item['precio']*$item['cantidad'];
             $pedido->descuento = ($item['descuento'] / 100) * $pedido->subtotal;
             $pedido->totalP = $item['subtotal'];
@@ -55,37 +55,44 @@ class PedidoController extends Controller
     }
 
 
-    public function consultarProducto(){
-/*         $producto= Producto::all();
-        return view('producto/consultar-producto',compact('producto'));
+    public function consultarPedido(){
+        $pedidos= Pedido::all();
+        return view('pedido/consultar-pedido',compact('pedidos'));
     }
 
 
     public function edit($idped){
-/*         $producto=Producto::find($idpro); 
-        return view('producto/edit',compact('producto')); */
+        $pedido=Pedido::find($idped); 
+        $productos = Producto::all();
+        $clientes=Cliente::all();
+        $promociones = Promocion::where('estatus', 'Activa')->get();
+        return view('pedido/edit',compact('productos','promociones','clientes','pedido'));
     }
 
-    public function update(StorePedido $request,$idped){
-/*         $producto = Producto::find($idpro);
-        $producto -> nombre = $request -> nombre;
-        $producto -> tipo = $request -> tipo;
-        $producto -> descripcion = $request -> descripcion;
-        $producto -> precio = $request -> precio;
-        $producto -> save();
+    public function update(Request $request,$idped){
+        $pedido = Pedido::find($idped);
+        $pedido -> nombre = $request -> nombre;
+        $pedido -> tipo = $request -> tipo;
+        $pedido -> descripcion = $request -> descripcion;
+        $pedido -> precio = $request -> precio;
+        $pedido -> save();
 
-        return redirect()->route('principal'); */
+        return redirect()->route('principal');
     }
 
 
-    public function destroy($idpro){
-/*         $producto = Producto::find($idpro);
+    public function destroy($idped){
 
-        if($producto) {
-            $producto->delete();
+        $pedido = Pedido::find($idped);
+
+        if($pedido) {
+            $venta = Venta::find($pedido->idv);
+            $venta -> total -= $pedido -> totalP;
+            $pedido -> delete();
+            $venta->save();
             return response()->json(['message' => 'Promoción eliminado con éxito']);
         }else{
             return response()->json(['message' => 'Registro no encontrado'], 404);
-        } */
+        }
     }
 }

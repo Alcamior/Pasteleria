@@ -43,7 +43,7 @@
                             <span>Pedido</span> 
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" >Consultar</a></li>
+                            <li><a class="dropdown-item" href="{{route('consultar-pedido')}}">Consultar</a></li>
                             <li><a class="dropdown-item" href="{{route('pedido.create')}}">Agregar nuevo</a></li>
                         </ul>
                     </div>
@@ -190,6 +190,9 @@
         @yield('main')
     </main>
 
+    <footer>
+        @yield('footer')
+    </footer>
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

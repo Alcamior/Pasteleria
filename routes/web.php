@@ -170,6 +170,22 @@ Route::get('pedido/create',[PedidoController::class,'create'])
 Route::post('pedido',[PedidoController::class,'store'])->name('pedido.store');
 
 
+Route::get('pedido/{id}/edit',[PedidoController::class,'edit'])
+    ->middleware(['auth:empleado','can:editar pedido'])
+    ->name('empleado.edit');
+Route::put('pedido/{id}',[PedidoController::class,'update'])->name('pedido.update');
+
+
+Route::delete('pedido/{id}', [PedidoController::class, 'destroy'])
+    ->middleware(['auth:empleado','can:eliminar pedido'])
+    ->name('pedido.destroy');
+
+
+Route::get('consultar-pedido', [PedidoController::class, 'consultarPedido'])
+    ->middleware(['auth:empleado','can:consultar pedido'])
+    ->name('consultar-pedido');
+
+
 //Páginas para la validación de los datos insertados
 Route::post('validar-registro',[LoginController::class,'validarRegistro'])->name('validar-registro');
 
