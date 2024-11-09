@@ -28,7 +28,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Ranking de productos</h5>
                             <p class="card-text">Ve tus productos más vendidos durenate la semana o el mes.</p>
-                            <a href="#" class="btn btn-primary">Generar reporte</a>
+                            <a href="{{ route('reportes.productos') }}" class="btn btn-primary">Generar reporte</a>
                         </div>
                     </div>
                 </div>
