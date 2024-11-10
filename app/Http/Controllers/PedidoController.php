@@ -23,13 +23,14 @@ class PedidoController extends Controller
 
 
     public function store(Request $request){
-        dd($request->all());
+        /* dd($request->all()); */
 
         $venta = new Venta();
         $venta->fechaVent= now();
-        $venta->fecEntrega= $request->fecha;
+        $venta->fecEntrega= $request->fechaP;
         $venta->total=$request->total;
         $venta->ide=Auth::guard('empleado')->user()->ide;
+        $venta -> idcli = $request -> cli;
         $venta->save();
 
         $pedidos = json_decode($request->input('productos'), true); // true para convertir a array asociativo

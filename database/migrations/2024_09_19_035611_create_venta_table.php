@@ -15,7 +15,7 @@ return new class extends Migration
             $table->engine = 'InnoDB';
             $table->bigIncrements("idv");
             $table->date("fechaVent");
-            $table->date("fecEntrega");
+            $table->date("fecEntrega")->nullable();
             $table->float("total");
             $table->unsignedBigInteger("ide");
             $table->unsignedBigInteger("idcli")->nullable();
