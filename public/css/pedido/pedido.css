@@ -1,0 +1,24 @@
+:root {
+    --fuente-titulo: "Jockey One", serif;
+    --fuente-texto: "Inter", serif;
+    --color-inputs: #EBEAEA;
+    --color-fuente-inputs: #AAAAAA;
+    --color-btn-env: #d4b398;
+    --color-btn-reg: #b88a64;
+    --espacio-interior: 10px;
+    --ancho-inputs: 80%;
+    --borde-redondo: 1.5rem;
+}
+
+
+h3{
+    font-family: var(--fuente-titulo);
+}
+
+.select2{
+    width: var(--ancho-inputs);
+}
+
+.table{
+    overflow: auto;
+}

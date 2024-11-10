@@ -43,7 +43,7 @@
                             <span>Pedido</span> 
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" >Consultar</a></li>
+                            <li><a class="dropdown-item" href="{{route('consultar-pedido')}}">Consultar</a></li>
                             <li><a class="dropdown-item" href="{{route('pedido.create')}}">Agregar nuevo</a></li>
                         </ul>
                     </div>
@@ -120,17 +120,14 @@
                         </ul>
                     </div>
                 </li>
-                <li>
-                    <div class="dropdown">
-                        <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="contenedor">
+                    <a href="{{route('consultar-venta')}}">
+                        <button class="contenedor-secundario" type="button">
                             <i class="bi bi-currency-dollar"></i>
                             <span>Venta</span> 
                         </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" {{-- href="{{route('consultar-cliente')}}" --}}>Consultar</a></li>
-                        </ul>
-                    </div>
-                </li>
+                    </a>
+                </div>
                 <li>
                     <div class="contenedor">
                         <a href="{{route('reportes.dashboard')}}">
@@ -190,6 +187,9 @@
         @yield('main')
     </main>
 
+    <footer>
+        @yield('footer')
+    </footer>
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

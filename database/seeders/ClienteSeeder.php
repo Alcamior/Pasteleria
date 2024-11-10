@@ -37,5 +37,16 @@ class ClienteSeeder extends Seeder
         $cliente->email = "ana.garcia@example.com";
         $cliente->contrasena = Hash::make("password456");
         $cliente->save();
+
+        $cliente = new Cliente();
+        $cliente -> nombre = "Luis";
+        $cliente -> ap = "Hernandez";
+        $cliente -> am = "Fuentes";
+        $cliente -> email = "Luis@gmail.com";
+        $cliente -> contrasena = Hash::make('1234');
+        $cliente -> profile_image = "https://cdn.shopify.com/s/files/1/1414/2472/files/5-The_School_of_Athens__by_Raffaello_Sanzio_da_Urbino.jpg?v=1558424890";
+        $cliente -> assignRole(roles:'cliente');
+        $cliente -> save();
+
     }
 }

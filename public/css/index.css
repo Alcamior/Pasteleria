@@ -1,0 +1,107 @@
+@font-face {
+    font-family: "Divina";
+    src: url("../font/William Christmas.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+main{
+    background-color: #fffcf9;
+}
+
+/*---------------->Cabecera*/
+
+
+header .titulo{
+    margin:40px;
+}
+
+header .titulo h1{ 
+    font-family: "Divina",sans-serif;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 60px;
+}
+
+.carousel-inner img {
+    max-height: 500px; /* Ajusta este valor según tus necesidades */
+    object-fit: cover; /* Esto asegura que la imagen se recorte y se ajuste sin deformarse */
+    width: 100%; /* Mantiene el ancho completo del carrusel */
+}
+
+header #carouselExample .carousel-control-next .carousel-control-next-icon{
+    background-color: black;
+}
+
+header #carouselExample .carousel-control-prev .carousel-control-prev-icon{
+    background-color: black;
+}
+
+
+header .descripcion{
+    font-family: "Jost", sans-serif;
+    font-size: 23px;
+    text-align: center;
+    margin:40px;
+}
+
+/*---------------->Cuerpo*/
+
+section{
+    margin: 150px 0 150px 0;
+}
+
+section article .container .pasteles_predisenados{
+    margin: 100px 0 100px 0;
+}
+
+section article .container .pasteles_predisenados div p, h2, a{
+    font-family: "Jost", sans-serif;
+    text-align: left;
+    width: 100%;
+}
+
+section article .container .pasteles_predisenados div img{
+    width: 100%; 
+    height: auto; 
+    object-fit: cover; 
+}
+
+section article .container .pasteles_predisenados div .text-left button{
+    background: orange;
+    border: none;
+    padding: 10px;
+    border-radius: 1.5rem;
+    color: white;
+}
+
+section article .container .pasteles_predisenados div .text-left button:hover{
+    background: rgb(196, 127, 0);
+    color: rgb(255, 255, 255);
+    transition: 0.3s;
+}
+
+/*---------------->Footer*/
+
+footer{
+    width: 100%;
+    background-color: #ffeaea;
+}
+
+
+footer .container .row{
+    width: 100%;
+}
+
+/*---------------->Responsive*/
+
+@media (max-width: 768px) {
+    section article .container .pasteles_predisenados div p, h2, a{
+        text-align: center;
+    }
+
+    section article .container .pasteles_predisenados div img{
+        margin-top: 20px;
+    }
+
+}

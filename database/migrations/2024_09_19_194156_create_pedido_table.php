@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pedido', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->bigIncrements("idped");
-            $table->String("descripcion");
+            $table->String("descripcion")->nullable();
             $table->integer("cantidad");
             $table->date("fePed");
             $table->float("subtotal")->nullable();

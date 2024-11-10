@@ -15,6 +15,7 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\PromocionController;
 use App\Http\Controllers\ReporteEmpleadoController;
 use App\Http\Controllers\ReporteProductoController;
+use App\Http\Controllers\VentaController;
 use Laravel\Socialite\Facades\Socialite;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Facades\Auth;
@@ -170,6 +171,39 @@ Route::get('pedido/create',[PedidoController::class,'create'])
     ->middleware(['auth:empleado','can:crear pedido'])
     ->name('pedido.create');
 Route::post('pedido',[PedidoController::class,'store'])->name('pedido.store');
+
+
+Route::get('pedido/{id}/edit',[PedidoController::class,'edit'])
+    ->middleware(['auth:empleado','can:editar pedido'])
+    ->name('empleado.edit');
+Route::put('pedido/{id}',[PedidoController::class,'update'])->name('pedido.update');
+
+
+Route::delete('pedido/{id}', [PedidoController::class, 'destroy'])
+    ->middleware(['auth:empleado','can:eliminar pedido'])
+    ->name('pedido.destroy');
+
+
+Route::get('consultar-pedido', [PedidoController::class, 'consultarPedido'])
+    ->middleware(['auth:empleado','can:consultar pedido'])
+    ->name('consultar-pedido');
+
+
+//Rutas para venta
+Route::get('consultar-venta',[VentaController::class,'consultarVenta'])
+    ->middleware(['auth:empleado','can:consultar venta'])
+    ->name('consultar-venta');
+
+
+Route::get('venta/{id}/edit',[VentaController::class,'edit'])
+    ->middleware(['auth:empleado','can:editar venta'])
+    ->name('venta.edit');
+Route::put('venta/{id}',[VentaController::class,'update'])->name('venta.update');
+
+
+Route::delete('venta/{id}', [VentaController::class, 'destroy'])
+    ->middleware(['auth:empleado','can:eliminar venta'])
+    ->name('venta.destroy');   
 
 
 //Páginas para la validación de los datos insertados

@@ -1,36 +1,37 @@
 @extends('layaout.stencil')
 
-{{-- Datos del head --}}
 @section('head')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="{{ request()->getHost() === 'localhost' ? asset('css/layaout/table.css') : secure_asset('css/layaout/table.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 
-@section('title','Consulta de productos')
+@section('title','Consulta de ventas')
 
 @section('main')
     <div>
-        <h1>Consulta de productos</h1>
+        <h1>Consulta de ventas</h1>
         <div class="table">
             <table id="myTable" class="cell-border">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Tipo</th>
-                        <th>Descripción</th>
-                        <th>Precio</th>
+                        <th>Fecha venta</th>
+                        <th>Fecha entrega</th>
+                        <th>total</th>
+                        <th>ID empleado</th>
+                        <th>ID cliente</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($producto as $productos)
+                    @foreach($ventas as $venta)
                     <tr>
-                        <td>{{$productos->idpro}}</td>
-                        <td>{{$productos->nombre}}</td>
-                        <td>{{$productos->tipo}}</td>
-                        <td>{{$productos->descripcion}}</td>
-                        <td>{{$productos->precio}}</td>
+                        <td>{{$venta->idv}}</td>
+                        <td>{{$venta->fechaVent}}</td>
+                        <td>{{$venta->fecEntrega}}</td>
+                        <td>{{$venta->total}}</td>
+                        <td>{{$venta->ide}}</td>
+                        <td>{{$venta->idcli}}</td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -55,5 +56,5 @@
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
     <!-- Cargar el archivo producto.js -->
-    <script src="{{ request()->getHost() === 'localhost' ? asset('js/producto/producto.js?v=1.0.1') : secure_asset('js/producto/producto.js?v=1.0.1') }}"></script>
+    <script src="{{ request()->getHost() === 'localhost' ? asset('js/venta/venta.js?v=1.0.1') : secure_asset('js/venta/venta.js?v=1.0.1') }}"></script>
 @endsection

@@ -5,6 +5,7 @@ const palanca = document.querySelector(".switch");
 const circulo = document.querySelector(".circulo");
 const menu = document.querySelector(".menu");
 const main = document.querySelector("main");
+const footer = document.querySelector("footer");
 
 menu.addEventListener("click",()=>{
     barraLateral.classList.toggle("max-barra-lateral");
@@ -28,6 +29,7 @@ menu.addEventListener("click",()=>{
 cloud.addEventListener("click",()=>{
     barraLateral.classList.toggle("mini-barra-lateral");
     main.classList.toggle("min-main");
+    footer.classList.toggle("min-main");
     spans.forEach((span)=>{
         span.classList.toggle("oculto");
     });

@@ -390,11 +390,18 @@ main{
     transition: margin-left 0.5s ease;
 }
 
+footer{
+    margin-left: 250px;
+    transition: margin-left 0.5s ease;
+}
+
 main.min-main{
     margin-left: 100px;
 }
 
-
+footer.min-main{
+    margin-left: 100px;
+}
 
 /*------------------> Responsive*/
 @media (max-height: 660px){
@@ -419,6 +426,7 @@ main.min-main{
     .menu ion-icon:nth-child(2){
         display: none;
     }
+
     main{
         margin-left: 0;
     }
@@ -426,4 +434,12 @@ main.min-main{
         margin-left: 0;
     }
     
+    main{
+        margin-left: 0;
+    }
+    main.min-main{
+        margin-left: 0;
+    }
+
+
 }

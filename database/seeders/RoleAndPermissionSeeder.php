@@ -48,6 +48,10 @@ class RoleAndPermissionSeeder extends Seeder
             ['name' => 'consultar horario'],
             ['name' => 'consultar producto'],
             ['name' => 'consultar promocion'],
+
+            ['name' => 'eliminar venta'],
+            ['name' => 'consultar venta'],
+            ['name' => 'editar venta'],
         
             // Permisos para administradores
             ['name' => 'crear empleado'],
@@ -80,7 +84,10 @@ class RoleAndPermissionSeeder extends Seeder
             ['name' => 'consultar pedido'],
             ['name' => 'editar pedido'],
 
-        
+            ['name' => 'eliminar venta'],
+            ['name' => 'consultar venta'],
+            ['name' => 'editar venta'],
+
             ['name' => 'reporte'],
         ];
         
@@ -110,7 +117,11 @@ class RoleAndPermissionSeeder extends Seeder
             'consultar cliente',
             'consultar horario',
             'consultar producto',
-            'consultar promocion'
+            'consultar promocion',
+
+            'eliminar venta',
+            'consultar venta',
+            'editar venta',            
         );
         
         // Roles para los administradores
@@ -145,6 +156,10 @@ class RoleAndPermissionSeeder extends Seeder
             'eliminar pedido',
             'consultar pedido',
             'editar pedido',
+
+            'eliminar venta',
+            'consultar venta',
+            'editar venta'
         );
         
     }
