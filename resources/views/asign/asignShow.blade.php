@@ -16,6 +16,7 @@
             <table id="myTable" class="cell-border">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Nombre completo</th>
                         <th>Día</th>
                         <th>Hora de entrada</th>
@@ -25,6 +26,7 @@
                 <tbody>
                     @foreach($horariosAsig as $horario)
                     <tr>
+                        <td>{{$horario->idNotaHo}}</td>
                         <td>{{$horario->nombreComp}}</td>
                         <td>{{$horario->dia}}</td>
                         <td>{{$horario->horaentrada}}</td>
@@ -54,5 +56,5 @@
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
     <!-- Cargar el archivo producto.js -->
-    <script src="{{ request()->getHost() === 'localhost' ? asset('js/horario/asign.js?v=1.0.1'): secure_asset('js/horario/asign.js?v=1.0.1') }}"></script>
+    <script src="{{ request()->getHost() === 'localhost' ? asset('js/asign/asign.js?v=1.0.1'): secure_asset('js/asign/asign.js?v=1.0.1') }}"></script>
 @endsection

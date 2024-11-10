@@ -38,7 +38,8 @@
                         <label>Empleado:</label>
                         <select name="empleado" id="empleado">
                             @foreach ($empleados as $empleado)
-                                <option value="{{ $empleado->ide }}">
+                                <option value="{{ $empleado->ide }}"
+                                {{ old('empleado') == $empleado->ide ? 'selected' : '' }}>
                                     {{ $empleado->nombre }} {{ $empleado->ap }} {{ $empleado->am }}
                                 </option>
                             @endforeach
@@ -52,7 +53,8 @@
                         <label>Horario:</label>
                         <select name="horario" id="horario">
                             @foreach ($horarios as $horario)
-                                <option value="{{ $horario->idh }}">
+                                <option value="{{ $horario->idh }}"
+                                {{ old('horario') == $horario->idh ? 'selected' : '' }}>
                                     {{ $horario->dia }} de {{ $horario->horaentrada }} a {{ $horario->horasalida }}
                                 </option>
                             @endforeach
@@ -60,13 +62,18 @@
                         <br>
                     </div>
                     <br>
-                    @error('horario')
-                        <span>*{{ $message }}</span>
-                    @enderror
+
+                    @if ($errors->any())
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
 
                     <br>
                     <br>
-
+                    
                     <div class="d-flex flex-sm-row flex-column gap-5 mb-5">
                         <button type="submit" class="btn-enviar">Enviar</button>
                         <button type="button" class="btn-regresar" onclick="window.history.back();">Regresar</button>

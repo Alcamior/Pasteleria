@@ -105,15 +105,22 @@ Route::get('consultar-horario', [HorarioController::class, 'consultarHorario'])
     ->middleware(['auth:empleado','can:consultar horario'])
     ->name('consultar-horario');
 
-Route::get('horario/asign', [NotaHorarioController::class, 'asign'])
+//Rutas para asignar horario
+Route::get('asign/create', [NotaHorarioController::class, 'asign'])
     ->middleware(['auth:empleado','can:consultar horario'])
     ->name('horario.asign');
+Route::post('asign', [NotaHorarioController::class, 'asignStore'])->name('horario.asign.store');
 
-Route::post('horario/asign/store', [NotaHorarioController::class, 'asignStore'])
-    ->middleware(['auth:empleado','can:consultar horario'])
-    ->name('horario.asign.store');
+Route::get('asign/{id}/edit',[NotaHorarioController::class,'edit'])
+    ->middleware(['auth:empleado','can:editar horario'])
+    ->name('asign.edit');
+Route::put('asign/{id}',[NotaHorarioController::class,'update'])->name('asign.update');
 
-Route::get('horario/asign/show', [NotaHorarioController::class, 'asignShow'])
+Route::delete('asign/{id}', [NotaHorarioController::class, 'destroy'])
+    ->middleware(['auth:empleado','can:eliminar horario'])
+    ->name('asign.destroy');
+
+Route::get('consultar-asign', [NotaHorarioController::class, 'asignShow'])
     ->middleware(['auth:empleado','can:consultar horario'])
     ->name('horario.asign.show');
 
