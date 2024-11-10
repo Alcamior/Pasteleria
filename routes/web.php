@@ -7,6 +7,7 @@ use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\ExhibicionController;
 use App\Http\Controllers\HorarioController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\NotaHorarioController;
 use App\Http\Controllers\ReporteVentaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PasteleriaController;
@@ -103,6 +104,18 @@ Route::delete('horario/{id}', [HorarioController::class, 'destroy'])
 Route::get('consultar-horario', [HorarioController::class, 'consultarHorario'])
     ->middleware(['auth:empleado','can:consultar horario'])
     ->name('consultar-horario');
+
+Route::get('horario/asign', [NotaHorarioController::class, 'asign'])
+    ->middleware(['auth:empleado','can:consultar horario'])
+    ->name('horario.asign');
+
+Route::post('horario/asign/store', [NotaHorarioController::class, 'asignStore'])
+    ->middleware(['auth:empleado','can:consultar horario'])
+    ->name('horario.asign.store');
+
+Route::get('horario/asign/show', [NotaHorarioController::class, 'asignShow'])
+    ->middleware(['auth:empleado','can:consultar horario'])
+    ->name('horario.asign.show');
 
 
 //Rutas para promocion
