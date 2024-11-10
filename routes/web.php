@@ -31,7 +31,7 @@ Route::get('google-callback', function () {
     $user = Cliente::updateOrCreate([
         'google_id'=>$user_google->id,
     ],[
-        'nombre'=>$user_google->name,
+        'alias'=>$user_google->name,
         'email'=>$user_google->email,
         'profile_image' => $user_google->avatar
     ]);
@@ -268,3 +268,11 @@ Route::get('reportes', [ReporteVentaController::class,'show'])
     Route::get('reportes/empleados/mensuales/pdf', [ReporteEmpleadoController::class, 'generarMensualPDF'])
     ->middleware(['auth:empleado', 'can:reporte'])
     ->name('reportes.empleadosmensuales.pdf');
+
+
+/*--------------------------------------------------------------> Rutas para clientes */
+
+Route::get('cliente/edit', [ClienteController::class, 'editSelf'])
+    ->middleware('auth:cliente')
+    ->name('cliente.edit.self');
+

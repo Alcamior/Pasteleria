@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('cliente', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->bigIncrements("idcli");
-            $table->String("nombre");
+            $table->String("alias")->nullable();
+            $table->String("nombre")->nullable();
             $table->String("ap")->nullable();
             $table->String("am")->nullable();
             $table->enum('genero', ['Femenino', 'Masculino'])->nullable();

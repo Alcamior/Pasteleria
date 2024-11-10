@@ -7,6 +7,7 @@ use App\Http\Requests\StoreCliente;
 use App\Models\Cliente;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClienteController extends Controller
 {
@@ -73,5 +74,12 @@ class ClienteController extends Controller
         }else{
             return response()->json(['message' => 'Registro no encontrado'], 404);
         }
+    }
+
+
+    public function editSelf()
+    {
+        $cliente = Auth::guard('cliente')->user();
+        return view('cliente.edit', ['cliente' => $cliente]);
     }
 }

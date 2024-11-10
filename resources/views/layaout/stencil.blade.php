@@ -19,6 +19,11 @@
         <ion-icon name="close-outline"></ion-icon>
     </div>
 
+    @php
+        $empleado = Auth::guard('empleado')->user();
+        $cliente = Auth::guard('cliente')->user();
+    @endphp  
+
     <div class="barra-lateral">
         <div>
             <div class="nombre-pagina">
@@ -26,6 +31,7 @@
                 <span>Divina <br>Tentación</span>
             </div>
         </div>
+
         <nav class="navegacion">
             <ul>
                 <div class="contenedor">
@@ -36,6 +42,7 @@
                         </button>
                     </a>
                 </div>
+                @if ($empleado)
                 <li>
                     <div class="dropdown">
                         <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -138,14 +145,33 @@
                         </a>
                     </div>
                 </li>
+                @endif
+                @if($cliente)
+                <div class="contenedor">
+                    <a href="{{route('cliente.edit.self')}}">
+                        <button class="contenedor-secundario" type="button">
+                            <i class="bi bi-person-vcard"></i>
+                            <span>Cuenta</span> 
+                        </button>
+                    </a>
+                </div>
+                <li>
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-bag-check"></i>
+                            <span>Pedidos</span> 
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{route('consultar-horario')}}">Consultar</a></li>
+                            <li><a class="dropdown-item" href="{{route('horario.create')}}">Agregar nuevo</a></li>
+                        </ul>
+                    </div>
+                </li>
+                @endif
             </ul>
         </nav>
 
         <div>
-            @php
-                $empleado = Auth::guard('empleado')->user();
-                $cliente = Auth::guard('cliente')->user();
-            @endphp  
             <div class="linea"></div> 
             @if ($empleado || $cliente)
             <div class="logout">
@@ -163,7 +189,7 @@
                 <img src="{{ $empleado ? $empleado->profile_image : $cliente->profile_image }}" alt="Imagen perfil" />
                 <div class="info-usuario">
                     <div class="nombre-email">
-                        <span class="nombre">{{ $empleado ? $empleado->nombre : $cliente->nombre }}</span>
+                        <span class="nombre">{{ $empleado ? $empleado->nombre : $cliente->alias }}</span>
                         <span class="email">{{ $empleado ? $empleado->email : $cliente->email }}</span>
                     </div>
                 </div>
