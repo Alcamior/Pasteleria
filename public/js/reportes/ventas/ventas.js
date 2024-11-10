@@ -31,38 +31,4 @@ $(document).ready(function() {
     });
 });
 
-//Para graficar ventas semanales
-document.addEventListener('DOMContentLoaded', function () {
-
-    Highcharts.chart('graficoVentasSem', {
-        chart: { type: 'line' },
-         title: { text: null },
-         xAxis: { 
-             title: {
-                 text: 'Días'
-             },
-             categories: jsonData.dias
-         },
-         yAxis: { 
-             title: { 
-                 text: 'Ganancias' 
-             } 
-         },
-         series: [
-            { 
-                name: 'Pastelería', 
-                data: jsonData.ventasP,
-                color: '#b88a64'
-            },
-             
-            { 
-                name: 'Cafetería', 
-                data: jsonData.ventasC,
-                color: '#6c6c70'
-            }
-         ]
-     });
- });
- 
-
  

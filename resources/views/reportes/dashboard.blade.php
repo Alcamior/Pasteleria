@@ -1,7 +1,7 @@
 @extends('layaout.stencil')
 
 @section('head')
-    <link rel="stylesheet" href="{{ request()->getHost() === 'localhost' ? asset('css/reportes/reportes.css') : secure_asset('css/reportes/reportes.css') }}">
+    <link rel="stylesheet" href="{{ request()->getHost() === 'localhost' ? asset('css/reportes/dashboard.css') : secure_asset('css/reportes/dashboard.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jockey+One&display=swap" rel="stylesheet">
@@ -28,7 +28,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Ranking de productos</h5>
                             <p class="card-text">Ve tus productos más vendidos durenate la semana o el mes.</p>
-                            <a href="#" class="btn btn-primary">Generar reporte</a>
+                            <a href="{{ route('reportes.productos') }}" class="btn btn-primary">Generar reporte</a>
                         </div>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Empleado del mes</h5>
                             <p class="card-text">Consulta al empleado que realizó más ventas durante el mes.</p>
-                            <a href="#" class="btn btn-primary">Generar reporte</a>
+                            <a href="{{ route('reportes.empleados') }}" class="btn btn-primary">Generar reporte</a>
                         </div>
                     </div>
                 </div>

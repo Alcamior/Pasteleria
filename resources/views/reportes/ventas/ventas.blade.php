@@ -5,7 +5,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jockey+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ request()->getHost() === 'localhost' ? asset('css/reportes/ventas.css') : secure_asset('css/reportes/ventas.css') }}">
+    <link rel="stylesheet" href="{{ request()->getHost() === 'localhost' ? asset('css/reportes/reportes.css') : secure_asset('css/reportes/reportes.css') }}">
 @endsection
 
 @section('title','Reporte de ventas')
@@ -91,7 +91,8 @@
                 <button type="submit" class="btn btn-primary">Generar reporte</button>
             </form>
         </div>
-        
+
+        <button type="button" class="btn btn-primary btn-regresar" onclick="window.location.href='{{ route('reportes.dashboard') }}'">Regresar</button>
         
         <!-- Mostrar Resultados -->
         <section class="resultados">
@@ -186,6 +187,7 @@
                     </div>
                 </section>
 
+                <!-- Gráfica -->
                 <section class="grafica">
                     <script>
                         var jsonData = {!! session('jsonData') !!};
@@ -194,6 +196,7 @@
                     <div id="graficoVentasSem"></div>
                 </section>
 
+                <!-- Datos para el PDF -->
                 <section class="datos-pdf">
                     <form action="{{ route('reportes.ventassemanales.pdf') }}" enctype="multipart/form-data" method="GET">
                         @csrf
@@ -202,13 +205,63 @@
                         <input type="hidden" name="totalPP" value="{{ session('totalPP')[0]->totalPas }}">
                         <input type="hidden" name="totalPC" value="{{ session('totalPC')[0]->totalCaf }}">
                         <input type="hidden" name="total" value="{{ session('total') }}">
-                        
-                        <button type="submit" class="btn btn-primary">Descargar en PDF</button>
+                        <input type="hidden" name="graficoImagenSem" id="graficoImagenSem">
+
+                        <button id="exportarGraficoSem" class="btn btn-primary">Descargar en PDF</button>
                     </form>
                 </section>
             @endif
 
-            
+            @if (session('reporte') == 'formulario3')
+                <h3 class="title">Reporte mensual de ventas</h3>
+                
+                <section class="fecha">
+                    <p>{{ session('nombreMes') }} del {{ session('year') }}</p>
+                </section>
+
+                <section class="text-center ganacias">
+                    <div class="row justify-content-center">
+                        <div class="col-md-4 col-sm-12">
+                            <p>Ganancias pastelería</p>
+                            <h3>${{ session('totalPP')[0]->totalPas }}</h3>
+                        </div>
+
+                        <div class="col-md-4 col-sm-12">
+                            <p>Ganancias cafetería</p>
+                            <h3>${{ session('totalPC')[0]->totalCaf }}</h3>
+                        </div>
+
+                        <div class="col-md-4 col-sm-12">
+                            <p>Ganancias totales</p>
+                            <h3>${{ session('total') }}</h3>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Gráfica -->
+                <section class="grafica">
+                    <script>
+                        var jsonDataMen = {!! session('jsonDataMen') !!};
+                        console.log(jsonDataMen);
+                    </script>
+                    <div id="graficoVentasMen"></div>
+                </section>
+
+                <!-- Datos para el PDF -->
+                <section class="datos-pdf">
+                    <form action="{{ route('reportes.ventasmensuales.pdf') }}" enctype="multipart/form-data" method="GET">
+                        @csrf
+                        <input type="hidden" name="nombreMes" value="{{ session('nombreMes') }}">
+                        <input type="hidden" name="year" value="{{ session('year') }}">
+                        <input type="hidden" name="totalPP" value="{{ session('totalPP')[0]->totalPas }}">
+                        <input type="hidden" name="totalPC" value="{{ session('totalPC')[0]->totalCaf }}">
+                        <input type="hidden" name="total" value="{{ session('total') }}">
+                        <input type="hidden" name="graficoImagenMen" id="graficoImagenMen">
+
+                        <button id="exportarGraficoMen" class="btn btn-primary">Descargar en PDF</button>
+                    </form>
+                </section>
+            @endif
 
         </section>
     
@@ -226,7 +279,9 @@
     <script src="https://code.highcharts.com/modules/offline-exporting.js"></script>    
 
     <!-- Script de ventas -->
-    <script src="{{ request()->getHost() === 'localhost' ? asset('js/reportes/ventas.js') : secure_asset('js/reportes/ventas.js') }}"></script>
+    <script src="{{ request()->getHost() === 'localhost' ? asset('js/reportes/ventas/ventas.js') : secure_asset('js/reportes/ventas/ventas.js') }}"></script>
+    <script src="{{ request()->getHost() === 'localhost' ? asset('js/reportes/ventas/ventasSem.js') : secure_asset('js/reportes/ventas/ventasSem.js') }}"></script>
+    <script src="{{ request()->getHost() === 'localhost' ? asset('js/reportes/ventas/ventasMen.js') : secure_asset('js/reportes/ventas/ventasMen.js') }}"></script>
 
 @endsection
 

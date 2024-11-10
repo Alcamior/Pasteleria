@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -32,13 +33,13 @@ class ReporteVentaController extends Controller
                 ]);
 
                 // Totales
-                $totalPP = DB::select('select sum(totalP) as totalPas from venta 
+                $totalPP = DB::select('select COALESCE(sum(totalP), 0) as totalPas from venta 
                 inner join pedido on venta.idv = pedido.idv
                 inner join producto on pedido.idpro = producto.idpro
                 where producto.tipo = "Pastelería" 
                 and fechaVent = ? and pedido.status="Vendido";', [$fecha]);
 
-                $totalPC = DB::select('select sum(totalP) totalCaf from venta 
+                $totalPC = DB::select('select COALESCE(sum(totalP), 0) totalCaf from venta 
                 inner join pedido on venta.idv = pedido.idv
                 inner join producto on pedido.idpro = producto.idpro
                 where producto.tipo = "Cafetería" 
@@ -72,14 +73,14 @@ class ReporteVentaController extends Controller
                 $fechaFin = Carbon::parse($fechaInicio)->addWeek(1)->endOfDay();
 
                 //Totales
-                $totalPP = DB::select('select sum(totalP) as totalPas from venta 
+                $totalPP = DB::select('select COALESCE(sum(totalP), 0) as totalPas from venta 
                 inner join pedido on venta.idv = pedido.idv
                 inner join producto on pedido.idpro = producto.idpro
                 where producto.tipo = "Pastelería" 
                 and (fechaVent between ? and ?) 
                 and pedido.status = "Vendido";', [$fechaInicio, $fechaFin]);
 
-                $totalPC = DB::select('select sum(totalP) as totalCaf from venta 
+                $totalPC = DB::select('select COALESCE(sum(totalP), 0) as totalCaf from venta 
                 inner join pedido on venta.idv = pedido.idv
                 inner join producto on pedido.idpro = producto.idpro
                 where producto.tipo = "Cafetería" 
@@ -149,6 +150,70 @@ class ReporteVentaController extends Controller
                 break;
 
             case 'formulario3':
+                
+                $mes = (int) $request->input('mes');
+                $year = now()->year;
+
+                // Nombre del mes
+                $nombreMes = ucfirst(Carbon::create()->month($mes)->translatedFormat('F'));
+
+                // Totales
+                $totalPP = DB::select('select COALESCE(sum(totalP), 0) as totalPas from venta 
+                inner join pedido on venta.idv = pedido.idv
+                inner join producto on pedido.idpro = producto.idpro
+                where producto.tipo = "Pastelería" 
+                and (month(fechaVent) = ? and year(fechaVent)=?) 
+                and pedido.status = "Vendido";', [$mes, $year]);
+
+                $totalPC = DB::select('select COALESCE(sum(totalP), 0) as totalCaf from venta 
+                inner join pedido on venta.idv = pedido.idv
+                inner join producto on pedido.idpro = producto.idpro
+                where producto.tipo = "Cafetería" 
+                and (month(fechaVent) = ? and year(fechaVent)=?)  
+                and pedido.status = "Vendido";', [$mes, $year]);
+
+                $total = ($totalPP[0]->totalPas ?? 0) + ($totalPC[0]->totalCaf ?? 0);
+
+                //Información para el gráfico
+                $conVentasP = DB::select('select fechaVent, sum(totalP) as total
+                from venta inner join pedido on venta.idv = pedido.idv
+                inner join producto on pedido.idpro = producto.idpro
+                where producto.tipo = "Pastelería" 
+                and (month(fechaVent) = ? and year(fechaVent)=?) 
+                and pedido.status="Vendido"
+                group by fechaVent;', [$mes, $year]);
+
+                $conVentasC = DB::select('select fechaVent, sum(totalP) as total
+                from venta inner join pedido on venta.idv = pedido.idv
+                inner join producto on pedido.idpro = producto.idpro
+                where producto.tipo = "Cafetería" 
+                and (month(fechaVent) = ? and year(fechaVent)=?) 
+                and pedido.status="Vendido"
+                group by fechaVent;', [$mes, $year]);
+
+                $dias = range(1, 30); 
+                $ventasP = array_fill(0, 30, 0); 
+                $ventasC = array_fill(0, 30, 0); 
+
+                foreach ($conVentasP as $venta) {
+                    $dia = (int) Carbon::parse($venta->fechaVent)->day; 
+                    $ventasP[$dia - 1] = $venta->total; 
+                }
+
+                foreach ($conVentasC as $venta) {
+                    $dia = (int) Carbon::parse($venta->fechaVent)->day; 
+                    $ventasC[$dia - 1] = $venta->total; 
+                }
+
+                $jsonDataMen = json_encode([
+                    'dias' => $dias,
+                    'ventasP' => $ventasP,
+                    'ventasC' => $ventasC,
+                ]);
+
+                //Devolución de datos
+                return redirect()->route('reportes.ventas')->with(compact('nombreMes', 'year', 'totalPP', 'totalPC', 'total', 'jsonDataMen', 'reporte'));
+
                 break;
         }        
     }
@@ -178,16 +243,53 @@ class ReporteVentaController extends Controller
         $totalPP = $request->input('totalPP');
         $totalPC = $request->input('totalPC');
         $total = $request->input('total');
+        $graficoImagenSem = $request->input('graficoImagenSem');
 
-        $data = [
+        // Cargar la librería DOMPDF
+        $pdf = App::make('dompdf.wrapper');
+
+        // Construir el contenido HTML del PDF
+        $html = view('reportes.ventas.ventas_semanales_pdf', [
             'fechaInicioN' => $fechaInicioN,
             'fechaFinN' => $fechaFinN,
             'totalPP' => $totalPP,
             'totalPC' => $totalPC,
-            'total' => $total
-        ];
+            'total' => $total,
+            'graficoImagenSem' => $graficoImagenSem
+        ])->render();
 
-        $pdf = Pdf::loadView('reportes.ventas.ventas_semanales_pdf', $data);
+        // Cargar el contenido HTML al PDF
+        $pdf->loadHTML($html);
+
+        // Descargar el PDF
         return $pdf->download('reporte_ventas_semanales.pdf');
+    }
+
+    public function generarMensualPDF(Request $request){
+        $nombreMes = $request->input('nombreMes');
+        $year = $request->input('year');
+        $totalPP = $request->input('totalPP');
+        $totalPC = $request->input('totalPC');
+        $total = $request->input('total');
+        $graficoImagenMen = $request->input('graficoImagenMen');
+
+        // Cargar la librería DOMPDF
+        $pdf = App::make('dompdf.wrapper');
+
+        // Construir el contenido HTML del PDF
+        $html = view('reportes.ventas.ventas_mensuales_pdf', [
+            'nombreMes' => $nombreMes,
+            'year' => $year,
+            'totalPP' => $totalPP,
+            'totalPC' => $totalPC,
+            'total' => $total,
+            'graficoImagenMen' => $graficoImagenMen
+        ])->render();
+
+        // Cargar el contenido HTML al PDF
+        $pdf->loadHTML($html);
+
+        // Descargar el PDF
+        return $pdf->download('reporte_ventas_mensuales.pdf');
     }
 }
