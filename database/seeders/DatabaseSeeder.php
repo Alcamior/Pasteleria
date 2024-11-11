@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             PromocionSeeder::class,
             ClienteSeeder::class,
             VentaSeeder::class,
-            PedidoSeeder::class
+            PedidoSeeder::class,
+            HorarioSeeder::class
         ]);
     }
 }
