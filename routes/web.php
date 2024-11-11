@@ -3,6 +3,7 @@
 use App\Models\Cliente;
 use App\Http\Controllers\AlmacenajeController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ClientePedidoController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\ExhibicionController;
 use App\Http\Controllers\HorarioController;
@@ -272,7 +273,25 @@ Route::get('reportes', [ReporteVentaController::class,'show'])
 
 /*--------------------------------------------------------------> Rutas para clientes */
 
+//Editar perfil
 Route::get('cliente/edit', [ClienteController::class, 'editSelf'])
     ->middleware('auth:cliente')
     ->name('cliente.edit.self');
 
+
+//Generar un pedido
+Route::get('pedido/cliente/create',[ClientePedidoController::class,'create'])
+    ->middleware('auth:cliente')
+    ->name('pedido.cliente.create');
+Route::post('pedido',[ClientePedidoController::class,'store'])->name('pedido.cliente.store');
+
+Route::get('consultar-venta/cliente',[ClientePedidoController::class,'consultarVenta'])
+    ->middleware('auth:cliente')
+    ->name('consultar-venta.cliente');
+
+Route::get('consultar-venta/{id}',[ClientePedidoController::class,'consultarPedido'])
+    ->middleware('auth:cliente')
+    ->name('consultar-pedido.cliente');
+
+Route::patch('pedido/cliente/{id}',[ClientePedidoController::class,'update'])
+    ->name('pedido.cliente');

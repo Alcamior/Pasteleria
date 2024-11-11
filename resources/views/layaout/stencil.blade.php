@@ -162,8 +162,8 @@
                             <span>Pedidos</span> 
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{route('consultar-horario')}}">Consultar</a></li>
-                            <li><a class="dropdown-item" href="{{route('horario.create')}}">Agregar nuevo</a></li>
+                            <li><a class="dropdown-item" href="{{route('consultar-venta.cliente')}}">Consultar</a></li>
+                            <li><a class="dropdown-item" href="{{route('pedido.cliente.create')}}">Agregar nuevo</a></li>
                         </ul>
                     </div>
                 </li>

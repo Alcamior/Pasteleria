@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date("fechaVent");
             $table->date("fecEntrega")->nullable();
             $table->float("total");
-            $table->unsignedBigInteger("ide");
+            $table->unsignedBigInteger("ide")->nullable();
             $table->unsignedBigInteger("idcli")->nullable();
             $table->foreign("ide")->references("ide")->on("empleado")->onDelete('cascade');
             $table->foreign("idcli")->references("idcli")->on("cliente")->onDelete('cascade');

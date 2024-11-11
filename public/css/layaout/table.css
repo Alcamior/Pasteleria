@@ -52,6 +52,19 @@
     background: var(--color-boton-actualizar-hover);
 }
 
+.buttons #detalles{
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    background: var(--color-boton-actualizar);
+}
+
+.buttons #detalles:hover{
+    transition: 0.3s;
+    background: var(--color-boton-actualizar-hover);
+}
+
 
 /* -----------> Responsive */
 

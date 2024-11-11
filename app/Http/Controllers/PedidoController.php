@@ -110,7 +110,7 @@ class PedidoController extends Controller
             $venta -> total -= $pedido -> totalP;
             $pedido -> delete();
             $venta->save();
-            return response()->json(['message' => 'Promoción eliminado con éxito']);
+            return response()->json(['message' => 'Pedido eliminado con éxito']);
         }else{
             return response()->json(['message' => 'Registro no encontrado'], 404);
         }

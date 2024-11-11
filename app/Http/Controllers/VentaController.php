@@ -29,4 +29,14 @@ class VentaController extends Controller
         $venta -> save();
         return redirect()->route('consultar-venta');
     }
+
+    public function destroy($idv){
+        $venta = Venta::find($idv);
+        if($venta){
+            $venta->delete();
+            return response()->json(['message' => 'La venta se ha eliminado con éxito']);
+        }else{
+            return response()->json(['message' => 'Registro no encontrado'], 404);
+        }
+    }
 }
