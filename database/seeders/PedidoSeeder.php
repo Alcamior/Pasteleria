@@ -21,7 +21,7 @@ class PedidoSeeder extends Seeder
         $pedido->subtotal = 300.00;
         $pedido->descuento = 0.00;
         $pedido->totalP = 300.00;
-        $pedido->status = "Vendido";
+        $pedido->status = "Aprobado";
         $pedido->idpro = 1;
         $pedido->idv = 1;
         $pedido->idprom = null;
@@ -34,7 +34,7 @@ class PedidoSeeder extends Seeder
         $pedido->subtotal = 120.00;
         $pedido->descuento = 0.00;
         $pedido->totalP = 120.00;
-        $pedido->status = "Vendido";
+        $pedido->status = "Aprobado";
         $pedido->idpro = 2;
         $pedido->idv = 1;
         $pedido->idprom = null;
@@ -47,7 +47,7 @@ class PedidoSeeder extends Seeder
         $pedido->subtotal = 75.00;
         $pedido->descuento = 0.00;
         $pedido->totalP = 75.00;
-        $pedido->status = "Vendido";
+        $pedido->status = "Aprobado";
         $pedido->idpro = 3;
         $pedido->idv = 2;
         $pedido->idprom = null;
@@ -60,7 +60,7 @@ class PedidoSeeder extends Seeder
         $pedido->subtotal = 80.00;
         $pedido->descuento = 0.00;
         $pedido->totalP = 80.00;
-        $pedido->status = "Vendido";
+        $pedido->status = "Aprobado";
         $pedido->idpro = 4;
         $pedido->idv = 2;
         $pedido->idprom = null;
@@ -73,7 +73,7 @@ class PedidoSeeder extends Seeder
         $pedido->subtotal = 150.00;
         $pedido->descuento = 0.00;
         $pedido->totalP = 150.00;
-        $pedido->status = "Vendido";
+        $pedido->status = "Aprobado";
         $pedido->idpro = 1;
         $pedido->idv = 3;
         $pedido->idprom = null;

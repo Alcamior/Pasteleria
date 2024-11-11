@@ -108,28 +108,34 @@
 @section('footer')
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-xl-4 ">
-                <a href="">
-                    <i class="bi bi-whatsapp"></i> 
-                    <p>WhatsApp</p>
+            <div class="col-md-6 col-xl-4 d-flex flex-column align-items-center justify-content-center">
+                <a href="https://wa.me/17775311896" target="_blank">
+                    <p>
+                        <i class="bi bi-whatsapp"></i>
+                        WhatsApp
+                    </p>
                 </a>
-                <a href="">
-                    <i class="bi bi-facebook"></i>
-                    <p>Facebook</p>
+                <br>
+                <a href="https://www.facebook.com/profile.php?id=100073295176137&locale=es_LA" target="_blank">
+                    <p>
+                        <i class="bi bi-facebook"></i>
+                        Facebook
+                    </p>
                 </a>
-                <a href="">
-                    <i class="bi bi-instagram"></i>
-                    <p>Instragram</p>
-                </a> 
-                <a href="">
-                    <i class="bi bi-instagram"></i>
-                    <p>Instragram</p>
-                </a>     
+                <br>
+                <a href="https://www.instagram.com/p.divinas_tentaciones/" target="_blank">
+                    <p>
+                        <i class="bi bi-instagram"></i>
+                        Instragram
+                    </p>
+                </a>   
             </div>
-            <div class="col-md-6 col-xl-4 ">
-                <a href="">
-                    <i class="bi bi-geo-alt-fill"></i>
-                    <p></p>
+            <div class="col-md-6 col-xl-4 d-flex flex-column align-items-center justify-content-center">
+                <a href="https://maps.app.goo.gl/CSM4caJHEHYe8p7N6" target="_blank">
+                    <p>
+                        <i class="bi bi-geo-alt-fill"></i>
+                        C. Tepozteco 18, Vicente Guerrero, 62570 Jiutepec, Mor.
+                    </p>
                 </a>
             </div>
         </div>

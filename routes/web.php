@@ -191,12 +191,13 @@ Route::get('consultar-empleado', [EmpleadoController::class, 'consultarEmpleado'
 Route::get('pedido/create',[PedidoController::class,'create'])
     ->middleware(['auth:empleado','can:crear pedido'])
     ->name('pedido.create');
+    
 Route::post('pedido',[PedidoController::class,'store'])->name('pedido.store');
 
 
 Route::get('pedido/{id}/edit',[PedidoController::class,'edit'])
     ->middleware(['auth:empleado','can:editar pedido'])
-    ->name('empleado.edit');
+    ->name('pedido.edit');
 Route::put('pedido/{id}',[PedidoController::class,'update'])->name('pedido.update');
 
 
@@ -303,7 +304,7 @@ Route::get('cliente/edit', [ClienteController::class, 'editSelf'])
 Route::get('pedido/cliente/create',[ClientePedidoController::class,'create'])
     ->middleware('auth:cliente')
     ->name('pedido.cliente.create');
-Route::post('pedido',[ClientePedidoController::class,'store'])->name('pedido.cliente.store');
+Route::post('pedido/cliente',[ClientePedidoController::class,'store'])->name('pedido.cliente.store');
 
 Route::get('consultar-venta/cliente',[ClientePedidoController::class,'consultarVenta'])
     ->middleware('auth:cliente')

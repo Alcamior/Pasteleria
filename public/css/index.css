@@ -84,15 +84,31 @@ section article .container .pasteles_predisenados div .text-left button:hover{
 /*---------------->Footer*/
 
 footer{
-    width: 100%;
+    max-width: 100%;
     background-color: #ffeaea;
+    position: relative;
 }
 
+footer .container{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    width: 90%;
+    max-width: 100%;
+/*     padding-left:20px;
+    padding-right: 20px; */
+}
 
 footer .container .row{
     width: 100%;
+    display:flex;
+    flex-wrap: wrap;
 }
 
+
+footer .container .row a{
+    text-decoration: none;
+    color: black;
+}
 /*---------------->Responsive*/
 
 @media (max-width: 768px) {

@@ -139,7 +139,7 @@
         <p>Cliente: <span id="clienteN"></span></p>
         <p>Fecha de entrega: <span id="fechaentrega">0000-00-00</span></p>
 
-        <form action="{{ route('pedido.store') }}" method="post" id="formVenta">
+        <form action="{{route('pedido.store')}}" method="post" id="formVenta">
             @csrf
             <input type="hidden" id="fechaP" name="fechaP">
             <input type="hidden" id="totalHidden" name="total">
@@ -152,6 +152,11 @@
 
 
 <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let today = new Date().toISOString().split('T')[0];
+        document.getElementById("fecha").setAttribute("min", today);
+    });
+
     document.addEventListener("DOMContentLoaded", function() {
         $('.select2').select2({
             placeholder: "Selecciona una opción",

@@ -35,8 +35,8 @@ class ReporteProductoController extends Controller
                 inner join pedido on venta.idv = pedido.idv
                 inner join producto on pedido.idpro = producto.idpro
                 where (fechaVent between ? and ?) and
-                pedido.status = "Vendido" 
-                group by nombre order by totalProd desc limit 3;', [$fechaInicio, $fechaFin]);
+                pedido.status = "Aprobado" 
+                group by nombre order by totalProd desc limit 5;', [$fechaInicio, $fechaFin]);
 
                 $productos = [];
                 $cantidad = [];
@@ -72,8 +72,8 @@ class ReporteProductoController extends Controller
                 inner join pedido on venta.idv = pedido.idv
                 inner join producto on pedido.idpro = producto.idpro
                 where (month(fechaVent) = ? and year(fechaVent) = ?) and
-                pedido.status = "Vendido" 
-                group by nombre order by totalProd desc limit 3;', [$mes, $year]);
+                pedido.status = "Aprobado" 
+                group by nombre order by totalProd desc limit 5', [$mes, $year]);
 
                 $productos = [];
                 $cantidad = [];

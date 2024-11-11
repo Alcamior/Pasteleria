@@ -76,8 +76,6 @@ class PedidoController extends Controller
         $producto = Producto::find($request->producto);
         $precio = $producto -> precio;
 
-        $promocion = Promocion::find($request->promocion);
-        $descuento = $promocion->descuento;
 
         $venta = Venta::where('idv', $pedido->idv)->first();
         $venta -> total -= $pedido -> totalP;
@@ -85,11 +83,20 @@ class PedidoController extends Controller
         $pedido -> descripcion = $request -> descripcion;
         $pedido -> cantidad = $request -> cantidad;
         $pedido -> subtotal = ($precio*$pedido->cantidad);
-        $pedido -> descuento = ($descuento*$pedido->subtotal);
-        $pedido -> totalP = $pedido -> subtotal - ($pedido -> subtotal)*$descuento;
+
         $pedido -> status = $request -> status;
         $pedido -> idpro = $request -> producto;
         $pedido -> idprom = $request -> promocion;
+
+        if($request->promocion!=null){
+            $promocion = Promocion::find($request->promocion);
+            $descuento = $promocion->descuento;
+            $pedido -> descuento = ($descuento*$pedido->subtotal);
+            $pedido -> totalP = $pedido -> subtotal - ($pedido -> subtotal)*$descuento;
+        }else{
+            $pedido -> descuento = 0;
+            $pedido -> totalP = $pedido -> subtotal;
+        }
 
         $venta -> total = $pedido -> totalP;
         

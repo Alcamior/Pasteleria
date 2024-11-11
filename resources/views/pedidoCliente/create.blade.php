@@ -115,6 +115,10 @@
 
 
 <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let today = new Date().toISOString().split('T')[0];
+        document.getElementById("fecha").setAttribute("min", today);
+    });
     document.addEventListener("DOMContentLoaded", function() {
         $('.select2').select2({
             placeholder: "Selecciona una opción",
