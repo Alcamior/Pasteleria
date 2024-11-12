@@ -50,7 +50,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Próximos a caducar</h5>
                             <p class="card-text">Ve los productos que están próximos a caducar.</p>
-                            <a href="#" class="btn btn-primary">Generar reporte</a>
+                            <a href="{{ route('reportes.caducados') }}" class="btn btn-primary" class="btn btn-primary">Generar reporte</a>
                         </div>
                     </div>
                 </div>

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Almacenaje;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -21,7 +22,8 @@ class DatabaseSeeder extends Seeder
             ClienteSeeder::class,
             VentaSeeder::class,
             PedidoSeeder::class,
-            HorarioSeeder::class
+            HorarioSeeder::class,
+            AlmacenajeSeeder::class
         ]);
     }
 }
