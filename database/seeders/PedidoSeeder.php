@@ -78,5 +78,44 @@ class PedidoSeeder extends Seeder
         $pedido->idv = 3;
         $pedido->idprom = null;
         $pedido->save();
+
+        $pedido = new Pedido();
+        $pedido->descripcion = "Tarta";
+        $pedido->cantidad = 1;
+        $pedido->fePed = "2024-10-10";
+        $pedido->subtotal = 150.00;
+        $pedido->descuento = 0.00;
+        $pedido->totalP = 150.00;
+        $pedido->status = "Aprobado";
+        $pedido->idpro = 1;
+        $pedido->idv = 4;
+        $pedido->idprom = null;
+        $pedido->save();
+
+        $pedido = new Pedido();
+        $pedido->descripcion = "Baguette especial";
+        $pedido->cantidad = 2;
+        $pedido->fePed = "2024-10-08";
+        $pedido->subtotal = 80.00;
+        $pedido->descuento = 0.00;
+        $pedido->totalP = 80.00;
+        $pedido->status = "Aprobado";
+        $pedido->idpro = 4;
+        $pedido->idv = 4;
+        $pedido->idprom = null;
+        $pedido->save();
+
+        $pedido = new Pedido();
+        $pedido->descripcion = "Caja de cupcakes";
+        $pedido->cantidad = 1;
+        $pedido->fePed = "2024-10-01";
+        $pedido->subtotal = 120.00;
+        $pedido->descuento = 0.00;
+        $pedido->totalP = 120.00;
+        $pedido->status = "Aprobado";
+        $pedido->idpro = 2;
+        $pedido->idv = 5;
+        $pedido->idprom = null;
+        $pedido->save();
     }
 }

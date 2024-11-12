@@ -108,4 +108,28 @@ $(document).ready(function () {
             });
         }
     });
+
+
+    // Maneja el evento de clic en el botón de "Más detalles"
+    document.querySelector('#detalles').addEventListener('click', function () {
+        const selectedRow = myTable.row('.selected');
+
+        if (selectedRow.length) {
+            const rowData = selectedRow.data(); // Obtener datos de la fila seleccionada
+            const ventaId = rowData[0]; // Suponiendo que el ID está en la primera columna
+            window.location.href="consultar-venta/pedido/"+ventaId;
+        } else {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 1500,
+                timerProgressBar: true
+              });
+              Toast.fire({
+                icon: "error",
+                title: "Selecciona una fila"
+            });
+        }
+    });
 });

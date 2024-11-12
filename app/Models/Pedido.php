@@ -11,4 +11,14 @@ class Pedido extends Model
     public $timestamps = false;
     protected $table="pedido";
     protected $primaryKey = 'idped';
+
+    public function promocion()
+    {
+        return $this->belongsTo(Promocion::class,'idprom','idprom');
+    }
+
+    public function producto()
+    {
+        return $this->belongsTo(Producto::class,'idpro','idpro');
+    }
 }

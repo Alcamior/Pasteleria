@@ -7,6 +7,8 @@ use App\Http\Requests\StoreEmpleado;
 use App\Models\Empleado;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use App\Mail\Credenciales;
+use Illuminate\Support\Facades\Mail;
 
 class EmpleadoController extends Controller
 {
@@ -33,17 +35,13 @@ class EmpleadoController extends Controller
         $empleado -> email = $request -> email;
         $empleado -> contrasena = Hash::make($request->contrasena);
 
+        //Enviar correo con la contraseña
+        $contrasena = $request->contrasena;
+        Mail::to($empleado->email)->send(new Credenciales($empleado -> nombre , $contrasena));
+
         $empleado -> save();
 
-        $empleado->givePermissionTo(
-            'crud pedido',
-            'crud almacenaje',
-            'crear cliente',
-            'consultar cliente',
-            'consultar horario',
-            'consultar producto',
-            'consultar promocion',
-        );
+        $empleado->assignRole('empleado');
         return redirect(route('principal'));
     }
 

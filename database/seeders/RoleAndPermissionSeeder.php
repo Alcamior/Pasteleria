@@ -140,6 +140,11 @@ class RoleAndPermissionSeeder extends Seeder
             'eliminar producto',
             'consultar producto',
             'editar producto',
+
+            'crear almacenaje',
+            'eliminar almacenaje',
+            'consultar almacenaje',
+            'editar almacenaje',
         
             'crear horario',
             'eliminar horario',

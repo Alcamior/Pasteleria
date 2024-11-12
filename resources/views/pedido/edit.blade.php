@@ -34,7 +34,7 @@
         <div class="row formulario">
             <div class="col-sm-1 col-md-2"></div>
 
-            <form action="{{ route('pedido.update',$pedido->idped) }}" method="post" id="formVenta">
+            <form action="{{route('pedido.update',$pedido->idped) }}" method="post" id="formVenta">
                 @csrf
                 @method('put')
                 <div class="col-sm-10 col-md-8">
@@ -63,8 +63,11 @@
 
                     <label for="status">Estado:</label><br>
                     <select id="status" name="status">
-                        <option value="aprobado" {{old('status', $pedido->status) == 'Aprobado' ? 'selected' : ''}}>Aprobado</option>
-                        <option value="espera" {{old('status', $pedido->status) == 'En espera' ? 'selected' : ''}}>En espera</option>
+                        <option value="En espera" {{old('status', $pedido->status) == 'En espera' ? 'selected' : ''}}>En espera</option>
+                        <option value="Aprobado" {{old('status', $pedido->status) == 'Aprobado' ? 'selected' : ''}}>Aprobado</option>
+                        <option value="Preparando" {{old('status', $pedido->status) == 'Preparando' ? 'selected' : ''}}>Preparando</option>
+                        <option value="Finalizado" {{old('status', $pedido->status) == 'Finalizado' ? 'selected' : ''}}>Finalizado</option>
+                        <option value="Entregado" {{old('status', $pedido->status) == 'Entregado' ? 'selected' : ''}}>Entregado</option>
                     </select>
                     <br>
                     <br>
