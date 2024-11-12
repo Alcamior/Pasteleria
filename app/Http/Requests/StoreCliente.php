@@ -20,9 +20,9 @@ class StoreCliente extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+    public function rules()
     {
-        return [
+        $rules = [
             'nombre' => 'required|string|max:255',
             'ap' => 'required|string|max:255',
             'am' => 'nullable|string|max:255',
@@ -33,8 +33,18 @@ class StoreCliente extends FormRequest
                 Rule::unique(table:'cliente', column:'telefono')->ignore($this->route(param: 'id'),'idcli')],
             'email' => ['required', 'string', 'max:255', 'email',
                 Rule::unique(table:'cliente', column:'email')->ignore($this->route(param: 'id'),'idcli')],
-            'contrasena' => 'required|string|max:255|min:8'
         ];
+
+        // Evaluar si es una creación o una edición
+        if ($this->routeIs('cliente.store')) {
+            // Validaciones para la creación (contraseña es obligatoria)
+            $rules['contrasena'] = 'required|string|min:8';
+        } else {
+            // Validaciones para la edición (contraseña opcional)
+            $rules['contrasena'] = 'nullable|string|min:8';
+        }
+
+        return $rules;
     }
 
     public function messages()

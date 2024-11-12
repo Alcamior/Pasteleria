@@ -68,7 +68,13 @@ class EmpleadoController extends Controller
         $empleado -> direccion = $request -> direccion;
         $empleado -> telefono = $request -> telefono;
         $empleado -> email = $request -> email;
-        $empleado -> contrasena = Hash::make($request->contrasena);
+        
+        if (!empty($request->contrasena)) {
+            $empleado->contrasena = Hash::make($request->contrasena);
+            $contrasena = $request->contrasena;
+            Mail::to($empleado->email)->send(new Credenciales($empleado -> nombre , $contrasena));
+        }
+
         $empleado -> save();
 
         return redirect()->route('principal');
