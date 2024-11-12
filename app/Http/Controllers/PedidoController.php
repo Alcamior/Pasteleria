@@ -71,6 +71,7 @@ class PedidoController extends Controller
     }
 
     public function update(Request $request,$idped){
+        
         $pedido = Pedido::find($idped);
 
         $producto = Producto::find($request->producto);
@@ -104,7 +105,7 @@ class PedidoController extends Controller
         $venta -> save();
 
         $pedidos= Pedido::all();
-        return view('pedido/consultar-pedido',compact('pedidos'));
+        return redirect()->route('consultar-pedido',compact('pedidos'));
     }
 
 

@@ -69,8 +69,8 @@ class ClientePedidoController extends Controller
         try {
             $pedido = Pedido::findOrFail($id);
             $venta = Venta::findOrFail($pedido->idv);
-            if($pedido->status == "Cancelado") {
-                return response()->json(['error' => 'Este pedido ya ha sido cancelado y no se puede modificar.'], 400);
+            if($pedido->status != "En espera") {
+                return response()->json(['error' => 'Este pedido no puede ser cancelado.'], 400);
             }
             
             $pedido->status = $request->input('estado');
