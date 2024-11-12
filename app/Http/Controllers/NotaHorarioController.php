@@ -8,6 +8,7 @@ use App\Models\Empleado;
 use App\Models\Horario;
 use App\Models\NotaHorario;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class NotaHorarioController extends Controller
 {
@@ -83,5 +84,22 @@ class NotaHorarioController extends Controller
         }else{
             return response()->json(['message' => 'Registro no encontrado'], 404);
         }
+    }
+
+    public function asignEmpleadoShow(){
+        // Obtén el 'ide' del empleado autenticado
+        $ide = Auth::guard('empleado')->user()->ide;
+
+        //dd($ide);
+
+        $horarios = DB::select('select idNotaHo, concat(nombre," ",ap, " ", am) as nombreComp, 
+        dia, horaentrada, horasalida from empleado 
+        inner join nota_horario on empleado.ide = nota_horario.ide
+        inner join horario on nota_horario.idh = horario.idh
+        where nota_horario.ide = ?;', [$ide]);
+
+        //dd($horarios);
+
+        return view('asign.asignShowEmpleado',compact('horarios'));
     }
 }

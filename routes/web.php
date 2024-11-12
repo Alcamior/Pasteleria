@@ -127,6 +127,10 @@ Route::get('consultar-asign', [NotaHorarioController::class, 'asignShow'])
     ->middleware(['auth:empleado','can:consultar horario'])
     ->name('horario.asign.show');
 
+Route::get('consultar-asign-empleado',[NotaHorarioController::class, 'asignEmpleadoShow'])
+    ->middleware(['auth:empleado','can:consultar horario'])
+    ->name('horario.asign.empleado.show');
+
 
 //Rutas para promocion
 Route::get('promocion/create',[PromocionController::class,'create'])
