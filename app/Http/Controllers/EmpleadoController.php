@@ -35,15 +35,7 @@ class EmpleadoController extends Controller
 
         $empleado -> save();
 
-        $empleado->givePermissionTo(
-            'crud pedido',
-            'crud almacenaje',
-            'crear cliente',
-            'consultar cliente',
-            'consultar horario',
-            'consultar producto',
-            'consultar promocion',
-        );
+        $empleado->assignRole('empleado');
         return redirect(route('principal'));
     }
 

@@ -37,9 +37,10 @@
                 </tbody>
             </table>
         </div>
-        <div class="d-flex buttons justify-content-between align-items-center">
+        <div class="d-flex buttons justify-content-between align-items-center ">
             <p><button id="eliminarDato">Eliminar fila seleccionada</button></p>
             <p><button id="actualizarDato">Actualizar fila seleccionada</button></p>
+            <p><button id="detalles">Ver detalles</button></p>
         </div>
     </div>
 

@@ -228,6 +228,11 @@ Route::delete('venta/{id}', [VentaController::class, 'destroy'])
     ->name('venta.destroy');   
 
 
+Route::get('consultar-venta/pedido/{id}',[VentaController::class,'consultarDetalle'])
+    ->middleware(['auth:empleado','can:consultar venta'])
+    ->name('consultar-venta.pedido');
+
+
 //Páginas para la validación de los datos insertados
 Route::post('validar-registro',[LoginController::class,'validarRegistro'])->name('validar-registro');
 

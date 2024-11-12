@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Venta;
 use App\Models\Empleado;
 use App\Models\Cliente;
+use App\Models\Pedido;
 
 class VentaController extends Controller
 {
@@ -39,4 +40,10 @@ class VentaController extends Controller
             return response()->json(['message' => 'Registro no encontrado'], 404);
         }
     }
+
+    public function consultarDetalle($idv){
+        $pedidos = Pedido::where('idv',$idv)->get();
+        return view('pedido/consultar-pedido',compact('pedidos'));
+    }
+
 }
