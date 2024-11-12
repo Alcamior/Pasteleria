@@ -216,7 +216,6 @@ Route::get('consultar-venta',[VentaController::class,'consultarVenta'])
     ->middleware(['auth:empleado','can:consultar venta'])
     ->name('consultar-venta');
 
-
 Route::get('venta/{id}/edit',[VentaController::class,'edit'])
     ->middleware(['auth:empleado','can:editar venta'])
     ->name('venta.edit');
