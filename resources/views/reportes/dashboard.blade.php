@@ -60,7 +60,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Pedidos pendientes</h5>
                             <p class="card-text">Consulta los pedidos de pasteles que están próximos a entregar.</p>
-                            <a href="#" class="btn btn-primary">Generar reporte</a>
+                            <a href="{{ route('reportes.pedidos') }}" class="btn btn-primary">Generar reporte</a>
                         </div>
                     </div>
                 </div>

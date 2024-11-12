@@ -39,7 +39,7 @@
 </style>
 
 
-    <h3 class="title">Reporte de productos próximos a caducar</h3>
+    <h3 class="title">Reporte de pedidos próximos a entregar</h3>
 
     <section class="fecha">
         <p>{{ $hoyN }}</p>
@@ -51,22 +51,30 @@
                 <tr>
                     <th>ID</th>
                     <th>Producto</th>
-                    <th>Categoría</th>
-                    <th>Fecha de ingreso</th>
-                    <th>Fecha de caducidad</th>
-                    <th>Días que faltan para que caduque</th>
+                    <th>Descripción</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
+                    <th>Descuento</th>
+                    <th>Total</th>
+                    <th>Fecha de realización de pedido</th>
+                    <th>Fecha de entrega</th>
+                    <th>Días para entregar</th>
                 </tr>
             </thead>
 
             <tbody>
-                @foreach ($caducados as $caducado)
+                @foreach ($pedidos as $pedido)
                     <tr>
-                        <td>{{ $caducado['idalm'] }}</td>
-                        <td>{{ $caducado['nombre'] }}</td>
-                        <td>{{ $caducado['categoria'] }}</td>
-                        <td>{{ $caducado['fechaIng'] }}</td>
-                        <td>{{ $caducado['fechaCad'] }}</td>
-                        <td>{{ $caducado['dias'] }}</td>
+                        <td>{{ $pedido['idped'] }}</td>
+                        <td>{{ $pedido['nombre'] }}</td>
+                        <td>{{ $pedido['descripcion'] }}</td>
+                        <td>{{ $pedido['cantidad'] }}</td>
+                        <td>{{ $pedido['subtotal'] }}</td>
+                        <td>{{ $pedido['descuento'] }}</td>
+                        <td>{{ $pedido['totalP'] }}</td>
+                        <td>{{ $pedido['fePed'] }}</td>
+                        <td>{{ $pedido['fecEntrega'] }}</td>
+                        <td>{{ $pedido['DiasFaltantes'] }}</td>
                     </tr>
                 @endforeach
             </tbody>

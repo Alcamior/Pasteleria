@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Venta;
+use Carbon\Carbon;
+
 
 class VentaSeeder extends Seeder
 {
@@ -39,7 +41,7 @@ class VentaSeeder extends Seeder
 
         $venta = new Venta();
         $venta->fechaVent = "2024-10-15";
-        $venta->fecEntrega = "2024-10-16";
+        $venta->fecEntrega = Carbon::now()->format('Y-m-d');
         $venta->total = 450.00;
         $venta->ide = 2;
         $venta->idcli = 1;
@@ -47,7 +49,7 @@ class VentaSeeder extends Seeder
 
         $venta = new Venta();
         $venta->fechaVent = "2024-10-20";
-        $venta->fecEntrega = "2024-10-21";
+        $venta->fecEntrega = Carbon::now()->addDays(3)->format('Y-m-d');
         $venta->total = 600.00;
         $venta->ide = 2;
         $venta->idcli = 1;
