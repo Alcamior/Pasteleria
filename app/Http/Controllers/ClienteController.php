@@ -34,6 +34,7 @@ class ClienteController extends Controller
         $cliente -> telefono = $request -> telefono;
         $cliente -> email = $request -> email;
         $cliente -> contrasena = Hash::make($request->contrasena);
+        $cliente -> profile_image = $request -> profile_image;
         
         //Enviar correo con la contraseña
         $contrasena = $request->contrasena;
@@ -66,6 +67,7 @@ class ClienteController extends Controller
         $cliente -> telefono = $request -> telefono;
         $cliente -> email = $request -> email;
         $cliente -> contrasena = Hash::make($request->contrasena);
+        $cliente -> profile_image = $request -> profile_image;
         $cliente -> save();
 
         return redirect()->route('principal');
