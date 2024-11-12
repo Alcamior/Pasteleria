@@ -8,6 +8,8 @@ use App\Models\Cliente;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\Credenciales;
+use Illuminate\Support\Facades\Mail;
 
 class ClienteController extends Controller
 {
@@ -32,7 +34,11 @@ class ClienteController extends Controller
         $cliente -> telefono = $request -> telefono;
         $cliente -> email = $request -> email;
         $cliente -> contrasena = Hash::make($request->contrasena);
-
+        
+        //Enviar correo con la contraseña
+        $contrasena = $request->contrasena;
+        Mail::to($cliente->email)->send(new Credenciales($cliente -> nombre , $contrasena));
+        
         $cliente -> save();
         return redirect(route('principal'));
     }

@@ -15,7 +15,9 @@ use App\Http\Controllers\PasteleriaController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\PromocionController;
+use App\Http\Controllers\ReporteCaducadoController;
 use App\Http\Controllers\ReporteEmpleadoController;
+use App\Http\Controllers\ReportePedidoController;
 use App\Http\Controllers\ReporteProductoController;
 use App\Http\Controllers\VentaController;
 use Laravel\Socialite\Facades\Socialite;
@@ -295,6 +297,24 @@ Route::get('reportes', [ReporteVentaController::class,'show'])
     Route::get('reportes/empleados/mensuales/pdf', [ReporteEmpleadoController::class, 'generarMensualPDF'])
     ->middleware(['auth:empleado', 'can:reporte'])
     ->name('reportes.empleadosmensuales.pdf');
+
+    //Rutas para reporte de productos del almacenaje próximos a caducar
+    Route::get('reportes/caducados', [ReporteCaducadoController::class,'showCaducados'])
+        ->middleware(['auth:empleado','can:reporte'])
+        ->name('reportes.caducados');
+
+    Route::get('reportes/caducados/pdf', [ReporteCaducadoController::class, 'generarCaducadosPDF'])
+        ->middleware(['auth:empleado', 'can:reporte'])
+        ->name('reportes.caducados.pdf');
+
+    //Rutas para reporte de pedidos próximos a entregar
+    Route::get('reportes/pedidos', [ReportePedidoController::class,'showPedidos'])
+        ->middleware(['auth:empleado','can:reporte'])
+        ->name('reportes.pedidos');
+
+    Route::get('reportes/pedidos/pdf', [ReportePedidoController::class, 'generarPedidosPDF'])
+        ->middleware(['auth:empleado', 'can:reporte'])
+        ->name('reportes.pedidos.pdf');
 
 
 /*--------------------------------------------------------------> Rutas para clientes */
