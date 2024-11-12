@@ -19,6 +19,7 @@
         <ion-icon name="close-outline"></ion-icon>
     </div>
 
+    {{-- Verificar si es un empleado o cliente --}}
     @php
         $empleado = Auth::guard('empleado')->user();
         $cliente = Auth::guard('cliente')->user();
@@ -43,6 +44,7 @@
                     </a>
                 </div>
                 @if ($empleado)
+                @role('administrador')
                 <li>
                     <div class="dropdown">
                         <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -145,6 +147,7 @@
                         </a>
                     </div>
                 </li>
+                @endrole
                 @endif
                 @if($cliente)
                 <div class="contenedor">
