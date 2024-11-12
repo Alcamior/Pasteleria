@@ -23,9 +23,9 @@
                         <th>Descuento</th>
                         <th>Total</th>
                         <th>Estado</th>
-                        <th>ID producto</th>
+                        <th>Producto</th>
                         <th>ID venta</th>
-                        <th>ID promoción</th>
+                        <th>Promoción</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,9 +39,9 @@
                         <td>{{$pedido->descuento}}</td>
                         <td>{{$pedido->totalP}}</td>
                         <td>{{$pedido->status}}</td>
-                        <td>{{$pedido->idpro}}</td>
+                        <td>{{$pedido->producto ? $pedido->producto->nombre : 'Sin asignar'}}</td>
                         <td>{{$pedido->idv}}</td>
-                        <td>{{$pedido->idprom}}</td>
+                        <td>{{$pedido->promocion ? $pedido->promocion->descripcion : 'Sin asignar'}}</td>
                     </tr>
                     @endforeach
                 </tbody>

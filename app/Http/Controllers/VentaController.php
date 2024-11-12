@@ -11,7 +11,7 @@ use App\Models\Pedido;
 class VentaController extends Controller
 {
     public function consultarVenta(){
-        $ventas = Venta::all();
+        $ventas = Venta::with('empleado','cliente')->get();
         return view('venta/consultar-venta',compact('ventas'));
     }
 

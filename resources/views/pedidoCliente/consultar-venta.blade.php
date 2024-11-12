@@ -18,8 +18,8 @@
                         <th>ID</th>
                         <th>Fecha venta</th>
                         <th>Fecha entrega</th>
-                        <th>total</th>
-                        <th>ID empleado</th>
+                        <th>Total</th>
+                        <th>Empleado</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,7 +29,7 @@
                         <td>{{$venta->fechaVent}}</td>
                         <td>{{$venta->fecEntrega}}</td>
                         <td>{{$venta->total}}</td>
-                        <td>{{$venta->ide}}</td>
+                        <td>{{ $venta->empleado ? $venta->empleado->nombre . ' ' . $venta->empleado->ap . ' ' . $venta->empleado->am : 'Sin asignar' }}</td>
                     </tr>
                     @endforeach
                 </tbody>

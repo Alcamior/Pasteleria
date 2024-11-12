@@ -11,4 +11,14 @@ class Venta extends Model
     public $timestamps = false;
     protected $table="venta";
     protected $primaryKey = 'idv';
+
+    public function empleado()
+    {
+        return $this->belongsTo(Empleado::class, 'ide', 'ide');
+    }
+
+    public function cliente()
+    {
+        return $this->belongsTo(Cliente::class,'idcli','idcli');
+    }
 }

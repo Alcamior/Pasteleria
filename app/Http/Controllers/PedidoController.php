@@ -57,7 +57,7 @@ class PedidoController extends Controller
 
 
     public function consultarPedido(){
-        $pedidos= Pedido::all();
+        $pedidos= Pedido::with('promocion','producto')->get();
         return view('pedido/consultar-pedido',compact('pedidos'));
     }
 
