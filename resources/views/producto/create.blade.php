@@ -29,7 +29,7 @@
             <div class="col-sm-1 col-md-2"></div>
             
             <div class="col-sm-10 col-md-8">
-                <form action="{{route('producto.store')}}" method="post">
+                <form action="{{route('producto.store')}}" method="post" enctype="multipart/form-data">
 
                     @csrf
 
@@ -68,6 +68,17 @@
                     <input type="text" name="precio" placeholder="Precio" value="{{old('precio')}}">
                     <br>
                     @error('precio')
+                        <span>*{{ $message }}</span>
+                    @enderror
+                    <br>
+                    <br>
+
+                    <div class="contenedor">
+                        <label>Imagen:</label>
+                        <input type="file" name="imagen">
+                    </div>
+                    <br>
+                    @error('imagen')
                         <span>*{{ $message }}</span>
                     @enderror
                     <br>

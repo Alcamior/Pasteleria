@@ -25,7 +25,8 @@ class StoreProducto extends FormRequest
             'nombre' => 'required|string|max:255',
             'tipo' => 'required|in:Pastelería,Cafetería', 
             'descripcion' => 'required|string|max:255', 
-            'precio' => 'required|numeric|min:0'
+            'precio' => 'required|numeric|min:0',
+            'imagen' => 'nullable|image|mimes:jpeg,png,jpg'
         ];
     }
 }

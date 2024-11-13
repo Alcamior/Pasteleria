@@ -32,7 +32,7 @@
             <div class="col-sm-1 col-md-2"></div>
             
             <div class="col-sm-10 col-md-8">
-                <form action="{{route('producto.update',$producto->idpro)}}" method="post">
+                <form action="{{route('producto.update',$producto->idpro)}}" method="post" enctype="multipart/form-data">
 
                     @csrf
 
@@ -82,7 +82,18 @@
                     @enderror
                     <br>
                     <br>
-                    
+
+                    <div class="contenedor">
+                        <label>Imagen:</label>
+                        <input type="file" name="imagen">
+                    </div>
+                    <br>
+                    @error('imagen')
+                        <span>*{{ $message }}</span>
+                    @enderror
+                    <br>
+                    <br>
+
                     <div class="d-flex flex-sm-row flex-column gap-5 mb-5">
                         <button type="submit" class="btn-enviar">Enviar</button>
                         <button type="button" class="btn-regresar" onclick="window.history.back();">Regresar</button>
