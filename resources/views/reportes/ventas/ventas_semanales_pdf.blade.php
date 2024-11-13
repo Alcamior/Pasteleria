@@ -61,8 +61,14 @@
     </section>
 
     <h3>Gráfico de Ventas</h3>
-    <img src="data:image/svg+xml;base64,{{ $graficoImagenSem }}" alt="Gráfico de ventas">
+    <img src="{{ public_path('temp/imagen.png') }}" alt="Gráfico de ventas">
 
 
-    
+
+
+
+
+
+
+
 

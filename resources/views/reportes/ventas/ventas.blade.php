@@ -6,10 +6,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jockey+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ request()->getHost() === 'localhost' ? asset('css/reportes/reportes.css') : secure_asset('css/reportes/reportes.css') }}">
+    
 @endsection
 
 @section('title','Reporte de ventas')
-
 
 @section('main')
         <!-- Botones -->
@@ -198,7 +198,7 @@
 
                 <!-- Datos para el PDF -->
                 <section class="datos-pdf">
-                    <form action="{{ route('reportes.ventassemanales.pdf') }}" enctype="multipart/form-data" method="GET">
+                    <form id="formExportar" action="{{ route('reportes.ventassemanales.pdf') }}" enctype="multipart/form-data" method="get">
                         @csrf
                         <input type="hidden" name="fechaInicioN" value="{{ session('fechaInicioN') }}">
                         <input type="hidden" name="fechaFinN" value="{{ session('fechaFinN') }}">
@@ -207,7 +207,7 @@
                         <input type="hidden" name="total" value="{{ session('total') }}">
                         <input type="hidden" name="graficoImagenSem" id="graficoImagenSem">
 
-                        <button id="exportarGraficoSem" class="btn btn-primary">Descargar en PDF</button>
+                        <button id="exportarGraficoSem" type="button" class="btn btn-primary">Descargar en PDF</button>
                     </form>
                 </section>
             @endif
@@ -266,6 +266,9 @@
         </section>
     
 
+
+    <script src="https://cdn.jsdelivr.net/npm/canvg@2.0.0/dist/browser/canvg.min.js"></script>
+
     <!-- Cargar jQuery antes de DataTables -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -277,10 +280,11 @@
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
     <script src="https://code.highcharts.com/modules/offline-exporting.js"></script>    
+    
 
     <!-- Script de ventas -->
     <script src="{{ request()->getHost() === 'localhost' ? asset('js/reportes/ventas/ventas.js') : secure_asset('js/reportes/ventas/ventas.js') }}"></script>
-    <script src="{{ request()->getHost() === 'localhost' ? asset('js/reportes/ventas/ventasSem.js') : secure_asset('js/reportes/ventas/ventasSem.js') }}"></script>
+    <script src="{{ request()->getHost() === 'localhost' ? asset('js/reportes/ventas/ventasSem.js') : secure_asset('js/reportes/ventas/ventasSem.js') }}" defer></script>
     <script src="{{ request()->getHost() === 'localhost' ? asset('js/reportes/ventas/ventasMen.js') : secure_asset('js/reportes/ventas/ventasMen.js') }}"></script>
 
 @endsection

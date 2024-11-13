@@ -237,17 +237,25 @@ class ReporteVentaController extends Controller
         return $pdf->download('reporte_ventas_diarias.pdf');
     }
 
+    
+
     public function generarSemanalPDF(Request $request){
+        ini_set('max_execution_time', 120); // Aumenta el tiempo de ejecución a 120 segundos
+    
         $fechaInicioN = $request->input('fechaInicioN');
         $fechaFinN = $request->input('fechaFinN');
         $totalPP = $request->input('totalPP');
         $totalPC = $request->input('totalPC');
         $total = $request->input('total');
         $graficoImagenSem = $request->input('graficoImagenSem');
-
+    
+        // Guardar la imagen
+        $imagePath = public_path('temp\imagen.png');
+        file_put_contents($imagePath, base64_decode($graficoImagenSem));
+    
         // Cargar la librería DOMPDF
         $pdf = App::make('dompdf.wrapper');
-
+    
         // Construir el contenido HTML del PDF
         $html = view('reportes.ventas.ventas_semanales_pdf', [
             'fechaInicioN' => $fechaInicioN,
@@ -257,14 +265,16 @@ class ReporteVentaController extends Controller
             'total' => $total,
             'graficoImagenSem' => $graficoImagenSem
         ])->render();
-
+    
         // Cargar el contenido HTML al PDF
         $pdf->loadHTML($html);
-
+    
         // Descargar el PDF
-        return $pdf->download('reporte_ventas_semanales.pdf');
+        return $pdf->stream('reporte_ventas_semanales.pdf');
     }
-
+    
+    
+    
     public function generarMensualPDF(Request $request){
         $nombreMes = $request->input('nombreMes');
         $year = $request->input('year');
