@@ -6,7 +6,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jockey+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ request()->getHost() === 'localhost' ? asset('css/reportes/reportes.css') : secure_asset('css/reportes/reportes.css') }}">
-    
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
 @endsection
 
 @section('title','Reporte de ventas')
@@ -198,7 +199,7 @@
 
                 <!-- Datos para el PDF -->
                 <section class="datos-pdf">
-                    <form id="formExportar" action="{{ route('reportes.ventassemanales.pdf') }}" enctype="multipart/form-data" method="get">
+                    <form id="formExportar" action="{{ route('reportes.ventassemanales.pdf') }}" enctype="multipart/form-data" method="post">
                         @csrf
                         <input type="hidden" name="fechaInicioN" value="{{ session('fechaInicioN') }}">
                         <input type="hidden" name="fechaFinN" value="{{ session('fechaFinN') }}">

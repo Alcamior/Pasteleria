@@ -239,7 +239,8 @@ class ReporteVentaController extends Controller
 
     
 
-    public function generarSemanalPDF(Request $request){
+    public function generarSemanalPDF(Request $request)
+    {
         ini_set('max_execution_time', 120); // Aumenta el tiempo de ejecución a 120 segundos
     
         $fechaInicioN = $request->input('fechaInicioN');
@@ -247,11 +248,11 @@ class ReporteVentaController extends Controller
         $totalPP = $request->input('totalPP');
         $totalPC = $request->input('totalPC');
         $total = $request->input('total');
-        $graficoImagenSem = $request->input('graficoImagenSem');
+        $graficoImagenSem = $request->file('graficoImagenSem'); // Recibe el archivo
     
-        // Guardar la imagen
-        $imagePath = public_path('temp\imagen.png');
-        file_put_contents($imagePath, base64_decode($graficoImagenSem));
+        // Guardar la imagen PNG en el servidor
+        $imagePath = public_path('temp/imagen.png');
+        $graficoImagenSem->move(public_path('temp'), 'imagen.png'); // Mueve el archivo al directorio 'temp'
     
         // Cargar la librería DOMPDF
         $pdf = App::make('dompdf.wrapper');
@@ -263,7 +264,8 @@ class ReporteVentaController extends Controller
             'totalPP' => $totalPP,
             'totalPC' => $totalPC,
             'total' => $total,
-            'graficoImagenSem' => $graficoImagenSem
+            // Usar la URL pública de la imagen en el servidor
+            'graficoImagenSem' => url('temp/imagen.png')
         ])->render();
     
         // Cargar el contenido HTML al PDF
@@ -272,6 +274,7 @@ class ReporteVentaController extends Controller
         // Descargar el PDF
         return $pdf->stream('reporte_ventas_semanales.pdf');
     }
+    
     
     
     

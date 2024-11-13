@@ -263,7 +263,7 @@ Route::get('reportes', [ReporteVentaController::class,'show'])
         ->middleware(['auth:empleado', 'can:reporte'])
         ->name('reportes.ventasdiarias.pdf');
 
-    Route::get('reportes/ventas/semanales/pdf', [ReporteVentaController::class, 'generarSemanalPDF'])
+    Route::post('reportes/ventas/semanales/pdf', [ReporteVentaController::class, 'generarSemanalPDF'])
     ->middleware(['auth:empleado', 'can:reporte'])
     ->name('reportes.ventassemanales.pdf');
 
