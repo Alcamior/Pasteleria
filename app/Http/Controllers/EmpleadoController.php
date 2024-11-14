@@ -34,6 +34,7 @@ class EmpleadoController extends Controller
         $empleado -> telefono = $request -> telefono;
         $empleado -> email = $request -> email;
         $empleado -> contrasena = Hash::make($request->contrasena);
+        $empleado -> profile_image = $request -> profile_image;
 
         //Enviar correo con la contraseña
         $contrasena = $request->contrasena;

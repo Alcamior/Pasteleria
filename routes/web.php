@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Cliente;
+use App\Http\Controllers\DataBaseController;
 use App\Http\Controllers\AlmacenajeController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ClientePedidoController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\ReporteEmpleadoController;
 use App\Http\Controllers\ReportePedidoController;
 use App\Http\Controllers\ReporteProductoController;
 use App\Http\Controllers\VentaController;
+use Illuminate\Container\Attributes\Database;
 use Laravel\Socialite\Facades\Socialite;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Facades\Auth;
@@ -222,7 +224,6 @@ Route::get('consultar-venta',[VentaController::class,'consultarVenta'])
     ->middleware(['auth:empleado','can:consultar venta'])
     ->name('consultar-venta');
 
-
 Route::get('venta/{id}/edit',[VentaController::class,'edit'])
     ->middleware(['auth:empleado','can:editar venta'])
     ->name('venta.edit');
@@ -319,6 +320,20 @@ Route::get('reportes', [ReporteVentaController::class,'show'])
     Route::get('reportes/pedidos/pdf', [ReportePedidoController::class, 'generarPedidosPDF'])
         ->middleware(['auth:empleado', 'can:reporte'])
         ->name('reportes.pedidos.pdf');
+
+
+//Rutas para la exportación y restauración de la base de datos
+
+Route::get('base-de-datos', [DataBaseController::class,'show'])
+    /* ->middleware(['auth:empleado','can:reporte']) */
+    ->name('db.dashboard');
+
+
+    Route::get('base-de-dato/exportar',[DataBaseController::class,'exportarDatabase'])
+    ->name('exportar.database');
+
+    Route::post('/restore-database', [DataBaseController::class, 'restaurarDatabase'])
+    ->name('database.restore');
 
 
 /*--------------------------------------------------------------> Rutas para clientes */

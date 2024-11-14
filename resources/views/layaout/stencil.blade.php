@@ -19,6 +19,7 @@
         <ion-icon name="close-outline"></ion-icon>
     </div>
 
+    {{-- Verificar si es un empleado o cliente --}}
     @php
         $empleado = Auth::guard('empleado')->user();
         $cliente = Auth::guard('cliente')->user();
@@ -145,6 +146,17 @@
                         </a>
                     </div>
                 </li>
+                <li>
+                    <div class="contenedor">
+                        <a href="{{route('db.dashboard')}}">
+                            <button class="contenedor-secundario" type="button">
+                                <i class="bi bi-database"></i>
+                                <span>Base de datos</span> 
+                            </button>
+                        </a>
+                    </div>
+                </li>
+
                 @endif
                 @if($cliente)
                 <div class="contenedor">

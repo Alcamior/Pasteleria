@@ -83,6 +83,13 @@
                         @enderror
                         <br>
                         <br>
+
+                        <div class="contenedor">
+                            <label>Imagen de perfil (URL):</label>
+                            <input type="text" name="profile_image" value="{{old('profile_image')}}">
+                        </div>
+                        <br>
+                        <br>
                     </div>
 
                     <div class="col-sm-1 col-md-2"></div>
