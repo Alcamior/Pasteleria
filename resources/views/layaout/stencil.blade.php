@@ -44,7 +44,6 @@
                     </a>
                 </div>
                 @if ($empleado)
-                @role('administrador')
                 <li>
                     <div class="dropdown">
                         <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -147,7 +146,17 @@
                         </a>
                     </div>
                 </li>
-                @endrole
+                <li>
+                    <div class="contenedor">
+                        <a href="{{route('db.dashboard')}}">
+                            <button class="contenedor-secundario" type="button">
+                                <i class="bi bi-database"></i>
+                                <span>Base de datos</span> 
+                            </button>
+                        </a>
+                    </div>
+                </li>
+
                 @endif
                 @if($cliente)
                 <div class="contenedor">
