@@ -145,6 +145,17 @@
                         </a>
                     </div>
                 </li>
+                <li>
+                    <div class="contenedor">
+                        <a href="{{route('db.dashboard')}}">
+                            <button class="contenedor-secundario" type="button">
+                                <i class="bi bi-database"></i>
+                                <span>Base de datos</span> 
+                            </button>
+                        </a>
+                    </div>
+                </li>
+
                 @endif
                 @if($cliente)
                 <div class="contenedor">
