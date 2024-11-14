@@ -34,3 +34,8 @@ composer require spatie/laravel-permission
 ```bash
 composer require barryvdh/laravel-dompdf
 ```
+<h2>Habilitar la eexportación de la base de datos</h2>
+
+```bash
+composer require spatie/laravel-backup
+```
