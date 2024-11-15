@@ -206,7 +206,7 @@
                         <input type="hidden" name="totalPC" value="{{ session('totalPC')[0]->totalCaf }}">
                         <input type="hidden" name="total" value="{{ session('total') }}">
                         <input type="hidden" name="graficoImagenSem" id="graficoImagenSem">
-
+                
                         <button id="exportarGraficoSem" type="button" class="btn btn-primary">Descargar en PDF</button>
                     </form>
                 </section>
