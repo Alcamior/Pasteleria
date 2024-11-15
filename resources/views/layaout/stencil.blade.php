@@ -19,6 +19,7 @@
         <ion-icon name="close-outline"></ion-icon>
     </div>
 
+    {{-- Verificar si es un empleado o cliente --}}
     @php
         $empleado = Auth::guard('empleado')->user();
         $cliente = Auth::guard('cliente')->user();
