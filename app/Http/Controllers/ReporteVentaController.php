@@ -242,7 +242,7 @@ class ReporteVentaController extends Controller
     public function generarSemanalPDF(Request $request)
     {
         ini_set('max_execution_time', 120); // Aumenta el tiempo de ejecución a 120 segundos
-    
+        
         $fechaInicioN = $request->input('fechaInicioN');
         $fechaFinN = $request->input('fechaFinN');
         $totalPP = $request->input('totalPP');
@@ -250,29 +250,44 @@ class ReporteVentaController extends Controller
         $total = $request->input('total');
         $graficoImagenSem = $request->file('graficoImagenSem'); // Recibe el archivo
     
-        // Guardar la imagen PNG en el servidor
-        $imagePath = public_path('temp/imagen.png');
-        $graficoImagenSem->move(public_path('temp'), 'imagen.png'); // Mueve el archivo al directorio 'temp'
+        // Verificar si se ha subido un archivo válido
+        if ($graficoImagenSem && $graficoImagenSem->isValid()) {
+            // Definir el nombre del archivo y la ruta donde se almacenará
+            $nombreArchivo = 'grafico_semanal.png';  // O el nombre que prefieras
+            $rutaAlmacenamiento = public_path('temp/');  // Ruta donde quieres almacenar el archivo
     
-        // Cargar la librería DOMPDF
-        $pdf = App::make('dompdf.wrapper');
+            // Asegurarte de que el directorio existe
+            if (!file_exists($rutaAlmacenamiento)) {
+                mkdir($rutaAlmacenamiento, 0777, true);  // Crear la carpeta si no existe
+            }
     
-        // Construir el contenido HTML del PDF
-        $html = view('reportes.ventas.ventas_semanales_pdf', [
-            'fechaInicioN' => $fechaInicioN,
-            'fechaFinN' => $fechaFinN,
-            'totalPP' => $totalPP,
-            'totalPC' => $totalPC,
-            'total' => $total,
-            // Usar la URL pública de la imagen en el servidor
-            'graficoImagenSem' => url('temp/imagen.png')
-        ])->render();
+            // Mover el archivo a la ruta de almacenamiento
+            $graficoImagenSem->move($rutaAlmacenamiento, $nombreArchivo);
     
-        // Cargar el contenido HTML al PDF
-        $pdf->loadHTML($html);
+            // Cargar la librería DOMPDF
+            $pdf = App::make('dompdf.wrapper');
+            
+            // Construir el contenido HTML del PDF
+            $html = view('reportes.ventas.ventas_semanales_pdf', [
+                'fechaInicioN' => $fechaInicioN,
+                'fechaFinN' => $fechaFinN,
+                'totalPP' => $totalPP,
+                'totalPC' => $totalPC,
+                'total' => $total,
+                // Usar la URL pública de la imagen almacenada
+                'graficoImagenSem' => url('temp/' . $nombreArchivo)
+            ])->render();
     
-        // Descargar el PDF
-        return $pdf->stream('reporte_ventas_semanales.pdf');
+            // Cargar el contenido HTML al PDF
+            $pdf->loadHTML($html);
+    
+            // Enviar el PDF directamente al navegador para su descarga
+            return $pdf->stream('reporte_ventas_semanales.pdf');
+        } else {
+            return response()->json([
+                'message' => 'No se subió ningún archivo válido'
+            ], 400);
+        }
     }
     
     

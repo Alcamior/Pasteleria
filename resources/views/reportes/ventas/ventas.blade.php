@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jockey+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ request()->getHost() === 'localhost' ? asset('css/reportes/reportes.css') : secure_asset('css/reportes/reportes.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
 @endsection
 
 @section('title','Reporte de ventas')
@@ -267,6 +266,9 @@
         </section>
     
 
+        <script>
+            const ventassemanalesUrl = "{{ route('reportes.ventassemanales.pdf') }}";
+        </script>
 
     <script src="https://cdn.jsdelivr.net/npm/canvg@2.0.0/dist/browser/canvg.min.js"></script>
 
