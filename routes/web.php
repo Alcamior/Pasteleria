@@ -321,7 +321,7 @@ Route::get('reportes', [ReporteVentaController::class,'show'])
 //Rutas para la exportación y restauración de la base de datos
 
 Route::get('base-de-datos', [DataBaseController::class,'show'])
-    /* ->middleware(['auth:empleado','can:reporte']) */
+    ->middleware(['auth:empleado','can:db'])
     ->name('db.dashboard');
 
 
