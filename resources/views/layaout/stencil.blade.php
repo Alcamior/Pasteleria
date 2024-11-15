@@ -208,7 +208,7 @@
                     </div>
                 </li>
                 <div class="contenedor">
-                    <a href="{{route('horario.asgin.empleado.show')}}">
+                    <a href="{{route('horario.asign.empleado.show')}}">
                         <button class="contenedor-secundario" type="button">
                             <i class="bi bi-calendar2-plus"></i>
                             <span>Horario</span> 
@@ -262,7 +262,6 @@
                     </div>
                 </li>
                 @endif
-
             </ul>
         </nav>
 

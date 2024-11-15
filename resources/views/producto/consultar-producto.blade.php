@@ -10,6 +10,9 @@
 @section('title','Consulta de productos')
 
 @section('main')
+    @php
+        $empleado = Auth::guard('empleado')->user();
+    @endphp  
     <div>
         <h1>Consulta de productos</h1>
         <div class="table">
@@ -37,8 +40,12 @@
             </table>
         </div>
         <div class="d-flex buttons justify-content-between align-items-center">
-            <p><button id="eliminarDato">Eliminar fila seleccionada</button></p>
-            <p><button id="actualizarDato">Actualizar fila seleccionada</button></p>
+            @if ($empleado->can('eliminar producto'))
+                <p><button id="eliminarDato">Eliminar fila seleccionada</button></p>
+            @endif
+            @if ($empleado->can('editar producto'))
+                <p><button id="actualizarDato">Actualizar fila seleccionada</button></p>
+            @endif
         </div>
     </div>
 
