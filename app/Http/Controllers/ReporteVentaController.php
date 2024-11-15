@@ -243,6 +243,8 @@ class ReporteVentaController extends Controller
     {
         ini_set('max_execution_time', 120); // Aumenta el tiempo de ejecución a 120 segundos
         
+        
+
         $fechaInicioN = $request->input('fechaInicioN');
         $fechaFinN = $request->input('fechaFinN');
         $totalPP = $request->input('totalPP');

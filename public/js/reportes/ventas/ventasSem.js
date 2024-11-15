@@ -30,39 +30,46 @@ document.addEventListener('DOMContentLoaded', function () {
        ]
    });
 
-   function convertirSVGAPNG(svgElement, callback) {
-    var canvas = document.createElement('canvas');
-    var ctx = canvas.getContext('2d');
+    function convertirSVGAPNG(svgElement, callback) {
+        var canvas = document.createElement('canvas');
+        var ctx = canvas.getContext('2d');
 
-    // Asegúrate de que svgElement es un nodo SVG válido
-    var svgData = new XMLSerializer().serializeToString(svgElement);
-    var img = new Image();
+        // Asegúrate de que svgElement es un nodo SVG válido
+        var svgData = new XMLSerializer().serializeToString(svgElement);
+        var img = new Image();
 
-    // Crear un Blob con el contenido SVG
-    var svgBlob = new Blob([svgData], {type: 'image/svg+xml'});
-    var url = URL.createObjectURL(svgBlob);
+        // Crear un Blob con el contenido SVG
+        var svgBlob = new Blob([svgData], {type: 'image/svg+xml'});
+        var url = URL.createObjectURL(svgBlob);
 
-    img.onload = function() {
-        // Ajusta el tamaño del canvas al tamaño de la imagen cargada
-        canvas.width = img.width;
-        canvas.height = img.height;
-        ctx.drawImage(img, 0, 0);
-        var pngData = canvas.toDataURL('image/png'); // Obtén la imagen en formato PNG
+        img.onload = function() {
+            // Ajusta el tamaño del canvas al tamaño de la imagen cargada
+            canvas.width = img.width*2;
+            canvas.height = img.height*2;
 
-        // Convierte el PNG a un Blob
-        var byteString = atob(pngData.split(',')[1]); // Decodifica base64 a binario
-        var arrayBuffer = new ArrayBuffer(byteString.length);
-        var uintArray = new Uint8Array(arrayBuffer);
-        for (var i = 0; i < byteString.length; i++) {
-            uintArray[i] = byteString.charCodeAt(i);
-        }
-        var blob = new Blob([uintArray], {type: 'image/png'}); // Crea el Blob de la imagen PNG
+            // Si es necesario, ajusta la escala
+            // Por ejemplo, puedes ajustar el tamaño aquí
+            // canvas.width = img.width * 0.8;
+            // canvas.height = img.height * 0.8;
 
-        callback(blob); // Pasa el Blob al callback
-    };
+            ctx.drawImage(img, 0, 0);
+            var pngData = canvas.toDataURL('image/png'); // Obtén la imagen en formato PNG
 
-    img.src = url;
-}
+            // Convierte el PNG a un Blob
+            var byteString = atob(pngData.split(',')[1]); // Decodifica base64 a binario
+            var arrayBuffer = new ArrayBuffer(byteString.length);
+            var uintArray = new Uint8Array(arrayBuffer);
+            for (var i = 0; i < byteString.length; i++) {
+                uintArray[i] = byteString.charCodeAt(i);
+            }
+            var blob = new Blob([uintArray], {type: 'image/png'}); // Crea el Blob de la imagen PNG
+
+            callback(blob); // Pasa el Blob al callback
+        };
+
+        img.src = url;
+    }
+
 
 document.getElementById('exportarGraficoSem').addEventListener('click', function () {
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -110,7 +117,7 @@ document.getElementById('exportarGraficoSem').addEventListener('click', function
             })
             .catch(error => console.error('Error al enviar la imagen:', error));
         });
-    }, 500); // Espera para asegurarse de que el gráfico se haya renderizado completamente
+    }, 5000); // Espera para asegurarse de que el gráfico se haya renderizado completamente
 });
 
 

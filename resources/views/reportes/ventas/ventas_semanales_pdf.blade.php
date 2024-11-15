@@ -61,7 +61,7 @@
     </section>
 
     <h3>Gráfico de Ventas</h3>
-    <img src="{{ public_path('temp/grafico_semanal.png') }}" alt="Gráfico de ventas">
+    <img src="{{ public_path('temp/grafico_semanal.png') }}" alt="Gráfico de ventas" style="width: 1100px; height: auto;">
 
 
 
