@@ -20,9 +20,9 @@ class StoreEmpleado extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+    public function rules()
     {
-        return [
+        $rules = [
             'nombre' => 'required|string|max:255',
             'ap' => 'required|string|max:255',
             'am' => 'required|string|max:255',
@@ -34,7 +34,17 @@ class StoreEmpleado extends FormRequest
                 Rule::unique(table:'empleado', column:'telefono')->ignore($this->route(param: 'id'),'ide')],
             'email' => ['required', 'string', 'max:255', 'email',
                 Rule::unique(table:'empleado', column:'email')->ignore($this->route(param: 'id'),'ide')],
-            'contrasena' => 'required|string|max:255|min:8'
         ];
+
+        // Evaluar si es una creación o una edición
+        if ($this->routeIs('empleado.store')) {
+            // Validaciones para la creación (contraseña es obligatoria)
+            $rules['contrasena'] = 'required|string|min:8';
+        } else {
+            // Validaciones para la edición (contraseña opcional)
+            $rules['contrasena'] = 'nullable|string|min:8';
+        }
+
+        return $rules;
     }
 }

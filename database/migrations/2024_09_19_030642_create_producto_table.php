@@ -17,6 +17,7 @@ return new class extends Migration
             $table->enum('tipo', ['Pastelería', 'Cafetería']);
             $table->String("descripcion");
             $table->float("precio");
+            $table->String("imagen")->nullable();
         });
     }
 

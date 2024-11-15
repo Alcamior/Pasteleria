@@ -145,7 +145,7 @@
 
                         <label>Contraseña:</label>
                         <br>
-                        <input type="password" name="contrasena" value="{{ old('contrasena', $empleado->contrasena) }}">
+                        <input type="password" name="contrasena" value="">
                         <br>
                         @error('contrasena')
                             <span>*{{ $message }}</span>

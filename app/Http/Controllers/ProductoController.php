@@ -31,6 +31,14 @@ class ProductoController extends Controller
         $producto -> descripcion = $request -> descripcion;
         $producto -> precio = $request -> precio;
 
+        if($request->hasFile('imagen')){
+            $file = $request->file('imagen');
+            $rutaDestino = 'images/';
+            $filename = time() . '-' . $file->getClientOriginalName();
+            $subida = $request->file('imagen')->move($rutaDestino,$filename);
+            $producto->imagen = $rutaDestino . $filename;
+        };
+
         $producto -> save();
         return redirect(route('principal'));
     }
@@ -53,6 +61,22 @@ class ProductoController extends Controller
         $producto -> tipo = $request -> tipo;
         $producto -> descripcion = $request -> descripcion;
         $producto -> precio = $request -> precio;
+
+        //Asignar la nueva imagen 
+        if($request->hasFile('imagen')){
+            
+            if ($producto->imagen && file_exists(public_path($producto->imagen))) {
+                // Eliminar la imagen del directorio 'public/images'
+                unlink(public_path($producto->imagen));
+            }
+
+            $file = $request->file('imagen');
+            $rutaDestino = 'images/';
+            $filename = time() . '-' . $file->getClientOriginalName();
+            $subida = $request->file('imagen')->move($rutaDestino,$filename);
+            $producto->imagen = $rutaDestino . $filename;
+        };
+
         $producto -> save();
 
         return redirect()->route('principal');
@@ -61,6 +85,11 @@ class ProductoController extends Controller
 
     public function destroy($idpro){
         $producto = Producto::find($idpro);
+
+        if ($producto->imagen && file_exists(public_path($producto->imagen))) {
+            // Eliminar la imagen del directorio 'public/images'
+            unlink(public_path($producto->imagen));
+        }
 
         if($producto) {
             $producto->delete();

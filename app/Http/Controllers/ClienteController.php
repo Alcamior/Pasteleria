@@ -66,8 +66,13 @@ class ClienteController extends Controller
         $cliente -> fenac = $request -> fenac;
         $cliente -> telefono = $request -> telefono;
         $cliente -> email = $request -> email;
-        $cliente -> contrasena = Hash::make($request->contrasena);
-        $cliente -> profile_image = $request -> profile_image;
+        
+        if (!empty($request->contrasena)) {
+            $cliente->contrasena = Hash::make($request->contrasena);
+            $contrasena = $request->contrasena;
+            Mail::to($cliente->email)->send(new Credenciales($cliente -> nombre , $contrasena));
+        }
+
         $cliente -> save();
 
         return redirect()->route('principal');

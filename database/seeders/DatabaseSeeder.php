@@ -23,7 +23,8 @@ class DatabaseSeeder extends Seeder
             VentaSeeder::class,
             PedidoSeeder::class,
             HorarioSeeder::class,
-            AlmacenajeSeeder::class
+            AlmacenajeSeeder::class,
+            NotaHorarioSeeder::class
         ]);
     }
 }
