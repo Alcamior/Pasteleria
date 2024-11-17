@@ -284,11 +284,11 @@ Route::get('reportes', [ReporteVentaController::class,'show'])
 
     Route::post('reportes/productos-generar', [ReporteProductoController::class,'showProductosReporte'])->name('productos.generar');
 
-    Route::get('reportes/productos/semanales/pdf', [ReporteProductoController::class, 'generarSemanalPDF'])
+    Route::post('reportes/productos/semanales/pdf', [ReporteProductoController::class, 'generarSemanalPDF'])
     ->middleware(['auth:empleado', 'can:reporte'])
     ->name('reportes.productossemanales.pdf');
 
-    Route::get('reportes/productos/mensuales/pdf', [ReporteProductoController::class, 'generarMensualPDF'])
+    Route::post('reportes/productos/mensuales/pdf', [ReporteProductoController::class, 'generarMensualPDF'])
     ->middleware(['auth:empleado', 'can:reporte'])
     ->name('reportes.productosmensuales.pdf');
 

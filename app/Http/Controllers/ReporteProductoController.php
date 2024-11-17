@@ -96,9 +96,18 @@ class ReporteProductoController extends Controller
     }
 
     public function generarSemanalPDF(Request $request){
+        ini_set('max_execution_time', 120);
+
         $fechaInicioN = $request->input('fechaInicioN');
         $fechaFinN = $request->input('fechaFinN');
-        $graficoImagenSem = $request->input('graficoImagenSem');
+        $graficoImagenSem = $request->file('graficoProductosSem');
+
+        // Nombre del archivo y la ruta donde se almacenará
+        $nombreArchivo = 'grafico_mensual.png'; 
+        $rutaAlmacenamiento = public_path('temp/');
+
+        // Mover el archivo a la ruta de almacenamiento
+        $graficoImagenSem->move($rutaAlmacenamiento, $nombreArchivo);
 
         // Cargar la librería DOMPDF
         $pdf = App::make('dompdf.wrapper');
@@ -120,7 +129,12 @@ class ReporteProductoController extends Controller
     public function generarMensualPDF(Request $request){
         $nombreMes = $request->input('nombreMes');
         $year = $request->input('year');
-        $graficoImagenMen = $request->input('graficoImagenMen');
+        $graficoImagenMen = $request->file('graficoImagenMen');
+
+        $nombreArchivo = 'grafico_mensual.png'; 
+        $rutaAlmacenamiento = public_path('temp/');
+
+        $graficoImagenMen->move($rutaAlmacenamiento, $nombreArchivo);
 
         // Cargar la librería DOMPDF
         $pdf = App::make('dompdf.wrapper');
