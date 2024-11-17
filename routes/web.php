@@ -299,7 +299,7 @@ Route::get('reportes', [ReporteVentaController::class,'show'])
 
     Route::post('reportes/empleados-generar', [ReporteEmpleadoController::class,'showEmpleadosReporte'])->name('empleados.generar');    
 
-    Route::get('reportes/empleados/mensuales/pdf', [ReporteEmpleadoController::class, 'generarMensualPDF'])
+    Route::post('reportes/empleados/mensuales/pdf', [ReporteEmpleadoController::class, 'generarMensualPDF'])
     ->middleware(['auth:empleado', 'can:reporte'])
     ->name('reportes.empleadosmensuales.pdf');
 

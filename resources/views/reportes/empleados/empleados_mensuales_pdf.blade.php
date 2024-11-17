@@ -50,7 +50,7 @@
     </section>
 
     <h3>Gráfico de Empleados</h3>
-    <img src="data:image/svg+xml;base64,{{ $graficoImagenMen }}" alt="Gráfico de empleados">
+    <img src="{{ public_path('temp/grafico_mensual.png') }}" alt="Gráfico de empleados" style="width: 1000px; height: 480px;">
 
 
     

@@ -6,6 +6,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jockey+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ request()->getHost() === 'localhost' ? asset('css/reportes/reportes.css') : secure_asset('css/reportes/reportes.css') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 
 @section('title','Reporte de empleados')
@@ -78,7 +79,7 @@
 
                 <!-- Datos para el PDF -->
                 <section class="datos-pdf">
-                    <form action="{{ route('reportes.empleadosmensuales.pdf') }}" enctype="multipart/form-data" method="GET">
+                    <form id="formEmpleado" action="{{ route('reportes.empleadosmensuales.pdf') }}" enctype="multipart/form-data" method="POST">
                         @csrf
                         <input type="hidden" name="nombreMes" value="{{ session('nombreMes') }}">
                         <input type="hidden" name="year" value="{{ session('year') }}">
@@ -92,7 +93,11 @@
             </section>
         @endif
         
-    
+    <script>
+        const empleadomesUrl = "{{ route('reportes.empleadosmensuales.pdf') }}";
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvg@2.0.0/dist/browser/canvg.min.js"></script>
 
     <!-- Cargar jQuery antes de DataTables -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
