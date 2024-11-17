@@ -24,7 +24,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($horariosAsig as $horario)
+                    @foreach($horarios as $horario)
                     <tr>
                         <td>{{$horario->idNotaHo}}</td>
                         <td>{{$horario->nombreComp}}</td>

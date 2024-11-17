@@ -48,6 +48,7 @@ Route::get('google-callback', function () {
 
 //Pagina donde se mostrarán los productos
 Route::get('/',[ExhibicionController::class,'dashboard'])->name('principal');
+Route::get('/pasteles',[ExhibicionController::class,'showPasteles'])->name('principal.pasteles');
 
 //Rutas para producto
 Route::get('producto/create',[ProductoController::class,'create'])

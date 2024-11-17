@@ -59,7 +59,7 @@
                         <h2>Prueba nuestros pasteles</h2>
                         <p>Cada pastel está pensado para crear momentos únicos y memorables. 
                             ¿Cuál probarás primero?</p>
-                        <a href="" class="text-left">
+                        <a href="{{ route('principal.pasteles') }}" class="text-left">
                             <button>Conocer más</button>
                         </a>
                     </div>
