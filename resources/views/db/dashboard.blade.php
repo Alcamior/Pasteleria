@@ -3,6 +3,8 @@
 @section('head')
     <link rel="stylesheet"
         href="{{ request()->getHost() === 'localhost' ? asset('css/db/dashboard.css') : secure_asset('css/db/dashboard.css') }}">
+    <link rel="stylesheet"
+        href="{{ request()->getHost() === 'localhost' ? asset('css/formulario/formulario.css') : secure_asset('css/formulario/formulario.css') }}">
 @endsection
 
 @section('title', 'Dashboard base de datos')
@@ -32,10 +34,13 @@
                 <br>
             </div>
 
-            <div class="col-sm-6 col-md-6 d-flex ">
+            <div class="col-sm-6 col-md-6 d-flex formulario ">
                 <form action="{{ route('database.restore') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <input type="file" name="backup_file" class="file" required>
+                    <div class="contenedor">
+                        <input type="file" name="backup_file" class="file" required>
+                    </div>
+                    
                     <br>
                     <br>
 

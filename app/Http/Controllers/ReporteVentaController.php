@@ -237,34 +237,58 @@ class ReporteVentaController extends Controller
         return $pdf->download('reporte_ventas_diarias.pdf');
     }
 
-    public function generarSemanalPDF(Request $request){
+    
+
+    public function generarSemanalPDF(Request $request)
+    {
+        ini_set('max_execution_time', 120);
+
         $fechaInicioN = $request->input('fechaInicioN');
         $fechaFinN = $request->input('fechaFinN');
         $totalPP = $request->input('totalPP');
         $totalPC = $request->input('totalPC');
         $total = $request->input('total');
-        $graficoImagenSem = $request->input('graficoImagenSem');
+        $graficoImagenSem = $request->file('graficoImagenSem');
+    
+        if ($graficoImagenSem && $graficoImagenSem->isValid()) {
+            // Nombre del archivo y la ruta donde se almacenará
+            $nombreArchivo = 'grafico_semanal.png'; 
+            $rutaAlmacenamiento = public_path('temp/');
 
-        // Cargar la librería DOMPDF
-        $pdf = App::make('dompdf.wrapper');
-
-        // Construir el contenido HTML del PDF
-        $html = view('reportes.ventas.ventas_semanales_pdf', [
-            'fechaInicioN' => $fechaInicioN,
-            'fechaFinN' => $fechaFinN,
-            'totalPP' => $totalPP,
-            'totalPC' => $totalPC,
-            'total' => $total,
-            'graficoImagenSem' => $graficoImagenSem
-        ])->render();
-
-        // Cargar el contenido HTML al PDF
-        $pdf->loadHTML($html);
-
-        // Descargar el PDF
-        return $pdf->download('reporte_ventas_semanales.pdf');
+            if (!file_exists($rutaAlmacenamiento)) {
+                mkdir($rutaAlmacenamiento, 0777, true);  // Crear la carpeta si no existe
+            }
+    
+            // Mover el archivo a la ruta de almacenamiento
+            $graficoImagenSem->move($rutaAlmacenamiento, $nombreArchivo);
+    
+            // Cargar la librería DOMPDF
+            $pdf = App::make('dompdf.wrapper');
+            
+            // Construir el contenido HTML del PDF
+            $html = view('reportes.ventas.ventas_semanales_pdf', [
+                'fechaInicioN' => $fechaInicioN,
+                'fechaFinN' => $fechaFinN,
+                'totalPP' => $totalPP,
+                'totalPC' => $totalPC,
+                'total' => $total,
+                // Usar la URL pública de la imagen almacenada
+                'graficoImagenSem' => url('temp/' . $nombreArchivo)
+            ])->render();
+    
+            // Cargar el contenido HTML al PDF
+            $pdf->loadHTML($html);
+            return $pdf->stream('reporte_ventas_semanales.pdf');
+        } else {
+            return response()->json([
+                'message' => 'No se subió ningún archivo válido'
+            ], 400);
+        }
     }
-
+    
+    
+    
+    
     public function generarMensualPDF(Request $request){
         $nombreMes = $request->input('nombreMes');
         $year = $request->input('year');
