@@ -94,7 +94,7 @@
 
                         <div class="contenedor">
                             <label>Imagen de perfil (URL):</label>
-                            <input type="text" name="profile_image" value="{{old('profile_image')}}">
+                            <input type="text" name="profile_image" value="{{old('profile_image',$empleado->profile_image)}}">
                         </div>
                         <br>
                         <br>
