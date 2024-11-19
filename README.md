@@ -39,3 +39,8 @@ composer require barryvdh/laravel-dompdf
 ```bash
 composer require spatie/laravel-backup
 ```
+<h2>Cambiar el idioma de las alertas</h2>
+
+```bash
+composer require laravel-lang/common
+```
