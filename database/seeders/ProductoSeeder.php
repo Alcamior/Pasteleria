@@ -13,6 +13,8 @@ class ProductoSeeder extends Seeder
      */
     public function run(): void
     {
+        // Productos de pastelería
+
         $producto = new Producto();
         $producto->idpro = 1;
         $producto->nombre = 'Pastel Moka';
@@ -84,5 +86,9 @@ class ProductoSeeder extends Seeder
         $producto->precio = 180.00;
         $producto->imagen = 'img/pastel_flan.png';
         $producto->save();
+
+
+        // Productos de la cafetería
+        
     }
 }

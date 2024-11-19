@@ -22,4 +22,13 @@ class exhibicionController extends Controller
         $productos = Producto::where('tipo', 'Pastelería')->get();
         return view('pasteles',compact('productos'));
     }
+
+    public function showProductos() {
+        $productos = Producto::where('tipo', 'Cafetería')->get();
+        return view('productos',compact('productos'));
+    }
+
+    public function showPersonalizados() {
+        return view ('personalizados');
+    }
 }

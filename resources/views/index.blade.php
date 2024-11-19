@@ -82,7 +82,7 @@
                     <div class="texto col-xs-12 col-md-6 flex-column d-flex justify-content-center align-items-center">
                         <h2>Crea el pastel de tu sueños</h2>
                         <p>Tenemos una variedad de sabores y estilos, ¡y puedes personalizar el tuyo para cualquier ocasión especial!</p>
-                        <a href="" class="text-left">
+                        <a href="{{ route('principal.personalizados') }}" class="text-left">
                             <button>Conocer más</button>
                         </a>
                     </div>
@@ -94,7 +94,7 @@
                         <p>Desde sabores clásicos hasta combinaciones únicas, tenemos algo 
                             especial para cada ocasión. Echa un vistazo a nuestras opciones 
                             y encuentra el tuyo.</p>
-                        <a href="" class="text-left">
+                        <a href="{{ route('principal.productos') }}" class="text-left">
                             <button>Conocer más</button>
                         </a>
                     </div>
