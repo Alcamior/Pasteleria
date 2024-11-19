@@ -21,7 +21,7 @@
             <br>
             <h1>Pastelería Divina Tentación</h1>
             <br>
-            <a href=""><img src="img/logo_registro.png" alt="registrate"></a>
+            <a href="{{ route('signup') }}"><img src="img/logo_registro.png" alt="registrate"></a>
         </div>
 
         <div class="carrusel">

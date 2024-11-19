@@ -99,7 +99,7 @@
         <div class="curva">
             <h3>¿Quieres probar nuestros pasteles?</h3>
             <img src="img/pasteles.png" alt="Nuestros Pasteles">
-            <a href="">¡Regístrate ya!</a>
+            <a href="{{ route('login') }}">¡Ingresa ya!</a>
         </div>
     </section>
 @endsection
