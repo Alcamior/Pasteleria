@@ -22,34 +22,41 @@
                         @csrf
                         <div>
                             <label>Nombre</label><br>
-                            <input type="text" name="nombre" placeholder="Juan">
+                            <input type="text" name="nombre" placeholder="Juan" value="{{old('nombre')}}">
                         </div><br>
                         <div>
                             <label>Apellido paterno</label><br>
-                            <input type="text" name="ap" placeholder="Sanchéz">
+                            <input type="text" name="ap" placeholder="Sanchéz" value="{{old('ap')}}">
                         </div><br>
                         <div>
                             <label>Apellido materno</label><br>
-                            <input type="text" name="am" placeholder="Martínez">
+                            <input type="text" name="am" placeholder="Martínez" value="{{old('am')}}">
                         </div><br>
                         <div>
                             <label>Telefono</label><br>
-                            <input type="text" name="telefono" placeholder="777333111">
+                            <input type="text" name="telefono" placeholder="777333111" value="{{old('telefono')}}">
                         </div><br>
                         <div>
                             <label>Email</label><br>
-                            <input type="text" name="email" placeholder="ejemplo@gmail.com">
+                            <input type="text" name="email" placeholder="ejemplo@gmail.com" value="{{old('email')}}">
                         </div><br>
                         <div>
                             <label>Contraseña</label><br>
-                            <input type="password" name="contrasena" placeholder="Escribe tu contraseña aquí">
+                            <input type="password" name="contrasena" placeholder="Escribe tu contraseña aquí" value="{{old('contrasena')}}">
                         </div><br>
                         <div class="d-flex align-items-center justify-content-center">
                             <button class="send">Enviar</button>
-                        </div><br>
-                        <div class="d-flex align-items-center justify-content-center">
-                            <p class="sign-up">¿Ya tienes cuenta? <a href="{{route('login')}}">Registrarse</a></p>
                         </div>
+                        <br>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <hr>
                         <div class="d-flex align-items-center justify-content-center" >
                             <div class="google d-flex align-items-center justify-content-center">

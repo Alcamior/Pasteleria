@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCliente;
 use App\Models\Empleado;
 use App\Models\Cliente;
 
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Log;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Traits\HasRoles;
 use App\Http\Requests\StoreLogin;
+use App\Mail\Credenciales;
+use Illuminate\Support\Facades\Mail;
 
 
 class LoginController extends Controller
@@ -23,17 +26,20 @@ class LoginController extends Controller
         return view('signup');
     }
 
-    public function validarRegistro(Request $request){
-        $empleado = new Empleado();
-        $empleado -> nombre = $request->nombre;
-        $empleado -> ap = $request->ap;
-        $empleado -> am = $request->am;
-        $empleado -> telefono = $request->telefono;
-        $empleado -> email = $request -> email;
-        $empleado -> contrasena = Hash::make($request->contrasena);
-        $empleado -> save();
+    public function validarRegistro(StoreCliente $request){
+        $cliente = new Cliente();
+        $cliente -> nombre = $request->nombre;
+        $cliente -> ap = $request->ap;
+        $cliente -> am = $request->am;
+        $cliente -> telefono = $request->telefono;
+        $cliente -> email = $request -> email;
+        $cliente -> contrasena = Hash::make($request->contrasena);
+        $cliente -> save();
 
-        Auth::login($empleado);
+        //Enviar correo con la contraseña
+        $contrasena = $request->contrasena;
+        Mail::to($cliente->email)->send(new Credenciales($cliente -> nombre , $contrasena));
+
         return redirect(route('login'));
     }
 
