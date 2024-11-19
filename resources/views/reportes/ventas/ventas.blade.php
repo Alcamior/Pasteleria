@@ -249,7 +249,7 @@
 
                 <!-- Datos para el PDF -->
                 <section class="datos-pdf">
-                    <form action="{{ route('reportes.ventasmensuales.pdf') }}" enctype="multipart/form-data" method="GET">
+                    <form id="formMensual" action="{{ route('reportes.ventasmensuales.pdf') }}" enctype="multipart/form-data" method="post">
                         @csrf
                         <input type="hidden" name="nombreMes" value="{{ session('nombreMes') }}">
                         <input type="hidden" name="year" value="{{ session('year') }}">
@@ -265,10 +265,11 @@
 
         </section>
     
-
-        <script>
-            const ventassemanalesUrl = "{{ route('reportes.ventassemanales.pdf') }}";
-        </script>
+    {{-- Constantes para el manejo de rutas de los métodos post --}}
+    <script>
+        const ventasmensualesUrl ="{{route('reportes.ventasmensuales.pdf')}}"
+        const ventassemanalesUrl = "{{ route('reportes.ventassemanales.pdf') }}";
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/canvg@2.0.0/dist/browser/canvg.min.js"></script>
 
@@ -288,7 +289,7 @@
     <!-- Script de ventas -->
     <script src="{{ request()->getHost() === 'localhost' ? asset('js/reportes/ventas/ventas.js') : secure_asset('js/reportes/ventas/ventas.js') }}"></script>
     <script src="{{ request()->getHost() === 'localhost' ? asset('js/reportes/ventas/ventasSem.js') : secure_asset('js/reportes/ventas/ventasSem.js') }}" defer></script>
-    <script src="{{ request()->getHost() === 'localhost' ? asset('js/reportes/ventas/ventasMen.js') : secure_asset('js/reportes/ventas/ventasMen.js') }}"></script>
+    <script src="{{ request()->getHost() === 'localhost' ? asset('js/reportes/ventas/ventasMen.js') : secure_asset('js/reportes/ventas/ventasMen.js') }}" defer></script>
 
 @endsection
 

@@ -290,30 +290,45 @@ class ReporteVentaController extends Controller
     
     
     public function generarMensualPDF(Request $request){
+        ini_set('max_execution_time', 120);
+
         $nombreMes = $request->input('nombreMes');
         $year = $request->input('year');
         $totalPP = $request->input('totalPP');
         $totalPC = $request->input('totalPC');
         $total = $request->input('total');
-        $graficoImagenMen = $request->input('graficoImagenMen');
+        $graficoImagenMen = $request->file('graficoImagenMen');
+        
 
-        // Cargar la librería DOMPDF
-        $pdf = App::make('dompdf.wrapper');
+            // Nombre del archivo y la ruta donde se almacenará
+            $nombreArchivo = 'grafico_mensual.png'; 
+            $rutaAlmacenamiento = public_path('temp/');
 
-        // Construir el contenido HTML del PDF
-        $html = view('reportes.ventas.ventas_mensuales_pdf', [
-            'nombreMes' => $nombreMes,
-            'year' => $year,
-            'totalPP' => $totalPP,
-            'totalPC' => $totalPC,
-            'total' => $total,
-            'graficoImagenMen' => $graficoImagenMen
-        ])->render();
+            if (!file_exists($rutaAlmacenamiento)) {
+                mkdir($rutaAlmacenamiento, 0777, true);  // Crear la carpeta si no existe
+            }
 
-        // Cargar el contenido HTML al PDF
-        $pdf->loadHTML($html);
+            // Mover el archivo a la ruta de almacenamiento
+            $graficoImagenMen->move($rutaAlmacenamiento, $nombreArchivo);
 
-        // Descargar el PDF
-        return $pdf->download('reporte_ventas_mensuales.pdf');
+            // Cargar la librería DOMPDF
+            $pdf = App::make('dompdf.wrapper');
+
+            // Construir el contenido HTML del PDF
+            $html = view('reportes.ventas.ventas_mensuales_pdf', [
+                'nombreMes' => $nombreMes,
+                'year' => $year,
+                'totalPP' => $totalPP,
+                'totalPC' => $totalPC,
+                'total' => $total,
+                'graficoImagenMen' => url('temp/' . $nombreArchivo)
+            ])->render();
+
+            // Cargar el contenido HTML al PDF
+            $pdf->loadHTML($html);
+
+            // Descargar el PDF
+            return $pdf->download('reporte_ventas_mensuales.pdf');
+
     }
 }
