@@ -13,36 +13,82 @@ class ProductoSeeder extends Seeder
      */
     public function run(): void
     {
+        // Productos de pastelería
+
         $producto = new Producto();
         $producto->idpro = 1;
-        $producto->nombre = 'Pastel de Chocolate';
-        $producto->tipo = 'pastelería';
-        $producto->descripcion = 'Delicioso pastel de chocolate';
+        $producto->nombre = 'Pastel Moka';
+        $producto->tipo = 'Pastelería';
+        $producto->descripcion = 'Pan de chocolate bañado en tres leches de moka con crema de café.';
         $producto->precio = 150.00;
+        $producto->imagen = 'img/pastel_moka.png';
         $producto->save();
     
         $producto = new Producto();
         $producto->idpro = 2;
-        $producto->nombre = 'Café Americano';
-        $producto->tipo = 'cafetería';
-        $producto->descripcion = 'Café negro preparado al estilo americano';
+        $producto->nombre = 'Pastel Oreo (Chocolate o Vainilla)';
+        $producto->tipo = 'Pastelería';
+        $producto->descripcion = 'Pan de chocolate o vainilla bañado en tres leches con relleno de galleta oreo.';
         $producto->precio = 30.00;
+        $producto->imagen = 'img/pastel_oreo.png';
         $producto->save();
     
         $producto = new Producto();
         $producto->idpro = 3;
-        $producto->nombre = 'Croissant';
-        $producto->tipo = 'cafetería';
-        $producto->descripcion = 'Crujiente croissant de mantequilla';
+        $producto->nombre = 'Pastel Combinado';
+        $producto->tipo = 'Pastelería';
+        $producto->descripcion = 'Pan de chocolate con pan de vainilla bañado en tres leches.';
         $producto->precio = 25.00;
+        $producto->imagen = 'img/pastel_combinado.png';
         $producto->save();
     
         $producto = new Producto();
         $producto->idpro = 4;
-        $producto->nombre = 'Pastel de Zanahoria';
-        $producto->tipo = 'pastelería';
-        $producto->descripcion = 'Pastel con zanahoria y especias';
+        $producto->nombre = 'Pastel de Queso con Zarzamora';
+        $producto->tipo = 'Pastelería';
+        $producto->descripcion = 'Pastel de queso Philadelphia con mermelada de zarzamora.';
         $producto->precio = 180.00;
+        $producto->imagen = 'img/pastel_zarzamora.png';
         $producto->save();
+
+        $producto = new Producto();
+        $producto->idpro = 5;
+        $producto->nombre = 'Pastel Kalhua';
+        $producto->tipo = 'Pastelería';
+        $producto->descripcion = 'Pastel de vainilla bañado en tres leches de ron con kalhua y crema de café.';
+        $producto->precio = 180.00;
+        $producto->imagen = 'img/pastel_kalhua.png';
+        $producto->save();
+
+        $producto = new Producto();
+        $producto->idpro = 6;
+        $producto->nombre = 'Pastel de Durazno';
+        $producto->tipo = 'Pastelería';
+        $producto->descripcion = 'Pastel de vainilla bañado en tres leches relleno de durazno almíbar.';
+        $producto->precio = 180.00;
+        $producto->imagen = 'img/pastel_durazno.png';
+        $producto->save();
+
+        $producto = new Producto();
+        $producto->idpro = 7;
+        $producto->nombre = 'Pastel de Chispas';
+        $producto->tipo = 'Pastelería';
+        $producto->descripcion = 'Pastel de vainilla bañado en tres leches relleno de chispas de chocolate.';
+        $producto->precio = 180.00;
+        $producto->imagen = 'img/pastel_chispas.png';
+        $producto->save();
+
+        $producto = new Producto();
+        $producto->idpro = 8;
+        $producto->nombre = 'Torta Napolitana';
+        $producto->tipo = 'Pastelería';
+        $producto->descripcion = 'Pastel de vainilla bañado en tres leches con relleno de flan napolitano.';
+        $producto->precio = 180.00;
+        $producto->imagen = 'img/pastel_flan.png';
+        $producto->save();
+
+
+        // Productos de la cafetería
+        
     }
 }
