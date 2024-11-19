@@ -89,6 +89,7 @@ class RoleAndPermissionSeeder extends Seeder
             ['name' => 'editar venta'],
 
             ['name' => 'reporte'],
+            ['name' => 'db'],
         ];
         
         foreach ($permissions as $permission) {
@@ -164,7 +165,9 @@ class RoleAndPermissionSeeder extends Seeder
 
             'eliminar venta',
             'consultar venta',
-            'editar venta'
+            'editar venta',
+
+            'db'
         );
         
     }

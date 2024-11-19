@@ -57,7 +57,13 @@ class ReporteEmpleadoController extends Controller
         $year = $request->input('year');
         $empMasVentas = $request->input('empMasVentas');
         $empMasCant = $request->input('empMasCant');
-        $graficoImagenMen = $request->input('graficoImagenMen');
+        $graficoImagenMen = $request->file('graficoImagenMen');
+
+        // Nombre del archivo y la ruta donde se almacenará
+        $nombreArchivo = 'grafico_mensual.png'; 
+        $rutaAlmacenamiento = public_path('temp/');
+
+        $graficoImagenMen->move($rutaAlmacenamiento, $nombreArchivo);
 
         // Cargar la librería DOMPDF
         $pdf = App::make('dompdf.wrapper');

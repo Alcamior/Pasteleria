@@ -29,7 +29,7 @@
 
 
     <h3>Gráfico de productos</h3>
-    <img src="data:image/svg+xml;base64,{{ $graficoImagenSem }}" alt="Gráfico de productos">
+    <img src="{{ public_path('temp/grafico_mensual.png') }}" alt="Gráfico de productos" style="width: 1000px; height: 480px;">
 
 
     

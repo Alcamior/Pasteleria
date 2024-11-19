@@ -43,7 +43,7 @@
                         </button>
                     </a>
                 </div>
-                @if ($empleado)
+                @if ($empleado && $empleado->hasRole('administrador'))
                 <li>
                     <div class="dropdown">
                         <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -156,7 +156,89 @@
                         </a>
                     </div>
                 </li>
-
+                <li>
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-calendar2-plus"></i>
+                            <span>Horarios</span> 
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{route('horario.asign.show')}}">Consultar </a></li>
+                            <li><a class="dropdown-item" href="{{route('horario.asign')}}">Asignar nuevo</a></li>
+                        </ul>
+                    </div>
+                </li>
+                @endif
+                {{-- Opciones del empleado --}}
+                @if ($empleado && $empleado->hasRole('empleado'))
+                <li>
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-bag-plus-fill"></i>
+                            <span>Pedido</span> 
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{route('consultar-pedido')}}">Consultar</a></li>
+                            <li><a class="dropdown-item" href="{{route('pedido.create')}}">Agregar nuevo</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-box-seam"></i>
+                            <span>Almacenaje</span> 
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{route('consultar-almacenaje')}}">Consultar</a></li>
+                            <li><a class="dropdown-item" href="{{route('almacenaje.create')}}">Agregar nuevo</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person"></i>
+                            <span>Clientes</span> 
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{route('consultar-cliente')}}">Consultar</a></li>
+                            <li><a class="dropdown-item" href="{{route('cliente.create')}}">Agregar nuevo</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <div class="contenedor">
+                    <a href="{{route('horario.asign.empleado.show')}}">
+                        <button class="contenedor-secundario" type="button">
+                            <i class="bi bi-calendar2-plus"></i>
+                            <span>Horario</span> 
+                        </button>
+                    </a>
+                </div>
+                <div class="contenedor">
+                    <a href="{{route('consultar-producto')}}">
+                        <button class="contenedor-secundario" type="button">
+                            <i class="bi bi-cake2"></i>
+                            <span>Productos</span> 
+                        </button>
+                    </a>
+                </div>
+                <div class="contenedor">
+                    <a href="{{route('consultar-promocion')}}">
+                        <button class="contenedor-secundario" type="button">
+                            <i class="bi bi-tags-fill"></i>
+                            <span>Promociones</span> 
+                        </button>
+                    </a>
+                </div>
+                <div class="contenedor">
+                    <a href="{{route('consultar-venta')}}">
+                        <button class="contenedor-secundario" type="button">
+                            <i class="bi bi-currency-dollar"></i>
+                            <span>Venta</span> 
+                        </button>
+                    </a>
+                </div>
                 @endif
                 @if($cliente)
                 <div class="contenedor">
