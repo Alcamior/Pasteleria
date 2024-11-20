@@ -46,8 +46,7 @@ class DataBaseController extends Controller
             // Leer el archivo SQL y ejecutarlo
             $sql = file_get_contents($file->getRealPath());
             DB::unprepared($sql);
-    
-            return back()->with('success', 'La base de datos se restauró correctamente.');
+            return back()->with('success');
         } catch (\Exception $e) {
             Log::error('Error en la restauración de la base de datos: ' . $e->getMessage());
             return back()->with('error', 'Ocurrió un error al restaurar la base de datos.');

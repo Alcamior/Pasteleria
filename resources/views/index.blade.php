@@ -17,82 +17,89 @@
 
     <header>
         <div class="titulo">
-            <h1>Divina Tentación</h1>
-            <h1></h1>
+            <img class="logo" src="img/logo_negro.png" alt="">
+            <br>
+            <h1>Pastelería Divina Tentación</h1>
+            <br>
+            <a href="{{ route('signup') }}"><img src="img/logo_registro.png" alt="registrate"></a>
         </div>
 
-        <div id="carouselExample" class="carousel slide">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="{{ asset('img/frappeOreo.png') }}" class="d-block mx-auto w-auto" alt="...">
+        <div class="carrusel">
+            <div id="carouselExample" class="carousel slide">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="{{ asset('img/frappeOreo.png') }}" class="d-block mx-auto w-auto" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('img/frappeCapu.png') }}" class="d-block mx-auto w-auto" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('img/pastel_rosa.png') }}" class="d-block mx-auto w-auto" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('img/pastel_mariposa.png') }}" class="d-block mx-auto w-auto" alt="...">
+                    </div>
                 </div>
-                <div class="carousel-item">
-                    <img src="{{ asset('img/frappeCapu.png') }}" class="d-block mx-auto w-auto" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{ asset('img/pastel_rosa.png') }}" class="d-block mx-auto w-auto" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{ asset('img/pastel_mariposa.png') }}" class="d-block mx-auto w-auto" alt="...">
-                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+            <p class="descripcion">
+                Un pastel para cada ocasión
+            </p>
         </div>
-        <p class="descripcion">
-            Un pastel para cada ocasión
-        </p>
     </header>
+    
     <hr>
+
     <section>
         <article>
             <div class="container w-75">
 
                 <div class="row pasteles_predisenados">
-                    <div class="col-xs-12 col-md-6 flex-column d-flex justify-content-center align-items-center">
+                    <div class="texto col-xs-12 col-md-6 flex-column d-flex justify-content-center align-items-center">
                         <h2>Prueba nuestros pasteles</h2>
                         <p>Cada pastel está pensado para crear momentos únicos y memorables. 
                             ¿Cuál probarás primero?</p>
-                        <a href="" class="text-left">
-                            <button>Conocer más</button>
-                        </a>
+                            <a href="{{ route('principal.pasteles') }}" class="text-left">
+                                <button>Conocer más</button>
+                            </a>
                     </div>
                     <div class="col-xs-12 col-md-6">
                         <img src="{{ asset('img/pastel_flan.png') }}" alt="Pastel">
                     </div>
+                </div>
 
-                    <div class="row pasteles_predisenados">
-                        <div class="col-xs-12 col-md-6 order-last order-md-first">
-                            <img src="{{ asset('img/pastel_personalizado.png') }}" alt="Pastel personalizado">
-                        </div>
-                        <div class="col-xs-12 col-md-6 flex-column d-flex justify-content-center align-items-center">
-                            <h2>Crea el pastel de tu sueños</h2>
-                            <p>Tenemos una variedad de sabores y estilos, ¡y puedes personalizar el tuyo para cualquier ocasión especial!</p>
-                            <a href="" class="text-left">
-                                <button>Conocer más</button>
-                            </a>
-                        </div>
+                <div class="row pasteles_predisenados">
+                    <div class="col-xs-12 col-md-6 order-last order-md-first">
+                        <img src="{{ asset('img/pastel_personalizado.png') }}" alt="Pastel personalizado">
                     </div>
+                    <div class="texto col-xs-12 col-md-6 flex-column d-flex justify-content-center align-items-center">
+                        <h2>Crea el pastel de tu sueños</h2>
+                        <p>Tenemos una variedad de sabores y estilos, ¡y puedes personalizar el tuyo para cualquier ocasión especial!</p>
+                        <a href="{{ route('principal.personalizados') }}" class="text-left">
+                            <button>Conocer más</button>
+                        </a>
+                    </div>
+                </div>
 
-                    <div class="row pasteles_predisenados">
-                        <div class="col-md-6 flex-column d-flex justify-content-center align-items-center">
-                            <h2>Productos para cada gusto</h2>
-                            <p>Desde sabores clásicos hasta combinaciones únicas, tenemos algo 
-                                especial para cada ocasión. Echa un vistazo a nuestras opciones 
-                                y encuentra el tuyo.</p>
-                            <a href="" class="text-left">
-                                <button>Conocer más</button>
-                            </a>
-                        </div>
-                        <div class="col-md-6">
-                            <img src="{{ asset('img/fraMoka.png') }}" alt="Frappe">
-                        </div>
+                <div class="row pasteles_predisenados">
+                    <div class="texto col-md-6 flex-column d-flex justify-content-center align-items-center">
+                        <h2>Productos para cada gusto</h2>
+                        <p>Desde sabores clásicos hasta combinaciones únicas, tenemos algo 
+                            especial para cada ocasión. Echa un vistazo a nuestras opciones 
+                            y encuentra el tuyo.</p>
+                        <a href="{{ route('principal.productos') }}" class="text-left">
+                            <button>Conocer más</button>
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="{{ asset('img/fraMoka.png') }}" alt="Frappe">
                     </div>
                 </div>
             </div>
@@ -100,9 +107,6 @@
     </section>
 
     <hr>
-    
-  
-
 @endsection
 
 @section('footer')

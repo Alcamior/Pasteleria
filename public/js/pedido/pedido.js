@@ -93,7 +93,7 @@ $(document).ready(function () {
         if (selectedRow.length) {
             const rowData = selectedRow.data(); // Obtener datos de la fila seleccionada
             const pedidoId = rowData[0]; // Suponiendo que el ID está en la primera columna
-            window.location.href='pedido/'+pedidoId+'/edit';
+            window.location.href='/pedido/'+pedidoId+'/edit';
         } else {
             const Toast = Swal.mixin({
                 toast: true,
