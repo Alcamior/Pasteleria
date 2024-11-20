@@ -43,7 +43,6 @@ header .titulo h1::after{
 }
 
 header .carrusel {
-    background-color: #d4b398;
     border-radius: 1.5rem;
     padding: 30px;
     border-top-left-radius: 0;
@@ -86,7 +85,7 @@ header .descripcion::before{
 }
 
 header .descripcion{
-    font-family: "Divina", sans-serif;
+    font-family: "Jost", sans-serif;
     font-size: 23px;
     text-align: center;
     margin-top: 40px;
@@ -137,7 +136,7 @@ section article .container .pasteles_predisenados div .text-left button:hover{
 
 footer{
     max-width: 100%;
-    background-color: #ffeaea;
+    background-color: #f0e0d3;
     position: relative;
 }
 

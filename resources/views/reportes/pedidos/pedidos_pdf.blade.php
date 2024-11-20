@@ -19,6 +19,22 @@
         margin-bottom: 20px;
     }
 
+    /* Estilo de la sección de pedidos */
+    .pedidos {
+        text-align: center;
+        margin-bottom: 30px;
+        border: 1.5px solid black;
+        border-radius: 1rem;
+    }
+
+    .pedidos .elemento {
+        display: inline-block;
+        width: 20%;
+        vertical-align: top;
+        padding: 10px;
+        margin: 0;
+    }
+
     /* Estilo de la tabla */
     .tabla table {
         width: 100%;
@@ -43,6 +59,33 @@
 
     <section class="fecha">
         <p>{{ $hoyN }}</p>
+    </section>
+
+    <section class="pedidos">
+        <div class="elemento">  
+            <p>Pedidos aprobados</p>
+            <h3>{{ $conteoPedidos['Aprobado'] }}</h3>
+        </div>      
+        
+        <div class="elemento">  
+            <p>Pedidos en espera</p>
+            <h3>{{ $conteoPedidos['En espera'] }}</h3>
+        </div>  
+        
+        <div class="elemento">  
+            <p>Pedidos en preparación</p>
+            <h3>{{ $conteoPedidos['Preparando'] }}</h3>
+        </div> 
+        
+        <div class="elemento">  
+            <p>Pedidos finalizados</p>
+            <h3>{{ $conteoPedidos['Finalizado'] }}</h3>
+        </div> 
+
+        <div class="elemento">  
+            <p>Pedidos entregados</p>
+            <h3>{{ $conteoPedidos['Entregado'] }}</h3>
+        </div> 
     </section>
 
     <section class="tabla">

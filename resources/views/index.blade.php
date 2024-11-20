@@ -50,7 +50,9 @@
                 </button>
             </div>
             <p class="descripcion">
-                Un pastel para cada ocasión
+                Un pastel para cada ocasión, creado con amor y los mejores ingredientes. 
+                <br>
+                ¡Haz de cada momento algo especial!
             </p>
         </div>
     </header>

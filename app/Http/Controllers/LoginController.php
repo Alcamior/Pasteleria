@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCliente;
+use App\Http\Requests\StoreClienteByClient;
 use App\Models\Empleado;
 use App\Models\Cliente;
 
@@ -26,12 +27,8 @@ class LoginController extends Controller
         return view('signup');
     }
 
-    public function validarRegistro(StoreCliente $request){
+    public function validarRegistro(StoreClienteByClient $request){
         $cliente = new Cliente();
-        $cliente -> nombre = $request->nombre;
-        $cliente -> ap = $request->ap;
-        $cliente -> am = $request->am;
-        $cliente -> telefono = $request->telefono;
         $cliente -> email = $request -> email;
         $cliente -> contrasena = Hash::make($request->contrasena);
         $cliente -> save();
