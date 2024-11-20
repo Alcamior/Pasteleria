@@ -30,6 +30,39 @@
                 <p>{{ $hoyN }}</p>
             </section>
 
+            <section class="text-center pedidos">
+                <div class="row justify-content-center">
+                    <div class="col-md-4 col-sm-12">
+                        <p>Pedidos aprobados</p>
+                        <h3>{{ $conteoPedidos['Aprobado'] }}</h3>
+                    </div>
+
+                    <div class="col-md-4 col-sm-12">
+                        <p>Pedidos en espera</p>
+                        <h3>{{ $conteoPedidos['En espera'] }}</h3>
+                    </div>
+
+                    <div class="col-md-4 col-sm-12">
+                        <p>Pedidos en preparación</p>
+                        <h3>{{ $conteoPedidos['Preparando'] }}</h3>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="row justify-content-center">
+                    <div class="col-md-6 col-sm-12">
+                        <p>Pedidos finalizados</p>
+                        <h3>{{ $conteoPedidos['Finalizado'] }}</h3>
+                    </div>
+
+                    <div class="col-md-6 col-sm-12">
+                        <p>Pedidos entregados</p>
+                        <h3>{{ $conteoPedidos['Entregado'] }}</h3>
+                    </div>
+                </div>
+            </section>
+
             <section class="tabla">
                 <table id="pedidosTable" class="table-striped table-bordered tabla-custom">
                     <thead>
@@ -72,6 +105,7 @@
                     @csrf
                     <input type="hidden" name="pedidos" value="{{ json_encode($pedidos) }}">
                     <input type="hidden" name="hoyN" value="{{ $hoyN }}">
+                    <input type="hidden" name="conteoPedidos" value="{{ json_encode($conteoPedidos) }}">
 
                     <button class="btn btn-primary">Descargar en PDF</button>
                 </form>

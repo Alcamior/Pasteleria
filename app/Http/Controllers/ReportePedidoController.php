@@ -20,15 +20,30 @@ class ReportePedidoController extends Controller
         where (fecEntrega between curdate() and adddate(curdate(), interval 1 week))  
         and pedido.status="Aprobado";');
 
+        $conteoCons = DB::select('select pedido.status as estatus, count(*) as totalPed
+        from pedido inner join venta on pedido.idv = venta.idv
+        where (fecEntrega between curdate() and adddate(curdate(), interval 1 week)) 
+        group by estatus;');
+
+        $estatusIndices = ['Aprobado', 'En espera', 'Preparando', 'Finalizado', 'Entregado'];
+        $conteoPedidos = array_fill_keys($estatusIndices, 0);
+
+        foreach ($conteoCons as $conteo) {
+            if (isset($conteoPedidos[$conteo->estatus])) {
+                $conteoPedidos[$conteo->estatus] = $conteo->totalPed;
+            }
+        }
+
         $hoy = new \DateTime();
         $hoyN = $hoy->format('Y - F - d');
 
-        return view('reportes.pedidos.pedidos', compact('pedidos', 'hoyN'));
+        return view('reportes.pedidos.pedidos', compact('pedidos', 'conteoPedidos', 'hoyN'));
     }
 
     public function generarPedidosPDF(Request $request){
         $pedidos = json_decode($request->input('pedidos'), true);
         $hoyN = $request->input('hoyN');
+        $conteoPedidos = json_decode($request->input('conteoPedidos'), true);
 
         // Configurar opciones de Dompdf
         $options = new Options();
@@ -42,7 +57,8 @@ class ReportePedidoController extends Controller
         // Construir el contenido HTML del PDF
         $html = view('reportes.pedidos.pedidos_pdf', [
             'pedidos' => $pedidos,
-            'hoyN' => $hoyN
+            'hoyN' => $hoyN,
+            'conteoPedidos' => $conteoPedidos,
         ])->render();
 
         // Cargar el contenido HTML al PDF
