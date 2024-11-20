@@ -18,36 +18,29 @@
             <div class="row align-items-center justify-content-center">
                 <div class="column col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xxl-6 ">
                     <form action="{{route('validar-registro')}}" method="post">
-                        <h1 class="text-center">Inicio de sesión</h1><br>
+                        <h1 class="text-center">Introduce tu información</h1><br>
                         @csrf
-                        <div>
-                            <label>Nombre</label><br>
-                            <input type="text" name="nombre" placeholder="Juan" value="{{old('nombre')}}">
-                        </div><br>
-                        <div>
-                            <label>Apellido paterno</label><br>
-                            <input type="text" name="ap" placeholder="Sanchéz" value="{{old('ap')}}">
-                        </div><br>
-                        <div>
-                            <label>Apellido materno</label><br>
-                            <input type="text" name="am" placeholder="Martínez" value="{{old('am')}}">
-                        </div><br>
-                        <div>
-                            <label>Telefono</label><br>
-                            <input type="text" name="telefono" placeholder="777333111" value="{{old('telefono')}}">
-                        </div><br>
+
                         <div>
                             <label>Email</label><br>
                             <input type="text" name="email" placeholder="ejemplo@gmail.com" value="{{old('email')}}">
-                        </div><br>
+                        </div>
+                        
+                        <br>
+                        
                         <div>
                             <label>Contraseña</label><br>
                             <input type="password" name="contrasena" placeholder="Escribe tu contraseña aquí" value="{{old('contrasena')}}">
-                        </div><br>
+                        </div>
+                        
+                        <br>
+                        
                         <div class="d-flex align-items-center justify-content-center">
                             <button class="send">Enviar</button>
                         </div>
+
                         <br>
+                        
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
@@ -57,12 +50,6 @@
                                 </ul>
                             </div>
                         @endif
-                        <hr>
-                        <div class="d-flex align-items-center justify-content-center" >
-                            <div class="google d-flex align-items-center justify-content-center">
-                                <a href="{{route('login-google')}}"><i class="bi bi-google"></i>Inicia sesión con Google</a>
-                            </div>
-                        </div>
                     </form> 
                 </div>
                 <div class="column col-sm-12 col-md-6 col-lg-6 col-xxl-6 message d-flex align-items-center justify-content-center">
