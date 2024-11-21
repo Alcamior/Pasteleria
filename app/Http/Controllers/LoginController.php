@@ -23,10 +23,18 @@ class LoginController extends Controller
 {
     use HasFactory, HasRoles; 
 
+    /*
+        Recibe: nada
+        Retorna: vista para el registro
+    */
     public function signup(){
         return view('signup');
     }
 
+    /*
+        Recibe: correo y contraseña
+        Retorna: vista del login para iniciar sesión     
+    */
     public function validarRegistro(StoreClienteByClient $request){
         $cliente = new Cliente();
         $cliente -> email = $request -> email;
@@ -40,6 +48,10 @@ class LoginController extends Controller
         return redirect(route('login'));
     }
 
+    /*
+        Recibe: Nada
+        Envía:vista para iniciar sesión
+    */
     public function login(){
         return view('login');
     }
@@ -78,6 +90,10 @@ class LoginController extends Controller
 
     }
 
+    /*
+        Recibe: nada
+        Retorna: vista a la página principal
+    */
     public function logout(Request $request)
     {
         Auth::guard('empleado')->logout();
