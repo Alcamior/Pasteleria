@@ -35,7 +35,7 @@
             <div class="col-sm-1 col-md-2"></div>
 
             <div class="col-sm-10 col-md-8">
-                <h3>Datos del generales de la venta</h3>
+                <h3>Datos generales de la venta</h3>
                 <br>
 
                 <label>Fecha de entrega</label><br>

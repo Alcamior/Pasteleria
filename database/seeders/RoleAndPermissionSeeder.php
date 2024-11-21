@@ -167,7 +167,7 @@ class RoleAndPermissionSeeder extends Seeder
             'consultar venta',
             'editar venta',
 
-            'db'
+            'db',
         );
         
     }

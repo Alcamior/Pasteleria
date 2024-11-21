@@ -12,6 +12,14 @@
     <div>
         <h1>Consulta de pedidos</h1>
         <div class="table">
+            <form action="" class="d-flex justify-content-center align-items-center ">
+                <p>Fecha de inicio:</p>
+                <input type="date" id="fechaInicio">
+                <p>Fecha de fin:</p>
+                <input type="date" id="fechaFin">
+                <button>Buscar</button>
+            </form>
+
             <table id="myTable" class="cell-border">
                 <thead>
                     <tr>

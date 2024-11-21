@@ -44,6 +44,13 @@ return [
                  * Example: base_path()
                  */
                 'relative_path' => null,
+                'destination' => [
+                    'disks' => ['local'],
+                ],
+                'source' => [
+                    'database' => true,
+                    'files' => true,
+                ],
             ],
 
             /*
