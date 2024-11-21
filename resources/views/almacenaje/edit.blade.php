@@ -90,9 +90,14 @@
                     <br>
                     <br>
                 
-                    <label>Categoría:</label>
-                    <br>
-                    <input type="text" name="categoria" value="{{old('categoria', $almacenaje->categoria) }}">
+                    <div class="contenedor">
+                        <label>Categoría:</label>
+                        <select type="text" name="categoria">
+                            <option value="Utensilio" {{old('categoria', $almacenaje->categoria) == 'Utensilio' ? 'selected' : ''}} >Utensilio</option>
+                            <option value="Comida" {{old('categoria', $almacenaje->categoria) == 'Comida' ? 'selected' : ''}} >Comida</option>
+                            <option value="Otro" {{old('categoria', $almacenaje->categoria) == 'Otro' ? 'selected' : ''}} >Otro</option>
+                        </select>
+                    </div>                    
                     <br>
                     @error('categoria')
                         <span>*{{ $message }}</span>

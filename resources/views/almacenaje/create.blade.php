@@ -84,7 +84,14 @@
                     <br>
                     <br>
                 
-                    <input type="text" name="categoria" placeholder="Categoría" value="{{old('categoria')}}">
+                    <div class="contenedor">
+                        <label>Categoría:</label>
+                        <select type="text" name="categoria">
+                            <option value="Utensilio" {{ old('categoria') == 'Utensilio' ? 'selected' : '' }}>Utensilio</option>
+                            <option value="Comida" {{ old('categoria') == 'Comida' ? 'selected' : '' }}>Comida</option>
+                            <option value="Otro" {{ old('categoria') == 'Otro' ? 'selected' : '' }}>Otro</option>
+                        </select>
+                    </div>
                     <br>
                     @error('categoria')
                         <span>*{{ $message }}</span>
