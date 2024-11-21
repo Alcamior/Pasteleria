@@ -18,11 +18,30 @@ class ClienteController extends Controller
 
     }
 
+    /*
+        Recibe: nada
+        Retorna: vista para crear al cliente
+    */
     public function create(){
         return view('cliente/create');
     }
 
-
+    /*
+        Registra a un cliente
+        Recibe: 
+            nombre(nombre)
+            apellido paterno (ap)
+            apellido materno (am)
+            genero (genero)
+            direccion (direccion)
+            fecha de nacimiento (fenac)
+            teléfono (telefono)
+            correo electrónico (email)
+            contraseña (contrasena)
+            imagen de perfil (profile_image)
+        Retorna: vista principal
+    */
+    
     public function store(StoreCliente $request){
         $cliente = new Cliente();
         $cliente -> nombre = $request -> nombre;
@@ -44,18 +63,41 @@ class ClienteController extends Controller
         return redirect(route('principal'));
     }
 
-
+    /*
+        Recibe: nada
+        Retorna: vista para consultar todos los clientes
+                 junto con la información de todos los clientes
+    */
     public function consultarCliente(){
         $cliente= Cliente::all();
         return view('cliente/consultar-cliente',compact('cliente'));
     }
 
-
+    /*
+        Recibe: el ID del cliente
+        Retorna: vista para editar a un registor en específico
+                 junta con toda su información
+    */
     public function edit($idcli){
         $cliente=Cliente::find($idcli); 
         return view('cliente/edit',compact('cliente'));
     }
 
+    /*
+        Actualiza un cliente
+        Recibe: 
+            nombre(nombre)
+            apellido paterno (ap)
+            apellido materno (am)
+            genero (genero)
+            direccion (direccion)
+            fecha de nacimiento (fenac)
+            teléfono (telefono)
+            correo electrónico (email)
+            contraseña (contrasena)
+            imagen de perfil (profile_image)
+        Retorna: vista principal
+    */
     public function update(StoreCliente $request,$idcli){
         $cliente = Cliente::find($idcli);
         $cliente -> nombre = $request -> nombre;
@@ -66,6 +108,7 @@ class ClienteController extends Controller
         $cliente -> fenac = $request -> fenac;
         $cliente -> telefono = $request -> telefono;
         $cliente -> email = $request -> email;
+        $cliente -> profile_image = $request -> profile_image;
         
         if (!empty($request->contrasena)) {
             $cliente->contrasena = Hash::make($request->contrasena);
@@ -79,6 +122,12 @@ class ClienteController extends Controller
     }
 
 
+    /*
+        Eliminar a un cliente
+        Recibe: ID del cliente
+        Retorna: Mensaje de éxito o fallo a la página a la 
+                 que se hizo la solicitud
+    */
     public function destroy($idcli){
         $cliente = Cliente::find($idcli);
         if($cliente){
@@ -89,7 +138,12 @@ class ClienteController extends Controller
         }
     }
 
-
+    /*
+        Muestra la información del cliente autenticado
+        Recibe: nada
+        Retorna: vista para editar la información propia del cliente 
+                 que ha iniciado sesión
+    */
     public function editSelf()
     {
         $cliente = Auth::guard('cliente')->user();
