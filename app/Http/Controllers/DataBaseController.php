@@ -18,6 +18,11 @@ class DataBaseController extends Controller
         return view('db.dashboard');
     }
 
+    /*
+        Respaldo de la base de datos
+        Recibe: nada
+        Retorna: archivo .sql con la información de la base de datos
+    */
     public function exportarDatabase(){
 
         // Obtener la información de la base de datos
@@ -65,6 +70,13 @@ class DataBaseController extends Controller
         return response()->download($backupPath);
     }
 
+    
+    /*
+        Restauración de la base de datos 
+        Recibe: archivo
+        Retorna: mensaje de éxito o error a la vista a la que se hizo la 
+                 solicitud
+    */
     public function restaurarDatabase(Request $request)
     {
         try {
