@@ -19,11 +19,20 @@ class ProductoController extends Controller
 
     }
 
+
+    // Manda a llamar a la vista del formulario de registro.
+    // Recibe: Nada.
+    // Devulve: Nada.
     public function create(){
         return view('producto/create');
     }
 
 
+    // Recoge los datos del formulario del registro y los guarda en la 
+    // base de datos.
+    // Recibe: Las respuestas del formulario en un request de StoreProducto
+    // para su validación. Manda a llamar al dashboard.
+    // Devulve: Nada.
     public function store(StoreProducto $request){
         $producto = new Producto();
         $producto -> nombre = $request -> nombre;
@@ -44,17 +53,31 @@ class ProductoController extends Controller
     }
 
 
+    // Recolecta los registros de la tabla Producto y manda a llamar
+    // a la vista para su consulta.
+    // Recibe: Nada.
+    // Devulve: Nada.
     public function consultarProducto(){
         $producto= Producto::all();
         return view('producto/consultar-producto',compact('producto'));
     }
 
 
+    // Busca los datos del registro que se va a editar y manda a llamar a la 
+    // vista que contiene el formulario de edición.
+    // Recibe: El ID del producto que se va a editar.
+    // Devulve: Nada.
     public function edit($idpro){
         $producto=Producto::find($idpro); 
         return view('producto/edit',compact('producto'));
     }
 
+
+    // Recoge los datos del formulario del edición y los guarda en la 
+    // base de datos.
+    // Recibe: Las respuestas del formulario en un request de StoreProducto
+    // para su valdación, y el ID del producto a editar. Manda a llamar al dashboard.
+    // Devulve: Nada.
     public function update(StoreProducto $request,$idpro){
         $producto = Producto::find($idpro);
         $producto -> nombre = $request -> nombre;
@@ -83,6 +106,9 @@ class ProductoController extends Controller
     }
 
 
+    // Busca el registro a quitar y lo elimina de la base de datos.
+    // Recibe: El ID del registro a eliminar.
+    // Devuelve: Una respuesta JSON indicando el resultado de la operación.
     public function destroy($idpro){
         $producto = Producto::find($idpro);
 

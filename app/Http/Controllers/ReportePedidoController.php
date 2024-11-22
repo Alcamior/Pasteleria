@@ -12,6 +12,11 @@ use Dompdf\Options;
 
 class ReportePedidoController extends Controller
 {
+
+    // Recoge los pedidos y su conteo según el estatus de entrega para la próxima semana 
+    // y manda a llamar la vista correspondiente.
+    // Recibe: Nada.
+    // Devuelve: La vista de pedidos con los datos de los pedidos y su conteo por estatus.
     public function showPedidos(){
         $pedidos = DB::select('select idped, nombre, pedido.descripcion, cantidad, 
         subtotal, descuento, totalP, fePed, fecEntrega, datediff(fecEntrega,curdate()) as DiasFaltantes
@@ -40,6 +45,11 @@ class ReportePedidoController extends Controller
         return view('reportes.pedidos.pedidos', compact('pedidos', 'conteoPedidos', 'hoyN'));
     }
 
+
+    // Genera un archivo PDF con la información de los pedidos y su conteo por estatus.
+    // Recibe: Un request con los datos de los pedidos, la fecha de hoy y el conteo 
+    // de los pedidos por estatus.
+    // Devuelve: Un archivo PDF descargable con el reporte de los pedidos.
     public function generarPedidosPDF(Request $request){
         $pedidos = json_decode($request->input('pedidos'), true);
         $hoyN = $request->input('hoyN');

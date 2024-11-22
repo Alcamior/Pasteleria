@@ -17,11 +17,19 @@ class EmpleadoController extends Controller
 
     }
 
+    // Manda a llamar a la vista del formulario de registro.
+    // Recibe: Nada.
+    // Devulve: Nada.
     public function create(){
         return view('empleado/create');
     }
 
 
+    // Recoge los datos del formulario del registro y los guarda en la 
+    // base de datos.
+    // Recibe: Las respuestas del formulario en un request de StoreEmpleado
+    // para su validación. Manda a llamar al dashboard.
+    // Devulve: Nada.
     public function store(StoreEmpleado $request){
         $empleado = new Empleado();
         $empleado -> nombre = $request -> nombre;
@@ -47,17 +55,31 @@ class EmpleadoController extends Controller
     }
 
 
+    // Recolecta los registros de la tabla Empleado y manda a llamar
+    // a la vista para su consulta.
+    // Recibe: Nada.
+    // Devulve: Nada.
     public function consultarEmpleado(){
         $empleado= Empleado::all();
         return view('empleado/consultar-empleado',compact('empleado'));
     }
 
 
+    // Busca los datos del registro que se va a editar y manda a llamar a la 
+    // vista que contiene el formulario de edición.
+    // Recibe: El ID del empleado que se va a editar.
+    // Devulve: Nada.
     public function edit($ide){
         $empleado=Empleado::find($ide); 
         return view('empleado/edit',compact('empleado'));
     }
 
+
+    // Recoge los datos del formulario del edición y los guarda en la 
+    // base de datos.
+    // Recibe: Las respuestas del formulario en un request de StoreEmpleado
+    // para su valdación, y el ID del empleado a editar. Manda a llamar al dashboard.
+    // Devulve: Nada.
     public function update(StoreEmpleado $request,$ide){
         $empleado = Empleado::find($ide);
         $empleado -> nombre = $request -> nombre;
@@ -82,6 +104,9 @@ class EmpleadoController extends Controller
     }
 
 
+    // Busca el registro a quitar y lo elimina de la base de datos.
+    // Recibe: El ID del registro a eliminar.
+    // Devuelve: Una respuesta JSON indicando el resultado de la operación.
     public function destroy($ide){
         $empleado = Empleado::find($ide);
         if($empleado){

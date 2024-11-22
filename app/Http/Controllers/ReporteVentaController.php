@@ -12,14 +12,27 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class ReporteVentaController extends Controller
 {
+    // Muestra la vista principal del dashboard de reportes.
+    // Recibe: Nada.
+    // Devuelve: Una vista del dashboard de reportes.
     public function show(){
         return view('reportes/dashboard');
     }
 
+
+    // Muestra la vista de reportes de ventas.
+    // Recibe: Nada.
+    // Devuelve: La vista de reportes de ventas.
     public function showVentas(){
         return view('reportes.ventas.ventas');
     }
 
+
+    // Maneja la generación de reportes de ventas según el formulario seleccionado 
+    // (diario, semanal o mensual), procesando las entradas y devolviendo datos 
+    // necesarios para la vista de reportes.
+    // Recibe: Un request con los datos del formulario (La fecha de inicio o el número del mes).
+    // Devuelve: Una redirección con los datos procesados para la vista de reportes.
     public function showVentasReporte(Request $request){
         $reporte = $request->input('formulario');
 
@@ -218,6 +231,11 @@ class ReporteVentaController extends Controller
         }        
     }
 
+
+    // Genera un PDF con el reporte diario de ventas incluyendo información como
+    // totales por tipo de producto y lista de ventas.
+    // Recibe: Un request con los datos procesados previamente en el controlador.
+    // Devuelve: Un archivo PDF descargable con el reporte diario.
     public function generarDiarioPDF(Request $request){
         $fechaN = $request->input('fechaN');
         $totalPP = $request->input('totalPP');
@@ -238,7 +256,10 @@ class ReporteVentaController extends Controller
     }
 
     
-
+    // Genera un PDF con el reporte semanal de ventas, incluyendo totales, fechas
+    // y un gráfico semanal de las ventas si se subió correctamente.
+    // Recibe: Un request con los datos procesados y el archivo del gráfico semanal.
+    // Devuelve: Un archivo PDF generado o un mensaje de error si la imagen no es válida.
     public function generarSemanalPDF(Request $request)
     {
         ini_set('max_execution_time', 120);
@@ -287,8 +308,10 @@ class ReporteVentaController extends Controller
     }
     
     
-    
-    
+    // Genera un PDF con el reporte mensual de ventas, incluyendo totales, el nombre
+    // del mes, el año y un gráfico mensual de las ventas si se subió correctamente.
+    // Recibe: Un request con los datos procesados y el archivo del gráfico mensual.
+    // Devuelve: Un archivo PDF generado o un mensaje de error si la imagen no es válida.
     public function generarMensualPDF(Request $request){
         ini_set('max_execution_time', 120);
 
