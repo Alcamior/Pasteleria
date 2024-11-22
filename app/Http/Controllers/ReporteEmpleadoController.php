@@ -29,7 +29,7 @@ class ReporteEmpleadoController extends Controller
         inner join empleado on venta.ide = empleado.ide
         inner join pedido on venta.idv = pedido.idv
         where (month(fechaVent) = ? and year(fechaVent) = ?) and
-        pedido.status = "Aprobado" 
+        pedido.status != "En espera" 
         group by nombreCom order by totalVen desc limit 3;', [$mes, $year]);
 
         $empleados = [];

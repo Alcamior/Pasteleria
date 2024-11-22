@@ -18,7 +18,7 @@ class ReportePedidoController extends Controller
         from venta inner join pedido on venta.idv = pedido.idv
         inner join producto on pedido.idpro = producto.idpro
         where (fecEntrega between curdate() and adddate(curdate(), interval 1 week))  
-        and pedido.status="Aprobado";');
+        and pedido.status != "En espera";');
 
         $conteoCons = DB::select('select pedido.status as estatus, count(*) as totalPed
         from pedido inner join venta on pedido.idv = venta.idv

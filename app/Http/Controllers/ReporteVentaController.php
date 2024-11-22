@@ -37,13 +37,13 @@ class ReporteVentaController extends Controller
                 inner join pedido on venta.idv = pedido.idv
                 inner join producto on pedido.idpro = producto.idpro
                 where producto.tipo = "Pastelería" 
-                and fechaVent = ? and pedido.status="Aprobado";', [$fecha]);
+                and fechaVent = ? and pedido.status != "En espera";', [$fecha]);
 
                 $totalPC = DB::select('select COALESCE(sum(totalP), 0) totalCaf from venta 
                 inner join pedido on venta.idv = pedido.idv
                 inner join producto on pedido.idpro = producto.idpro
                 where producto.tipo = "Cafetería" 
-                and fechaVent = ? and pedido.status="Aprobado";', [$fecha]);
+                and fechaVent = ? and pedido.status != "En espera";', [$fecha]);
 
                 $total = $totalPP[0]->totalPas + $totalPC[0]->totalCaf;
 
@@ -52,7 +52,7 @@ class ReporteVentaController extends Controller
                 $ventas = DB::select('select nombre, sum(cantidad) as cantidad, sum(totalP) as total
                 from venta inner join pedido on venta.idv = pedido.idv
                 inner join producto on pedido.idpro = producto.idpro
-                where fechaVent = ? and pedido.status="Aprobado"
+                where fechaVent = ? and pedido.status != "En espera"
                 group by nombre;', [$fecha]);
                 
                 $fechaN = Carbon::createFromFormat('Y-m-d', $fecha)->format('Y - F - d');
@@ -78,14 +78,14 @@ class ReporteVentaController extends Controller
                 inner join producto on pedido.idpro = producto.idpro
                 where producto.tipo = "Pastelería" 
                 and (fechaVent between ? and ?) 
-                and pedido.status = "Aprobado";', [$fechaInicio, $fechaFin]);
+                and pedido.status != "En espera";', [$fechaInicio, $fechaFin]);
 
                 $totalPC = DB::select('select COALESCE(sum(totalP), 0) as totalCaf from venta 
                 inner join pedido on venta.idv = pedido.idv
                 inner join producto on pedido.idpro = producto.idpro
                 where producto.tipo = "Cafetería" 
                 and (fechaVent between ? and ?) 
-                and pedido.status = "Aprobado";', [$fechaInicio, $fechaFin]);
+                and pedido.status != "En espera";', [$fechaInicio, $fechaFin]);
 
                 $total = $totalPP[0]->totalPas + $totalPC[0]->totalCaf;
 
@@ -96,7 +96,7 @@ class ReporteVentaController extends Controller
                 inner join producto on pedido.idpro = producto.idpro
                 where producto.tipo = "Pastelería" 
                 and (fechaVent between ? and ?) 
-                and pedido.status="Aprobado"
+                and pedido.status != "En espera"
                 group by fechaVent;', [$fechaInicio, $fechaFin]);
 
                 $conVentasC = DB::select('select fechaVent, sum(totalP) as total
@@ -104,7 +104,7 @@ class ReporteVentaController extends Controller
                 inner join producto on pedido.idpro = producto.idpro
                 where producto.tipo = "Cafetería" 
                 and (fechaVent between ? and ?) 
-                and pedido.status="Aprobado"
+                and pedido.status != "En espera"
                 group by fechaVent;', [$fechaInicio, $fechaFin]);
 
                 $periodo = CarbonPeriod::create($fechaInicio, $fechaFin);
@@ -163,14 +163,14 @@ class ReporteVentaController extends Controller
                 inner join producto on pedido.idpro = producto.idpro
                 where producto.tipo = "Pastelería" 
                 and (month(fechaVent) = ? and year(fechaVent)=?) 
-                and pedido.status = "Aprobado";', [$mes, $year]);
+                and pedido.status != "En espera";', [$mes, $year]);
 
                 $totalPC = DB::select('select COALESCE(sum(totalP), 0) as totalCaf from venta 
                 inner join pedido on venta.idv = pedido.idv
                 inner join producto on pedido.idpro = producto.idpro
                 where producto.tipo = "Cafetería" 
                 and (month(fechaVent) = ? and year(fechaVent)=?)  
-                and pedido.status = "Aprobado";', [$mes, $year]);
+                and pedido.status != "En espera";', [$mes, $year]);
 
                 $total = ($totalPP[0]->totalPas ?? 0) + ($totalPC[0]->totalCaf ?? 0);
 
@@ -180,7 +180,7 @@ class ReporteVentaController extends Controller
                 inner join producto on pedido.idpro = producto.idpro
                 where producto.tipo = "Pastelería" 
                 and (month(fechaVent) = ? and year(fechaVent)=?) 
-                and pedido.status="Aprobado"
+                and pedido.status != "En espera"
                 group by fechaVent;', [$mes, $year]);
 
                 $conVentasC = DB::select('select fechaVent, sum(totalP) as total
@@ -188,7 +188,7 @@ class ReporteVentaController extends Controller
                 inner join producto on pedido.idpro = producto.idpro
                 where producto.tipo = "Cafetería" 
                 and (month(fechaVent) = ? and year(fechaVent)=?) 
-                and pedido.status="Aprobado"
+                and pedido.status != "En espera"
                 group by fechaVent;', [$mes, $year]);
 
                 $dias = range(1, 30); 

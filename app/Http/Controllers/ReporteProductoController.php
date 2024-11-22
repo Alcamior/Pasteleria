@@ -35,7 +35,7 @@ class ReporteProductoController extends Controller
                 inner join pedido on venta.idv = pedido.idv
                 inner join producto on pedido.idpro = producto.idpro
                 where (fechaVent between ? and ?) and
-                pedido.status = "Aprobado" 
+                pedido.status != "En espera"
                 group by nombre order by totalProd desc limit 5;', [$fechaInicio, $fechaFin]);
 
                 $productos = [];
@@ -72,7 +72,7 @@ class ReporteProductoController extends Controller
                 inner join pedido on venta.idv = pedido.idv
                 inner join producto on pedido.idpro = producto.idpro
                 where (month(fechaVent) = ? and year(fechaVent) = ?) and
-                pedido.status = "Aprobado" 
+                pedido.status != "En espera"
                 group by nombre order by totalProd desc limit 5', [$mes, $year]);
 
                 $productos = [];
