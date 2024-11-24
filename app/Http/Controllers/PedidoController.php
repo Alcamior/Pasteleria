@@ -14,6 +14,11 @@ use Psy\CodeCleaner\ReturnTypePass;
 
 class PedidoController extends Controller
 {
+    /*
+        Recibe: nada
+        Retorna: vista para crear un pedido con los registros de las tablas cliente,
+                 producto, y aquellas promociones que estén activas.
+    */
     public function create(){
         $clientes = Cliente::all();
         $productos = Producto::all();
@@ -21,10 +26,24 @@ class PedidoController extends Controller
         return view('pedido/create',compact('productos','promociones','clientes'));
     }
 
-
+    /*
+        Registra una venta y sus pedidos asociados.
+        Recibe: 
+            fecha de entrega (fechaP),
+            total de la venta (total),
+            cliente asociado (cli),
+            productos en formato JSON (productos), donde cada producto contiene:
+                - nombre del producto (nombre),
+                - descripción del pedido (descripcion),
+                - cantidad solicitada (cantidad),
+                - precio unitario (precio),
+                - subtotal (subtotal),
+                - descuento aplicado (descuento),
+                - estado del pedido (status),
+                - promoción aplicada (promocion).
+        Retorna: redirección a la vista de creación de pedidos.
+    */
     public function store(Request $request){
-        /* dd($request->all()); */
-
         $venta = new Venta();
         $venta->fechaVent= now();
         $venta->fecEntrega= $request->fechaP;
@@ -56,12 +75,22 @@ class PedidoController extends Controller
     }
 
 
+    /*
+    Recibe: nada
+    Retorna: vista para consultar todos los pedidos
+             junto con la información de las promociones y productos asociados
+    */
     public function consultarPedido(){
         $pedidos= Pedido::with('promocion','producto')->get();
         return view('pedido/consultar-pedido',compact('pedidos'));
     }
 
 
+    /*
+    Recibe: el ID del pedido
+    Retorna: vista para editar un registro en específico
+             junto con la información de productos, clientes y promociones activas
+    */
     public function edit($idped){
         $pedido=Pedido::find($idped); 
         $productos = Producto::all();
@@ -70,6 +99,17 @@ class PedidoController extends Controller
         return view('pedido/edit',compact('productos','promociones','clientes','pedido'));
     }
 
+
+    /*
+        Actualiza un pedido
+        Recibe: 
+            descripción del pedido (descripcion)
+            cantidad del producto (cantidad)
+            estado del pedido (status)
+            ID del producto (producto)
+            ID de la promoción (promocion) [opcional]
+        Retorna: redirección a la vista para consultar todos los pedidos
+    */
     public function update(Request $request,$idped){
         
         $pedido = Pedido::find($idped);
@@ -109,6 +149,12 @@ class PedidoController extends Controller
     }
 
 
+    /*
+        Eliminar un pedido
+        Recibe: ID del pedido
+        Retorna: Mensaje de éxito o fallo a la página 
+                a la que se hizo la solicitud
+    */
     public function destroy($idped){
 
         $pedido = Pedido::find($idped);

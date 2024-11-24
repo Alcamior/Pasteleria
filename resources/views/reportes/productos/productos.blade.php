@@ -85,7 +85,6 @@
                 <section class="grafica">
                     <script>
                         var jsonData = {!! session('jsonData') !!};
-                        console.log(jsonData);
                     </script>
                     <div id="graficoProductosSem"></div>
                 </section>
@@ -114,7 +113,6 @@
                 <section class="grafica">
                     <script>
                         var jsonDataMen = {!! session('jsonDataMen') !!};
-                        console.log(jsonDataMen);
                     </script>
                     <div id="graficoProductosMen"></div>
                 </section>

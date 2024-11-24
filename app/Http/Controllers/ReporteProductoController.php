@@ -11,10 +11,24 @@ use Illuminate\Support\Facades\DB;
 
 class ReporteProductoController extends Controller
 {
+
+    /*
+        Muestra la vista de productos
+        Recibe: nada
+        Retorna: vista para visualizar los productos
+    */
     public function showProductos(){
         return view('reportes.productos.productos');
     }
 
+    /*
+        Muestra el reporte de productos más vendidos basado en el formulario seleccionado
+        Recibe: 
+            - formulario (formulario1 o formulario2)
+            - fecha (si es formulario1)
+            - mes (si es formulario2)
+        Retorna: Redirige con los datos para la vista del reporte de productos
+    */
     public function showProductosReporte(Request $request){
         $reporte = $request->input('formulario');
 
@@ -95,6 +109,15 @@ class ReporteProductoController extends Controller
         }
     }
 
+    /*
+        Generar un reporte en PDF de productos vendidos en una semana
+        Recibe: 
+            fechaInicioN (fecha de inicio de la semana en formato 'Y - F - d')
+            fechaFinN (fecha de fin de la semana en formato 'Y - F - d')
+            graficoProductosSem (imagen del gráfico semanal)
+        Retorna: 
+            Descarga un archivo PDF con el reporte de productos semanales
+    */
     public function generarSemanalPDF(Request $request){
         ini_set('max_execution_time', 120);
 
@@ -126,6 +149,15 @@ class ReporteProductoController extends Controller
         return $pdf->download('reporte_productos_semanales.pdf');
     }
 
+    /*
+        Generar un reporte en PDF de productos vendidos en un mes
+        Recibe: 
+            nombreMes (nombre del mes, por ejemplo 'Enero')
+            year (año en formato 'Y')
+            graficoImagenMen (imagen del gráfico mensual)
+        Retorna: 
+            Descarga un archivo PDF con el reporte de productos mensuales
+    */
     public function generarMensualPDF(Request $request){
         $nombreMes = $request->input('nombreMes');
         $year = $request->input('year');
