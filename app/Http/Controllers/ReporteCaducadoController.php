@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\App;
 
 class ReporteCaducadoController extends Controller
 {
+    
+    /*
+        Muestra los productos que están próximos a caducar
+        Recibe: nada
+        Retorna: vista con los productos que están por caducar (dentro de un día)
+                junto con la fecha actual
+    */
     public function showCaducados(){
         $caducados = DB::select('select *, datediff(fechaCad,curdate()) as dias 
         from almacenaje where (fechaCad = curdate() 
@@ -21,6 +28,13 @@ class ReporteCaducadoController extends Controller
         return view('reportes.caducados.caducados', compact('caducados', 'hoyN'));
     }
 
+    /*
+        Genera un archivo PDF con la lista de productos que están por caducar
+        Recibe: 
+            caducados (lista de productos con fecha de caducidad)
+            hoyN (fecha actual)
+        Retorna: archivo PDF descargable con los productos próximos a caducar
+    */
     public function generarCaducadosPDF(Request $request){
         $caducados = json_decode($request->input('caducados'), true);
         $hoyN = $request->input('hoyN');

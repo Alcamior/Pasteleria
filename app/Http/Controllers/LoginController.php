@@ -56,6 +56,14 @@ class LoginController extends Controller
         return view('login');
     }
 
+    /*
+        Validar el inicio de sesión
+        Recibe: Correo y contraseña
+        Retorna:  si las credenciales son válidas retorna
+                  a la vista principal con la autentificación 
+                  correspondiente 
+    
+    */
     public function validarSesion(Request $request)
     {
         //validar las credenciales
@@ -86,8 +94,6 @@ class LoginController extends Controller
             // Devolver error de autenticación
             return back()->withErrors(['usuario' => 'Las credenciales proporcionadas son incorrectas.'])->withInput();
         }
-
-
     }
 
     /*
@@ -103,9 +109,5 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
     
         return redirect('/'); // Redirige a la página principal
-    }
-
-    public function stencil(){
-        return view('layaout/stencil');
     }
 }

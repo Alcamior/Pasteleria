@@ -14,6 +14,14 @@ use Spatie\DbDumper\Databases\MySql;
 
 class DataBaseController extends Controller
 {
+
+
+    /*
+        Vista principal para el respaldo y restauración de la base de datos
+        Recibe:nada
+        Retorna: vista del dashboard para el respaldo y restauración de la base de datos
+    
+    */
     public function show(){
         return view('db.dashboard');
     }
@@ -21,55 +29,22 @@ class DataBaseController extends Controller
     /*
         Respaldo de la base de datos
         Recibe: nada
-        Retorna: archivo .sql con la información de la base de datos
+        Retorna: archivo .zip con la información de la base de datos
     */
-    public function exportarDatabase(){
-
-        // Obtener la información de la base de datos
-        $dbHost = env('DB_HOST');
-        $dbName = env('DB_DATABASE');
-        $dbUser = env('DB_USERNAME');
-        $dbPassword = env('DB_PASSWORD');
-
-        // Ruta donde se guardará el archivo de respaldo
-        $backupPath = storage_path('app/backups/' . $dbName . '_' . date('Y-m-d_H-i-s') . '.sql');
-
-        // Obtener todas las tablas de la base de datos
-        $tables = DB::select('SHOW TABLES');
-        $tables = collect($tables)->map(fn($table) => (array) $table)->flatten();
-
-        // Inicializar el contenido SQL
-        $sql = '';
-
-        // Recorrer cada tabla y obtener su estructura y datos
-        foreach ($tables as $table) {
-            // Obtener la estructura de la tabla
-            $createTableQuery = DB::select("SHOW CREATE TABLE `{$table}`")[0]->{'Create Table'};
-            $sql .= "\n\n-- Estructura de la tabla {$table}\n";
-            $sql .= $createTableQuery . ";\n\n";
-
-            // Obtener los datos de la tabla
-            $rows = DB::table($table)->get();
-
-            if ($rows->isNotEmpty()) {
-                // Generar la inserción de datos en formato SQL
-                $sql .= "-- Datos de la tabla {$table}\n";
-                foreach ($rows as $row) {
-                    // Procesar cada fila de la tabla
-                    $columns = implode('`, `', array_keys((array) $row));
-                    $values = implode("', '", array_map(fn($value) => addslashes($value), array_values((array) $row)));
-                    $sql .= "INSERT INTO `{$table}` (`{$columns}`) VALUES ('{$values}');\n";
-                }
-            }
+    public function exportarDatabase()
+    {
+        Artisan::call('backup:run');
+        $backupPath = storage_path('app/Laravel');
+        $backupFiles = File::files($backupPath);
+    
+        if (empty($backupFiles)) {
+            return response()->json(['error' => 'No se encontró ningún archivo de respaldo.'], 404);
         }
-
-        // Guardar el contenido SQL en un archivo
-        File::put($backupPath, $sql);
-
-        // Retornar el archivo de respaldo generado
-        return response()->download($backupPath);
+    
+        $latestBackup = end($backupFiles);
+    
+        return response()->download($latestBackup->getPathname());
     }
-
     
     /*
         Restauración de la base de datos 
@@ -77,6 +52,7 @@ class DataBaseController extends Controller
         Retorna: mensaje de éxito o error a la vista a la que se hizo la 
                  solicitud
     */
+
     public function restaurarDatabase(Request $request)
     {
         try {
@@ -89,9 +65,8 @@ class DataBaseController extends Controller
             // Leer el archivo SQL y ejecutarlo
             $sql = file_get_contents($file->getRealPath());
             DB::unprepared($sql);
-            return back()->with('success');
+            return back()->with('success', 'Se ha restaurado la base de datos de manera correcta');
         } catch (\Exception $e) {
-            Log::error('Error en la restauración de la base de datos: ' . $e->getMessage());
             return back()->with('error', 'Ocurrió un error al restaurar la base de datos.');
         }
         

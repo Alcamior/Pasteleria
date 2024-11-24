@@ -19,6 +19,7 @@ class ClienteController extends Controller
     }
 
     /*
+        Vista para crear a un nuevo cliente
         Recibe: nada
         Retorna: vista para crear al cliente
     */
@@ -64,6 +65,7 @@ class ClienteController extends Controller
     }
 
     /*
+        Consultar a todos los clientes
         Recibe: nada
         Retorna: vista para consultar todos los clientes
                  junto con la información de todos los clientes
@@ -74,6 +76,7 @@ class ClienteController extends Controller
     }
 
     /*
+        Editar cliente
         Recibe: el ID del cliente
         Retorna: vista para editar a un registor en específico
                  junta con toda su información
