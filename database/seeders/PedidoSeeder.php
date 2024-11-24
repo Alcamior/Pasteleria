@@ -117,5 +117,72 @@ class PedidoSeeder extends Seeder
         $pedido->idv = 5;
         $pedido->idprom = null;
         $pedido->save();
+    
+        // Pedidos de Venta 6
+        $pedido = new Pedido();
+        $pedido->descripcion = "Café Americano";
+        $pedido->cantidad = 1;
+        $pedido->fePed = "2024-10-05";
+        $pedido->subtotal = 25.00;
+        $pedido->descuento = 0.00;
+        $pedido->totalP = 25.00;
+        $pedido->status = "Aprobado";
+        $pedido->idpro = 9; 
+        $pedido->idv = 6; 
+        $pedido->idprom = null;
+        $pedido->save();
+
+        $pedido = new Pedido();
+        $pedido->descripcion = "Latte de Caramelo";
+        $pedido->cantidad = 1;
+        $pedido->fePed = "2024-10-05";
+        $pedido->subtotal = 40.00;
+        $pedido->descuento = 0.00;
+        $pedido->totalP = 40.00;
+        $pedido->status = "Aprobado";
+        $pedido->idpro = 10;
+        $pedido->idv = 6;
+        $pedido->idprom = null;
+        $pedido->save();
+
+        // Pedidos de Venta 7
+        $pedido = new Pedido();
+        $pedido->descripcion = "Café Americano";
+        $pedido->cantidad = 2;
+        $pedido->fePed = "2024-10-05";
+        $pedido->subtotal = 50.00; 
+        $pedido->descuento = 0.00;
+        $pedido->totalP = 50.00;
+        $pedido->status = "Aprobado";
+        $pedido->idpro = 9; 
+        $pedido->idv = 7;
+        $pedido->idprom = null;
+        $pedido->save();
+
+        $pedido = new Pedido();
+        $pedido->descripcion = "Latte de Caramelo";
+        $pedido->cantidad = 1;
+        $pedido->fePed = "2024-10-05";
+        $pedido->subtotal = 40.00;
+        $pedido->descuento = 0.00;
+        $pedido->totalP = 40.00;
+        $pedido->status = "Aprobado";
+        $pedido->idpro = 10;
+        $pedido->idv = 7;
+        $pedido->idprom = null;
+        $pedido->save();
+
+        $pedido = new Pedido();
+        $pedido->descripcion = "Té Chai Latte";
+        $pedido->cantidad = 1;
+        $pedido->fePed = "2024-10-05";
+        $pedido->subtotal = 35.00;
+        $pedido->descuento = 0.00;
+        $pedido->totalP = 35.00;
+        $pedido->status = "Aprobado";
+        $pedido->idpro = 11;
+        $pedido->idv = 7;
+        $pedido->idprom = null;
+        $pedido->save();
     }
 }

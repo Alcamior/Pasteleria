@@ -54,5 +54,21 @@ class VentaSeeder extends Seeder
         $venta->ide = 2;
         $venta->idcli = 1;
         $venta->save();
+    
+        $venta = new Venta();
+        $venta->fechaVent = "2024-10-05";
+        $venta->fecEntrega = "2024-10-05";
+        $venta->total = 65.00;
+        $venta->ide = 1;
+        $venta->idcli = 1; 
+        $venta->save();
+
+        $venta = new Venta();
+        $venta->fechaVent = "2024-10-05";
+        $venta->fecEntrega = "2024-10-05";
+        $venta->total = 135.00; 
+        $venta->ide = 2;
+        $venta->idcli = 2; 
+        $venta->save();
     }
 }
