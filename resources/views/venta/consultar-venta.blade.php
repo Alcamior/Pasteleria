@@ -12,6 +12,16 @@
     <div>
         <h1>Consulta de ventas</h1>
         <div class="table">
+            <div class="date-filters">
+                <div class="date-input">
+                    <label for="minDate">Desde</label>
+                    <input type="date" id="minDate">
+                </div>
+                <div class="date-input">
+                    <label for="maxDate">Hasta</label>
+                    <input type="date" id="maxDate">
+                </div>
+            </div>
             <table id="myTable" class="cell-border">
                 <thead>
                     <tr>

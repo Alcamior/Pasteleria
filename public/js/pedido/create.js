@@ -1,6 +1,38 @@
 document.addEventListener('DOMContentLoaded', function() {
     let today = new Date().toISOString().split('T')[0];
     document.getElementById("fecha").setAttribute("min", today);
+
+    //Busqueda por rango de fechas
+    $(document).ready(function () {
+
+        var table = $('#myTable').DataTable();
+        $.fn.dataTable.ext.search.push(
+            function (settings, data, dataIndex) {
+                var min = $('#minDate').val();
+                var max = $('#maxDate').val();
+                var fecha = data[3]; 
+
+                if (!min && !max) {
+                    return true; // Sin filtros, mostrar todo
+                }
+
+                if (min && new Date(fecha) < new Date(min)) {
+                    return false; // Fecha menor al rango mínimo
+                }
+
+                if (max && new Date(fecha) > new Date(max)) {
+                    return false; // Fecha mayor al rango máximo
+                }
+
+                return true; // Cumple el rango
+            }
+        );
+
+        // Reaplicar el filtro cuando cambien las fechas
+        $('#minDate, #maxDate').on('change', function () {
+            table.draw();
+        });
+    });
 });
 
 document.addEventListener("DOMContentLoaded", function() {
