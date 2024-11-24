@@ -89,6 +89,32 @@ class ProductoSeeder extends Seeder
 
 
         // Productos de la cafetería
-        
+        $producto = new Producto();
+        $producto->idpro = 9;
+        $producto->nombre = 'Café Americano';
+        $producto->tipo = 'Cafetería';
+        $producto->descripcion = 'Café americano clásico hecho con granos 100% arábica.';
+        $producto->precio = 25.00;
+        $producto->imagen = null;
+        $producto->save();
+
+        $producto = new Producto();
+        $producto->idpro = 10;
+        $producto->nombre = 'Latte de Caramelo';
+        $producto->tipo = 'Cafetería';
+        $producto->descripcion = 'Café espresso con leche vaporizada y caramelo.';
+        $producto->precio = 40.00;
+        $producto->imagen = null;
+        $producto->save();
+
+        $producto = new Producto();
+        $producto->idpro = 11;
+        $producto->nombre = 'Té Chai Latte';
+        $producto->tipo = 'Cafetería';
+        $producto->descripcion = 'Mezcla de té chai con leche vaporizada y especias.';
+        $producto->precio = 35.00;
+        $producto->imagen = null;
+        $producto->save();
+
     }
 }

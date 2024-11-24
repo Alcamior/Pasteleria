@@ -10,10 +10,18 @@ use Illuminate\Support\Facades\App;
 
 class ReporteEmpleadoController extends Controller
 {
+    // Manda a llamar la vista del formulario de empleados.
+    // Recibe: Nada.
+    // Devuelve: La vista del formulario de empleados.
     public function showEmpleados(){
         return view('reportes.empleados.empleados');
     }
 
+
+    // Procesa los datos enviados desde el formulario y genera un reporte mensual 
+    // de ventas por empleado.
+    // Recibe: Un request con el formulario seleccionado y el mes a consultar.
+    // Devuelve: Una redirección a la vista del formulario de empleados con los datos del reporte.
     public function showEmpleadosReporte(Request $request){
         $reporte = $request->input('formulario');
 
@@ -29,7 +37,7 @@ class ReporteEmpleadoController extends Controller
         inner join empleado on venta.ide = empleado.ide
         inner join pedido on venta.idv = pedido.idv
         where (month(fechaVent) = ? and year(fechaVent) = ?) and
-        pedido.status = "Aprobado" 
+        pedido.status != "En espera" 
         group by nombreCom order by totalVen desc limit 3;', [$mes, $year]);
 
         $empleados = [];
@@ -52,6 +60,11 @@ class ReporteEmpleadoController extends Controller
         return redirect()->route('reportes.empleados')->with(compact('nombreMes', 'year', 'jsonData', 'empMasVentas', 'empMasCant', 'reporte'));
     }
 
+
+    // Genera un archivo PDF que contiene el reporte mensual de ventas por empleado.
+    // Recibe: Un request con los datos del mes, año, empleado con más ventas, 
+    // cantidad máxima y el gráfico generado.
+    // Devuelve: Un archivo PDF descargable con el reporte generado.
     public function generarMensualPDF(Request $request){
         $nombreMes = $request->input('nombreMes');
         $year = $request->input('year');
