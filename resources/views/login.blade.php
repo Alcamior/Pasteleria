@@ -24,14 +24,18 @@
                             <label>Email</label><br>
                             <input type="text" name="email" id="email" placeholder="ejemplo@gmail.com">
                             @error('email')
-                                <span class="error">{{ $message }}</span>
+                                <div class="alert alert-danger" role="alert">
+                                    {{ $message }}
+                                </div>
                             @enderror
                         </div><br>
                         <div>
                             <label>Contraseña</label><br>
                             <input type="password" name="contrasena" id="contra" placeholder="Escribe tu contraseña aquí">
                             @error('contrasena')
-                                <span class="error">{{ $message }}</span>
+                                <div class="alert alert-danger" role="alert">
+                                    {{ $message }}
+                                </div>
                             @enderror
                         </div><br>
                         <div class="d-flex align-items-center justify-content-center">
@@ -41,9 +45,10 @@
                             <p class="sign-up">¿No tienes cuenta? <a href="{{route('signup')}}">Regístrate</a></p>
                         </div>
                         <hr>
-                        <!-- Mostrar errores -->
                         @if ($errors->has('usuario'))
-                            <span class="error">{{ $errors->first('usuario') }}</span>
+                            <div class="alert alert-danger" role="alert">
+                                {{ $errors->first('usuario') }}
+                            </div>
                         @endif
                         <div class="d-flex align-items-center justify-content-center" >
                             <div class="google d-flex align-items-center justify-content-center">

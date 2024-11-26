@@ -44,6 +44,13 @@ class PedidoController extends Controller
         Retorna: redirección a la vista de creación de pedidos.
     */
     public function store(Request $request){
+
+        $request->validate([
+            'total' => ['required'],
+        ],[
+            'total.required' => 'Se tienen que ingresar al menos un producto.',
+        ]);
+
         $venta = new Venta();
         $venta->fechaVent= now();
         $venta->fecEntrega= $request->fechaP;
@@ -111,6 +118,12 @@ class PedidoController extends Controller
         Retorna: redirección a la vista para consultar todos los pedidos
     */
     public function update(Request $request,$idped){
+
+        $request->validate([
+            'producto' => ['required'],
+        ],[
+            'producto.required' => 'Se tienen que ingresar un producto',
+        ]);
         
         $pedido = Pedido::find($idped);
 

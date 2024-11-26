@@ -41,7 +41,9 @@
                     <input type="text" name="nombre" placeholder="Nombre del producto" value="{{old('nombre')}}">
                     <br>
                     @error('nombre')
-                        <span>*{{ $message }}</span>
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
                     @enderror
                     <br>
                     <br>
@@ -49,7 +51,9 @@
                     <input type="text" name="descripcion" class="descripcion" placeholder="Descripción" value="{{old('descripcion')}}">
                     <br>
                     @error('descripcion')
-                        <span>*{{ $message }}</span>
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
                     @enderror
                     <br>
                     <br>
@@ -60,7 +64,9 @@
                     </div>
                     <br>
                     @error('fechaIng')
-                        <span>*{{ $message }}</span>
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
                     @enderror
                     <br>
                     <br>
@@ -71,7 +77,9 @@
                     </div>
                     <br>
                     @error('fechaCad')
-                        <span>*{{ $message }}</span>
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
                     @enderror
                     <br>
                     <br>
@@ -79,7 +87,9 @@
                     <input type="text" name="cantidad" placeholder="Cantidad" value="{{old('cantidad')}}">
                     <br>
                     @error('cantidad')
-                        <span>*{{ $message }}</span>
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
                     @enderror
                     <br>
                     <br>
@@ -94,7 +104,9 @@
                     </div>
                     <br>
                     @error('categoria')
-                        <span>*{{ $message }}</span>
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
                     @enderror
                     <br>
                     <br>

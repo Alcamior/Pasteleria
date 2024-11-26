@@ -22,6 +22,7 @@
                     <input type="date" id="maxDate">
                 </div>
             </div>
+            
             <table id="myTable" class="cell-border">
                 <thead>
                     <tr>

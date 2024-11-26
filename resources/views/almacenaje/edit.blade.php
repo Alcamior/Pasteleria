@@ -43,7 +43,9 @@
                     <input type="text" name="nombre" value="{{ old('nombre', $almacenaje->nombre) }}">
                     <br>
                     @error('nombre')
-                        <span>*{{ $message }}</span>
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
                     @enderror
                     <br>
                     <br>
@@ -55,7 +57,9 @@
                     </div>
                     <br>
                     @error('descripcion')
-                        <span>*{{ $message }}</span>
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
                     @enderror
                     <br>
                     <br>
@@ -65,7 +69,9 @@
                     <input type="date" name="fechaIng" value="{{old('fechaIng', $almacenaje->fechaIng) }}">
                     <br>
                     @error('fechaIng')
-                        <span>*{{ $message }}</span>
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
                     @enderror
                     <br>
                     <br>
@@ -75,7 +81,9 @@
                     <input type="date" name="fechaCad" value="{{old('fechaCad', $almacenaje->fechaCad) }}">
                     <br>
                     @error('fechaCad')
-                        <span>*{{ $message }}</span>
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
                     @enderror
                     <br>
                     <br>
@@ -85,7 +93,9 @@
                     <input type="text" name="cantidad" value="{{old('cantidad', $almacenaje->cantidad) }}">
                     <br>
                     @error('cantidad')
-                        <span>*{{ $message }}</span>
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
                     @enderror
                     <br>
                     <br>
@@ -100,7 +110,9 @@
                     </div>                    
                     <br>
                     @error('categoria')
-                        <span>*{{ $message }}</span>
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
                     @enderror
                     <br>
                     <br>

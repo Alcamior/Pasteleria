@@ -36,7 +36,9 @@
                         <input type="text" name="nombre" placeholder="Nombre(s)" value="{{old('nombre')}}">
                         <br>
                         @error('nombre')
-                            <span>*{{ $message }}</span>
+                            <div class="alert alert-danger" role="alert">
+                                {{ $message }}
+                            </div>
                         @enderror
                         <br>
                         <br>
@@ -44,7 +46,9 @@
                         <input type="text" name="ap" placeholder="Apellido paterno" value="{{old('ap')}}">
                         <br>
                         @error('ap')
-                            <span>*{{ $message }}</span>
+                            <div class="alert alert-danger" role="alert">
+                                {{ $message }}
+                            </div>
                         @enderror
                         <br>
                         <br>
@@ -52,7 +56,9 @@
                         <input type="text" name="am" placeholder="Apellido materno" value="{{old('am')}}">
                         <br>
                         @error('am')
-                            <span>*{{ $message }}</span>
+                            <div class="alert alert-danger" role="alert">
+                                {{ $message }}
+                            </div>
                         @enderror
                         <br>
                         <br>
@@ -63,7 +69,9 @@
                         </div>
                         <br>
                         @error('fenac')
-                            <span>*{{ $message }}</span>
+                            <div class="alert alert-danger" role="alert">
+                                {{ $message }}
+                            </div>
                         @enderror
                         <br>
                         <br>
@@ -79,7 +87,9 @@
                         </div>
                         <br>
                         @error('genero')
-                            <span>*{{ $message }}</span>
+                            <div class="alert alert-danger" role="alert">
+                                {{ $message }}
+                            </div>
                         @enderror
                         <br>
                         <br>
@@ -108,7 +118,9 @@
                         <input type="text" name="direccion" placeholder="Dirección" value="{{old('direccion')}}">
                         <br>
                         @error('direccion')
-                            <span>*{{ $message }}</span>
+                            <div class="alert alert-danger" role="alert">
+                                {{ $message }}
+                            </div>
                         @enderror
                         <br>
                         <br>
@@ -116,7 +128,9 @@
                         <input type="text" name="telefono" placeholder="Teléfono" value="{{old('telefono')}}">
                         <br>
                         @error('telefono')
-                            <span>*{{ $message }}</span>
+                            <div class="alert alert-danger" role="alert">
+                                {{ $message }}
+                            </div>
                         @enderror
                         <br>
                         <br>
@@ -124,7 +138,9 @@
                         <input type="text" name="email" placeholder="Email" value="{{old('email')}}">
                         <br>
                         @error('email')
-                            <span>*{{ $message }}</span>
+                            <div class="alert alert-danger" role="alert">
+                                {{ $message }}
+                            </div>
                         @enderror
                         <br>
                         <br>
@@ -132,7 +148,9 @@
                         <input type="password" name="contrasena" placeholder="Contraseña" value="{{old('contrasena')}}">
                         <br>
                         @error('contrasena')
-                            <span>*{{ $message }}</span>
+                            <div class="alert alert-danger" role="alert">
+                                {{ $message }}
+                            </div>
                         @enderror
                         <br>
                         <br>

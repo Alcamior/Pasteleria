@@ -147,6 +147,12 @@ hr{
     color: white;
 }
 
+.alert-danger{
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 12px;
+}
 
 @media (max-width: 768px) {
     .message {

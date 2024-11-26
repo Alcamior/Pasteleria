@@ -40,7 +40,9 @@
                     <input type="text" name="codigo" value="{{ old('codigo', $promocion->codigo) }}">
                     <br>
                     @error('codigo')
-                        <span>*{{ $message }}</span>
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
                     @enderror
                     <br>
                     <br>
@@ -50,7 +52,9 @@
                     <input type="text" name="descuento" value="{{ old('descuento', $promocion->descuento) }}">
                     <br>
                     @error('descuento')
-                        <span>*{{ $message }}</span>
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
                     @enderror
                     <br>
                     <br>
@@ -60,7 +64,9 @@
                     <input type="text" name="dias" value="{{old('dias', $promocion->dias) }}">
                     <br>
                     @error('dias')
-                        <span>*{{ $message }}</span>
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
                     @enderror
                     <br>
                     <br>
@@ -72,7 +78,9 @@
                     </div>
                     <br>
                     @error('descripcion')
-                        <span>*{{ $message }}</span>
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
                     @enderror
                     <br>
                     <br>
@@ -87,7 +95,9 @@
                         
                     <br>
                     @error('estatus')
-                        <span>*{{ $message }}</span>
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
                     @enderror
                     <br>
                     <br>

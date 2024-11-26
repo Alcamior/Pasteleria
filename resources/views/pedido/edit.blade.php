@@ -81,6 +81,12 @@
                     </select>
                     <br>
                     <br>
+                    @error('producto')
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
+                        <br>
+                    @enderror
                 </div>
 
                 <br>

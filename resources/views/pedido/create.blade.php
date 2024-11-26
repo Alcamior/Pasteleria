@@ -99,6 +99,12 @@
                 </select>
                 <br>
                 <br>
+                @error('total')
+                    <div class="alert alert-danger" role="alert">
+                        {{ $message }}
+                    </div>
+                    <br>
+                @enderror
 
                 <button id="agregarProducto" class="btn-enviar">Agregar producto</button><br><br>
             </div>
@@ -107,6 +113,7 @@
         </div>
         <br>
         <br>
+
 
         <h3>Productos Agregados</h3>
         <br>
