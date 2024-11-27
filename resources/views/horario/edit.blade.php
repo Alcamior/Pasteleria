@@ -40,7 +40,9 @@
                     <input type="time" name="horaentrada" value="{{ old('horaentrada', $horario->horaentrada) }}">
                     <br>
                     @error('horaentrada')
-                        <span>*{{ $message }}</span>
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
                     @enderror
                     <br>
                     <br>
@@ -50,7 +52,9 @@
                     <input type="time" name="horasalida" value="{{ old('horasalida', $horario->horasalida) }}">
                     <br>
                     @error('horasalida')
-                        <span>*{{ $message }}</span>
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
                     @enderror
                     <br>
                     <br>
@@ -69,7 +73,9 @@
                     </div>
                     <br>
                     @error('dia')
-                        <span>*{{ $message }}</span>
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
                     @enderror
                     <br>
                     <br>

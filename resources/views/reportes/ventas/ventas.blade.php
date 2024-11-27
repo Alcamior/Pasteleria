@@ -38,7 +38,9 @@
                     <input type="date" name="fecha" id="input1">
                 </div>
                 @error('fecha')
-                    <span>*{{ $message }}</span>
+                    <div class="alert alert-danger" role="alert">
+                        {{ $message }}
+                    </div>
                 @enderror
                 <br>
                 <br>
@@ -57,7 +59,9 @@
                     <input type="date" name="fecha" id="input2">
                 </div>
                 @error('fecha')
-                    <span>*{{ $message }}</span>
+                    <div class="alert alert-danger" role="alert">
+                        {{ $message }}
+                    </div>
                 @enderror
                 <br>
                 <br>

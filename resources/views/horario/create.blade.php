@@ -40,7 +40,9 @@
                         <br>
                     </div>
                     @error('horaentrada')
-                        <span>*{{ $message }}</span>
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
                     @enderror
                     <br>
                     <br>
@@ -51,7 +53,9 @@
                     </div>
                         <br>
                     @error('horasalida')
-                        <span>*{{ $message }}</span>
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
                     @enderror
                     <br>
                     <br>
@@ -70,7 +74,9 @@
                     </div>
                     <br>
                     @error('dia')
-                        <span>*{{ $message }}</span>
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
                     @enderror
                     <br>
                     <br>
