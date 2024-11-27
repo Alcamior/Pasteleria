@@ -43,7 +43,9 @@
                     <input type="text" name="nombre" value="{{ old('nombre', $producto->nombre) }}">
                     <br>
                     @error('nombre')
-                        <span>*{{ $message }}</span>
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
                     @enderror
                     <br>
                     <br>
@@ -57,7 +59,9 @@
                     </div>
                     <br>
                     @error('tipo')
-                        <span>*{{ $message }}</span>
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
                     @enderror
                     <br>
                     <br>
@@ -68,7 +72,9 @@
                     </div>
                     <br>
                     @error('descripcion')
-                        <span>*{{ $message }}</span>
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
                     @enderror
                     <br>
                     <br>
@@ -78,7 +84,9 @@
                     <input type="text" name="precio" value="{{old('precio', $producto->precio) }}">
                     <br>
                     @error('precio')
-                        <span>*{{ $message }}</span>
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
                     @enderror
                     <br>
                     <br>
@@ -89,7 +97,9 @@
                     </div>
                     <br>
                     @error('imagen')
-                        <span>*{{ $message }}</span>
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
                     @enderror
                     <br>
                     <br>
